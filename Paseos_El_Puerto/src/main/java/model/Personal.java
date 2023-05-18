@@ -1,29 +1,30 @@
 package model;
-
-public class Propietario {
-    private int idPropietario;
+public class Personal {
+    private int idPersonal;
     private String nombre;
     private String direccion;
     private String telefono;
     private String email;
+    private float costoHora;
 
-    public Propietario() {
+    public Personal() {
     }
 
-    public Propietario(int idPropietario, String nombre, String direccion, String telefono, String email) {
-        this.idPropietario = idPropietario;
+    public Personal(int idPersonal, String nombre, String direccion, String telefono, String email, float costoHora) {
+        this.idPersonal = idPersonal;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+        this.costoHora = costoHora;
     }
 
-    public int getIdPropietario() {
-        return idPropietario;
+    public int getIdPersonal() {
+        return idPersonal;
     }
 
-    public void setIdPropietario(int idPropietario) {
-        this.idPropietario = idPropietario;
+    public void setIdPersonal(int idPersonal) {
+        this.idPersonal = idPersonal;
     }
 
     public String getNombre() {
@@ -56,5 +57,13 @@ public class Propietario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public float getCostoHora() {
+        return costoHora;
+    }
+
+    public void setCostoHora(float costoHora) {
+        this.costoHora = costoHora;
     }
 }
