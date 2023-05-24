@@ -2,6 +2,8 @@ package model;
 public class Clientes {
     private int idCliente;
     private String nombre;
+    private String apellidoP;
+    private String apellidoM;
     private String direccion;
     private String telefono;
     private String email;
@@ -9,9 +11,11 @@ public class Clientes {
     public Clientes() {
     }
 
-    public Clientes(int idCliente, String nombre, String direccion, String telefono, String email) {
+    public Clientes(int idCliente, String nombre, String apellidoP, String apellidoM, String direccion, String telefono, String email) {
         this.idCliente = idCliente;
         this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
@@ -55,6 +59,20 @@ public class Clientes {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getApellido_Pat() {
+        return apellidoP;
+    }
+    public void setApellidoP(String apellidoP) {
+        this.apellidoP = apellidoP;
+    }
+
+    public String getApellido_Mat() {
+        return apellidoM;
+    }
+    public void setApellidoM(String apellidoM) {
+        this.apellidoP = apellidoM;
     }
 }
 
