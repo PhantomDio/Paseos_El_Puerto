@@ -1,0 +1,10 @@
+model\Personal.class
+Main.class
+model\Propietarios.class
+model\Proveedores.class
+model\Alquileres.class
+model\Clientes.class
+model\Equipamiento.class
+model\Mantenimiento.class
+model\Reparacion.class
+model\Embarcaciones.class
