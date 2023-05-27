@@ -4,16 +4,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 import javax.servlet.*;
-import javax.sql.DataSource;
 import datos.Conexion;
 import model.Clientes;
 import datos.ClientesDAO;
 import java.sql.*;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.*;
 
 @WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente"})
 public class ServletCliente extends HttpServlet {
@@ -24,9 +20,9 @@ public class ServletCliente extends HttpServlet {
 
         if (opc.equals("list")) {
             ClientesDAO clidao = new ClientesDAO();
-            List<Clientes> lista = clidao.selectAll();
-            rq.setAttribute("lista",lista);
-            rq.getRequestDispatcher("vistas/clientes/index.jsp").forward(rq, rp);
+            List<Clientes> listaClientes = clidao.selectAll();
+            rq.setAttribute("listaClientes", listaClientes);
+            rq.getRequestDispatcher("/index.jsp").forward(rq, rp);
         }
 
         else if (opc.equals("mostrar")) {
@@ -87,7 +83,6 @@ public class ServletCliente extends HttpServlet {
             clidaoo.insert(client);
             rp.sendRedirect("/EjemploCliente/ServletCliente");
         }
-       
+
     }
 }
-

@@ -5,7 +5,7 @@ import java.sql.*;
 public class Conexion {
     private static String user = "postgres";
     private static String pswd = "123";
-    private static String bd = "Escuela";
+    private static String bd = "Paseos_El_Puerto";
     private static String server = "jdbc:postgresql://localhost:5432/" + bd;
     private static String driver = "org.postgresql.Driver";
 

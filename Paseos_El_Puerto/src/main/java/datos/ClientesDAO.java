@@ -50,8 +50,8 @@ public class ClientesDAO {
             while (result.next()) {
                 int id_cliente = result.getInt("id_cliente");
                 String nombre = result.getString("nombre");
-                String apellido_Pat = result.getString("apellido_Pat");
-                String apellido_Mat = result.getString("apellido_Mat");
+                String apellido_Pat = result.getString("ap_pat");
+                String apellido_Mat = result.getString("ap_mat");
                 String direccion = result.getString("direccion");
                 String telefono = result.getString("telefono");
                 String email = result.getString("email");
@@ -69,11 +69,12 @@ public class ClientesDAO {
             for(Clientes cliente: clientes) {
                 System.out.println("ID_cliente: " + cliente.getIdCliente());
                 System.out.println("Nombre: " + cliente.getNombre());
-                System.out.println("Apellido_Pat: " + cliente.getApellidoP());
-                System.out.println("Apellido_Mat: " + cliente.getApellidoM());
+                System.out.println("Apellido Paterno: " + cliente.getApellidoP());
+                System.out.println("Apellido Materno: " + cliente.getApellidoM());
                 System.out.println("Direccion: " + cliente.getDireccion());
                 System.out.println("Telefono: " + cliente.getTelefono());
                 System.out.println("Email: " + cliente.getEmail());
+                System.out.println("Fecha de nacimiento: " + cliente.getFecha_nac());
                 System.out.println(" \n ");
             }
 

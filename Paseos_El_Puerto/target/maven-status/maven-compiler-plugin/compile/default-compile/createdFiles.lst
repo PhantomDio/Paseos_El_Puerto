@@ -1,10 +1,14 @@
 model\Personal.class
-Main.class
 model\Propietarios.class
 model\Proveedores.class
-model\Alquileres.class
 model\Clientes.class
-model\Equipamiento.class
 model\Mantenimiento.class
 model\Reparacion.class
+datos\ClientesDAO.class
+controlador\ServletCliente.class
+Main.class
+model\Alquileres.class
+model\Alumnos_Bean.class
+model\Equipamiento.class
+datos\Conexion.class
 model\Embarcaciones.class
