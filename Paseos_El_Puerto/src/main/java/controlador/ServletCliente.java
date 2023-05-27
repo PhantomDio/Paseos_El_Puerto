@@ -1,12 +1,11 @@
 package controlador;
 
-import javax.annotation.Resource;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 import javax.servlet.*;
 import javax.sql.DataSource;
-import datos.conexion;
+import datos.Conexion;
 import model.Clientes;
 import datos.ClientesDAO;
 import java.sql.*;
@@ -25,7 +24,7 @@ public class ServletCliente extends HttpServlet {
 
         if (opc.equals("list")) {
             ClientesDAO clidao = new ClientesDAO();
-            List<clientes> lista = clidao.seleccionar();
+            List<Clientes> lista = clidao.selectAll();
             rq.setAttribute("lista",lista);
             rq.getRequestDispatcher("vistas/clientes/index.jsp").forward(rq, rp);
         }
@@ -44,13 +43,13 @@ public class ServletCliente extends HttpServlet {
                 Clientes cli = new Clientes();
                 while (rs.next()) {
 
-                    cli.setId_cliente(rs.getInt("id_cliente"));
+                    cli.setIdCliente(rs.getInt("id_cliente"));
                     cli.setNombre(rs.getString("nombre"));
-                    cli.setApellido_Pat(rs.getString("apellido_Pat"));
-                    cli.setApellido_Mat(rs.getString("apellido_Mat"));
-                    cli.setEmail(rs.getString("email"));
+                    cli.setApellidoP(rs.getString("ap_pat"));
+                    cli.setApellidoM(rs.getString("ap_mat"));
+                    cli.setDireccion(rs.getString("direccion"));
                     cli.setTelefono(rs.getString("telefono"));
-                    cli.setFecha_nac(rs.getDate("fecha_nac"));
+                    cli.setEmail(rs.getString("email"));;
                 }
                 rq.setAttribute("cliente", cli);
 
@@ -64,9 +63,8 @@ public class ServletCliente extends HttpServlet {
         else if (opc.equals("eliminar")) {
 
             int id_cliente = Integer.parseInt(rq.getParameter(("id_cliente")));
-            Clientes cli = new Clientes(id_cliente);
             ClientesDAO clientdao = new ClientesDAO();
-            clientdao.borrar(cli);
+            clientdao.delete(id_cliente);
             rp.sendRedirect("ServletCliente");
         }
     }
@@ -77,15 +75,16 @@ public class ServletCliente extends HttpServlet {
        if (op.equals("nuevo")) {
 
             String nombre = rq.getParameter("nombre");
-            String apellido_Pat = rq.getParameter("apellido_Pat");
-            String apellido_Mat = rq.getParameter("apellido_Mat");
-            String email = rq.getParameter("email");
+            String apellido_Pat = rq.getParameter("ap_pat");
+            String apellido_Mat = rq.getParameter("ap_mat");
+            String direccion = rq.getParameter("direccion");
             String telefono = rq.getParameter("telefono");
+           String email = rq.getParameter("email");
             Date fecha_nac = Date.valueOf(rq.getParameter("fecha_nac"));
 
-            Clientes client = new Clientes(nombre, apellido_Pat, apellido_Mat, email, telefono,fecha_nac);
+            Clientes client = new Clientes(nombre, apellido_Pat, apellido_Mat, direccion, email, telefono,fecha_nac);
             ClientesDAO clidaoo = new ClientesDAO();
-            clidaoo.agregar(client);
+            clidaoo.insert(client);
             rp.sendRedirect("/EjemploCliente/ServletCliente");
         }
        
