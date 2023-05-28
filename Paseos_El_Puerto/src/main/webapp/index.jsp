@@ -31,7 +31,7 @@
 </form>
 
 <h2>Listado de clientes</h2>
-
+<a href="ServletCliente">Listar</a>
 <table>
     <%-- Obtener el atributo "listaClientes" de la solicitud --%>
     <% List<Clientes> listaClientes = (List<Clientes>) request.getAttribute("listaClientes"); %>

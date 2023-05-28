@@ -75,8 +75,8 @@ public class ServletCliente extends HttpServlet {
             String apellido_Mat = rq.getParameter("ap_mat");
             String direccion = rq.getParameter("direccion");
             String telefono = rq.getParameter("telefono");
-           String email = rq.getParameter("email");
-            Date fecha_nac = Date.valueOf(rq.getParameter("fecha_nac"));
+            String email = rq.getParameter("email");
+            String fecha_nac = rq.getParameter("fecha_nac");
 
             Clientes client = new Clientes(nombre, apellido_Pat, apellido_Mat, direccion, email, telefono,fecha_nac);
             ClientesDAO clidaoo = new ClientesDAO();

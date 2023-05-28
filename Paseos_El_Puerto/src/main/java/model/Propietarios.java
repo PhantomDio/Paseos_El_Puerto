@@ -2,10 +2,7 @@ package model;
 
 public class Propietarios {
     private int idPropietario;
-    private String nombre;
-    private String direccion;
-    private String telefono;
-    private String email;
+    private String nombre, apellidoM, apellidoP, direccion, telefono, email;
 
     public Propietarios() {
     }
@@ -21,7 +18,6 @@ public class Propietarios {
     public int getIdPropietario() {
         return idPropietario;
     }
-
     public void setIdPropietario(int idPropietario) {
         this.idPropietario = idPropietario;
     }
@@ -29,10 +25,26 @@ public class Propietarios {
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+
+    public String getApellidoP() {
+        return apellidoP;
+    }
+    public void setApellidoP(String apellidoP) {
+        this.apellidoP = apellidoP;
+    }
+
+
+    public String getApellidoM() {
+        return apellidoM;
+    }
+    public void setApellidoM(String apellidoM) {
+        this.apellidoM = apellidoM;
+    }
+
 
     public String getDireccion() {
         return direccion;
