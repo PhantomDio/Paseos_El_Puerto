@@ -1,11 +1,12 @@
 package datos;
 
 import model.Clientes;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientesDAO {
+public class AlquileresDAO {
 
     public void select(int id) {
         String selectSQL = "SELECT * FROM clientes WHERE id_cliente=?";
@@ -84,47 +85,57 @@ public class ClientesDAO {
 
         return clientes;
     }
-    private int INSERT_UPDATE(Clientes cliente, String query, Connection con) throws SQLException {
-        PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, cliente.getNombre());
-        ps.setString(2, cliente.getApellidoP());
-        ps.setString(3, cliente.getApellidoM());
-        ps.setString(4, cliente.getDireccion());
-        ps.setString(5, cliente.getTelefono());
-        ps.setString(6, cliente.getEmail());
-        ps.setDate(7, cliente.getFecha_nac());
-        if (cliente.getIdCliente() != 0)
-            // Si el ID del cliente es diferente de cero, se trata de una actualización
-            ps.setInt(8, cliente.getIdCliente());
-        return ps.executeUpdate();
+    private int INSERT_UPDATE(Clientes cliente, String query, int indexID, int indexNOMBRE, int indexAPELLP,
+                              int indexAPELLM, int indexEDAD, int indexFECHAN, int indexCEL, int indexTEL, int indexEMAIL,
+                              int indexDIRECC)
+            throws SQLException {
+        Connection con = Conexion.getConnection();
+        if (con != null) { // asegurarse de que la conexión no sea nula
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(indexID, cliente.getIdCliente());
+            ps.setString(indexNOMBRE, cliente.getNombre());
+            ps.setString(indexAPELLP, cliente.getApellidoP());
+            ps.setString(indexAPELLM, cliente.getApellidoM());
+            ps.setString(indexEDAD, cliente.getDireccion());
+            ps.setString(indexCEL, cliente.getTelefono());
+            ps.setString(indexEMAIL, cliente.getEmail());
+            ps.setString(indexDIRECC, cliente.getDireccion());
+            ps.setString(indexTEL, cliente.getTelefono());
+            ps.executeUpdate();
+            Conexion.close(con);
+            return 1;
+        } else {
+            System.out.println("La conexión a la BD no se ha establecido correctamente");
+            return 0;
+        }
     }
 
     public void insert(Clientes cliente) {
-        String insertSQL = "INSERT INTO clientes (nombre, ap_pat, ap_mat, direccion, telefono, email, fecha_nac) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection con = Conexion.getConnection()) {
-            int R = INSERT_UPDATE(cliente, insertSQL, con);
-            if (R > 0) {
+        String insertSQL = "INSERT INTO clientes (id_cliente, nombre, ap_pat, ap_mat, direccion, f_nac, cel, tel, email, direccion)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            int R = INSERT_UPDATE(cliente, insertSQL, 1, 2, 3, 4, 5, 6,
+                    7, 8, 9, 10);
+            if (R==1)
                 System.out.println("Registro agregado exitosamente.");
-            }
-        } catch (SQLException ex) {
+        }
+        catch(SQLException ex){
             System.out.println("No se pudo agregar el cliente: " + ex.getMessage());
         }
     }
 
     public void update(Clientes cliente) {
         String updateSQL = "UPDATE clientes SET nombre = ?, ap_pat = ?, ap_mat = ?, direccion = ?, telefono = ?, " +
-                "email = ?, fecha_nac = ? WHERE id_cliente = ?";
-        try (Connection con = Conexion.getConnection()) {
-            int R = INSERT_UPDATE(cliente, updateSQL, con);
-            if (R > 0) {
+                "email = ? WHERE id_cliente = ? ";
+        try {
+            int R = INSERT_UPDATE(cliente, updateSQL, 10, 1, 2, 3, 4, 5,
+                    6, 7, 8, 9);
+            if (R==1)
                 System.out.println("Registro modificado exitosamente.");
-            }
         } catch (SQLException ex) {
             System.out.println("Error al modificar el cliente: " + ex.getMessage());
         }
     }
-
 
     public void delete(int id) {
         String deleteSQL = "DELETE FROM clientes WHERE id_cliente=?";

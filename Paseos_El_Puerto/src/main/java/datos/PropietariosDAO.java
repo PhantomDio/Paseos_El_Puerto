@@ -1,20 +1,21 @@
-package datos;
+/*package datos;
 
-import model.Clientes;
+import model.Propietarios;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientesDAO {
+public class PropietariosDAO {
 
     public void select(int id) {
-        String selectSQL = "SELECT * FROM clientes WHERE id_cliente=?";
+        String selectSQL = "SELECT * FROM propietarios WHERE id_propietario=?";
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(selectSQL);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id_cliente"));
+                System.out.println("ID: " + rs.getInt("id_propietario"));
                 System.out.println("Nombre: " + rs.getString("nombre"));
                 System.out.println("Apellido paterno: " + rs.getString("ap_pat"));
                 System.out.println("Apellido materno: " + rs.getString("ap_mat"));
@@ -34,21 +35,21 @@ public class ClientesDAO {
             System.out.println("Error al seleccionar alumno: " + ex.getMessage());
         }
     }
-    public List<Clientes> selectAll(){
+    public List<Propietarios> selectAll(){
         Connection conn = null;
         Statement state = null;
         ResultSet result = null;
-        Clientes client = null;
-        String selectSQL = "SELECT * FROM clientes";
+        Propietarios client = null;
+        String selectSQL = "SELECT * FROM propietarios";
 
-        List<Clientes> clientes = new ArrayList<>();
+        List<Propietarios> propietarios = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             state = conn.createStatement();
             result = state.executeQuery(selectSQL);
 
             while (result.next()) {
-                int id_cliente = result.getInt("id_cliente");
+                int id_propietario = result.getInt("id_propietario");
                 String nombre = result.getString("nombre");
                 String apellido_Pat = result.getString("ap_pat");
                 String apellido_Mat = result.getString("ap_mat");
@@ -57,8 +58,8 @@ public class ClientesDAO {
                 String email = result.getString("email");
                 String fecha_nac = result.getString("fecha_nac");
 
-                client = new Clientes(id_cliente,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, fecha_nac);
-                clientes.add(client);
+                client = new Propietarios(id_propietario,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, fecha_nac);
+                propietarios.add(client);
 
             }
 
@@ -66,15 +67,15 @@ public class ClientesDAO {
             Conexion.close(state);
             Conexion.close(conn);
 
-            for(Clientes cliente: clientes) {
-                System.out.println("ID_cliente: " + cliente.getIdCliente());
-                System.out.println("Nombre: " + cliente.getNombre());
-                System.out.println("Apellido Paterno: " + cliente.getApellidoP());
-                System.out.println("Apellido Materno: " + cliente.getApellidoM());
-                System.out.println("Direccion: " + cliente.getDireccion());
-                System.out.println("Telefono: " + cliente.getTelefono());
-                System.out.println("Email: " + cliente.getEmail());
-                System.out.println("Fecha de nacimiento: " + cliente.getFecha_nac());
+            for(Propietarios propietario: propietarios) {
+                System.out.println("ID: " + propietario.getIdPropietario());
+                System.out.println("Nombre: " + propietario.getNombre());
+                System.out.println("Apellido Paterno: " + propietario.getApellidoP());
+                System.out.println("Apellido Materno: " + propietario.getApellidoM());
+                System.out.println("Direccion: " + propietario.getDireccion());
+                System.out.println("Telefono: " + propietario.getTelefono());
+                System.out.println("Email: " + propietario.getEmail());
+                System.out.println("Fecha de nacimiento: " + propietario.getFecha_nac());
                 System.out.println(" \n ");
             }
 
@@ -82,52 +83,51 @@ public class ClientesDAO {
             e.printStackTrace();
         }
 
-        return clientes;
+        return propietarios;
     }
-    private int INSERT_UPDATE(Clientes cliente, String query, Connection con) throws SQLException {
+    private int INSERT_UPDATE(Propietarios propietario, String query, Connection con) throws SQLException {
         PreparedStatement ps = con.prepareStatement(query);
-        ps.setString(1, cliente.getNombre());
-        ps.setString(2, cliente.getApellidoP());
-        ps.setString(3, cliente.getApellidoM());
-        ps.setString(4, cliente.getDireccion());
-        ps.setString(5, cliente.getTelefono());
-        ps.setString(6, cliente.getEmail());
-        ps.setDate(7, cliente.getFecha_nac());
-        if (cliente.getIdCliente() != 0)
-            // Si el ID del cliente es diferente de cero, se trata de una actualización
-            ps.setInt(8, cliente.getIdCliente());
+        ps.setString(1, propietario.getNombre());
+        ps.setString(2, propietario.getApellidoP());
+        ps.setString(3, propietario.getApellidoM());
+        ps.setString(4, propietario.getDireccion());
+        ps.setString(5, propietario.getTelefono());
+        ps.setString(6, propietario.getEmail());
+        ps.setDate(7, propietario.getFecha_nac());
+        if (propietario.getIdCliente() != 0)
+            // Si el ID del propietario es diferente de cero, se trata de una actualización
+            ps.setInt(8, propietario.getIdCliente());
         return ps.executeUpdate();
     }
 
-    public void insert(Clientes cliente) {
-        String insertSQL = "INSERT INTO clientes (nombre, ap_pat, ap_mat, direccion, telefono, email, fecha_nac) " +
+    public void insert(Propietarios propietario) {
+        String insertSQL = "INSERT INTO propietarios (nombre, ap_pat, ap_mat, direccion, telefono, email, fecha_nac) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection con = Conexion.getConnection()) {
-            int R = INSERT_UPDATE(cliente, insertSQL, con);
+            int R = INSERT_UPDATE(propietario, insertSQL, con);
             if (R > 0) {
                 System.out.println("Registro agregado exitosamente.");
             }
         } catch (SQLException ex) {
-            System.out.println("No se pudo agregar el cliente: " + ex.getMessage());
+            System.out.println("No se pudo agregar el propietario: " + ex.getMessage());
         }
     }
 
-    public void update(Clientes cliente) {
-        String updateSQL = "UPDATE clientes SET nombre = ?, ap_pat = ?, ap_mat = ?, direccion = ?, telefono = ?, " +
-                "email = ?, fecha_nac = ? WHERE id_cliente = ?";
+    public void update(Propietarios propietario) {
+        String updateSQL = "UPDATE propietarios SET nombre = ?, ap_pat = ?, ap_mat = ?, direccion = ?, telefono = ?, " +
+                "email = ?, fecha_nac = ? WHERE id_propietario = ?";
         try (Connection con = Conexion.getConnection()) {
-            int R = INSERT_UPDATE(cliente, updateSQL, con);
+            int R = INSERT_UPDATE(propietario, updateSQL, con);
             if (R > 0) {
                 System.out.println("Registro modificado exitosamente.");
             }
         } catch (SQLException ex) {
-            System.out.println("Error al modificar el cliente: " + ex.getMessage());
+            System.out.println("Error al modificar el propietario: " + ex.getMessage());
         }
     }
 
-
     public void delete(int id) {
-        String deleteSQL = "DELETE FROM clientes WHERE id_cliente=?";
+        String deleteSQL = "DELETE FROM propietarios WHERE id_propietario=?";
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(deleteSQL);
             statement.setInt(1, id);
@@ -138,4 +138,4 @@ public class ClientesDAO {
             System.out.println("Error al eliminar el alumno: " + ex.getMessage());
         }
     }
-}
+}*/
