@@ -1,70 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="model.Clientes" %>
-<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Administración de Clientes</title>
+    <title>Paseos "El Puerto"</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<h1>Administración de Clientes</h1>
+<header>
+    <div class="container">
+        <nav class="navigation">
+            <ul>
+                <li><a href="index.jsp" class="logo-nav-container"><img src="logo.png"/></a></li>
+                <li><a href="">Embarcaciones</a></li>
+                <li><a href="">Propietarios</a></li>
+                <li><a href="">Alquileres</a></li>
+                <li><a href="Clientes/menu_cliente.jsp">Clientes</a></li>
+                <li><a href="">Personal</a></li>
+                <li><a href="">Mantenimiento</a></li>
+                <li><a href="">Reparación</a></li>
+                <li><a href="">Equipamiento</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<section class="parallax-section">
+    <div class="parallax-content">
+    </div>
+</section>
 
-<%-- Mostrar mensaje de éxito o error si existe --%>
-<% if (request.getAttribute("mensaje") != null) { %>
-<p><%= request.getAttribute("mensaje") %></p>
-<% } %>
+<h2>Descripción del proyecto</h2>
+<p>
+    Paseos "El Puerto" es una agencia que alquila embarcaciones a sus clientes mediante una tarjeta
+    de membresía. Nuestro objetivo es brindar a nuestros clientes una experiencia inolvidable en el mar,
+    ofreciendo una amplia selección de embarcaciones de alta calidad y servicios personalizados.
+</p>
 
-<h2>Registrar nuevo cliente</h2>
+<h3>Servicios ofrecidos:</h3>
+<ul>
+    <li>Alquiler de embarcaciones de diferentes tamaños y capacidades.</li>
+    <li>Tours guiados por lugares turísticos y pintorescos.</li>
+    <li>Equipo de buceo y snorkel disponible para los amantes del agua.</li>
+    <li>Servicios de catering y eventos especiales a bordo.</li>
+    <li>Transporte y traslado desde y hacia el puerto.</li>
+</ul>
 
-<form action="ServletCliente" method="POST">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
+<h3>Beneficios de la membresía:</h3>
+<ul>
+    <li>Descuentos exclusivos en alquileres y servicios adicionales.</li>
+    <li>Acceso prioritario a las embarcaciones más populares.</li>
+    <li>Asistencia personalizada para planificar su viaje.</li>
+    <li>Invitaciones a eventos y actividades especiales.</li>
+    <li>Programa de puntos para acumular beneficios adicionales.</li>
+</ul>
 
-    <label for="correo">Correo electrónico:</label>
-    <input type="email" id="correo" name="correo" required><br><br>
-
-    <label for="telefono">Teléfono:</label>
-    <input type="text" id="telefono" name="telefono" required><br><br>
-
-    <input type="submit" value="Registrar">
-</form>
-
-<h2>Listado de clientes</h2>
-<a href="ServletCliente">Listar</a>
-<table>
-    <%-- Obtener el atributo "listaClientes" de la solicitud --%>
-    <% List<Clientes> listaClientes = (List<Clientes>) request.getAttribute("listaClientes"); %>
-    <%-- Verificar si la lista de clientes es nula antes de iterar --%>
-    <% if (listaClientes == null) { %>
-    <h2>No hay clientes a mostrar</h2>
-    <% } else { %>
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido Paterno</th>
-        <th>Apellido Materno</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-        <th>E-mail</th>
-        <th>Fecha de nacimiento</th>
-    </tr>
-
-    <%-- Iterar sobre la lista de clientes --%>
-    <% for (Clientes cliente : listaClientes) { %>
-    <tr>
-        <td><%= cliente.getIdCliente() %></td>
-        <td><%= cliente.getNombre() %></td>
-        <td><%= cliente.getApellidoP() %></td>
-        <td><%= cliente.getApellidoM() %></td>
-        <td><%= cliente.getDireccion() %></td>
-        <td><%= cliente.getTelefono() %></td>
-        <td><%= cliente.getEmail() %></td>
-        <td><%= cliente.getFecha_nac() %></td>
-    </tr>
-    <% } %>
-    <% } %>
-</table>
-
+<footer class="footer">
+    <div class="container">
+        <p>© 2023 Paseos "El Puerto". Todos los derechos reservados.</p>
+    </div>
+</footer>
 </body>
 </html>

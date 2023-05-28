@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+p {
+    color: #666;
+    line-height: 1.5;
+}
+
+a {
+    color: #f9f9f9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para la barra de navegación */
+.navigation {
+    position: fixed; /* Hace que la barra de navegación se superponga en el body */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Asegura que la barra de navegación esté en la parte superior */
+    height: 80px; /* Ajusta la altura de la barra de navegación */
+    background-color: transparent; /* Barra de navegación inicialmente transparente */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+    display: flex; /* Alinea los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+}
+
+.navigation:hover {
+    background-color: #333; /* Color de fondo sólido al pasar el cursor sobre la barra de navegación */
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation ul li {
+    margin-right: 20px;
+}
+
+.logo-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-nav-container img {
+    max-height: 45px; /* Ajusta el tamaño del logo */
+}
+
+/* Estilos para los títulos */
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para los párrafos */
+p {
+    margin-bottom: 15px;
+}
+
+/* Estilos para las secciones */
+.container > h2,
+.container > h3 {
+    margin-top: 40px;
+}
+
+.container > p {
+    margin-bottom: 30px;
+}
+
+.parallax-section {
+    height: 100vh; /* Ajusta la altura según sea necesario */
+    background-image: url('ElPuerto.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.parallax-content {
+    color: #ffffff; /* Color del texto superpuesto */
+    text-align: center;
+    padding: 100px; /* Ajusta el espaciado según sea necesario */
+}
+
+.footer {
+    margin-top: 80px; /* Añade un margen superior para evitar que el footer se superponga con la sección de parallax */
+    padding: 20px 0;
+    background-color: #f5f5f5;
+    text-align: center;
+}
