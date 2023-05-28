@@ -1,6 +1,5 @@
 model\Personal.class
 model\Propietarios.class
-model\Proveedores.class
 model\Clientes.class
 model\Mantenimiento.class
 model\Reparacion.class

@@ -5,39 +5,42 @@
     <meta charset="UTF-8">
     <title>Paseos "El Puerto"</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="animaciones.js"></script>
 </head>
 <body>
-<header>
+<header class="navigation">
     <div class="container">
-        <nav class="navigation">
+        <nav class="scrolled">
             <ul>
                 <li><a href="index.jsp" class="logo-nav-container"><img src="logo.png"/></a></li>
-                <li><a href="">Embarcaciones</a></li>
-                <li><a href="">Propietarios</a></li>
-                <li><a href="">Alquileres</a></li>
-                <li><a href="Clientes/menu_cliente.jsp">Clientes</a></li>
-                <li><a href="">Personal</a></li>
-                <li><a href="">Mantenimiento</a></li>
-                <li><a href="">Reparación</a></li>
-                <li><a href="">Equipamiento</a></li>
+                <li><a href="" class="navigation-link">Embarcaciones</a></li>
+                <li><a href="" class="navigation-link">Propietarios</a></li>
+                <li><a href="" class="navigation-link">Alquileres</a></li>
+                <li><a href="Clientes/menu_cliente.jsp" class="navigation-link">Clientes</a></li>
+                <li><a href="" class="navigation-link">Personal</a></li>
+                <li><a href="" class="navigation-link">Mantenimiento</a></li>
+                <li><a href="" class="navigation-link">Reparación</a></li>
+                <li><a href="" class="navigation-link">Equipamiento</a></li>
             </ul>
         </nav>
     </div>
 </header>
+
 <section class="parallax-section">
     <div class="parallax-content">
     </div>
 </section>
-
-<h2>Descripción del proyecto</h2>
-<p>
+<section class="container">
+<div class="parallax-content">
+<h1 class="fade-in">Descripción del proyecto</h1>
+<p class="fade-in">
     Paseos "El Puerto" es una agencia que alquila embarcaciones a sus clientes mediante una tarjeta
     de membresía. Nuestro objetivo es brindar a nuestros clientes una experiencia inolvidable en el mar,
     ofreciendo una amplia selección de embarcaciones de alta calidad y servicios personalizados.
 </p>
 
-<h3>Servicios ofrecidos:</h3>
-<ul>
+<h1 class="fade-in">Servicios ofrecidos:</h1>
+<ul class="fade-in">
     <li>Alquiler de embarcaciones de diferentes tamaños y capacidades.</li>
     <li>Tours guiados por lugares turísticos y pintorescos.</li>
     <li>Equipo de buceo y snorkel disponible para los amantes del agua.</li>
@@ -45,15 +48,16 @@
     <li>Transporte y traslado desde y hacia el puerto.</li>
 </ul>
 
-<h3>Beneficios de la membresía:</h3>
-<ul>
+<h1 class="fade-in">Beneficios de la membresía:</h1>
+<ul class="fade-in">
     <li>Descuentos exclusivos en alquileres y servicios adicionales.</li>
     <li>Acceso prioritario a las embarcaciones más populares.</li>
     <li>Asistencia personalizada para planificar su viaje.</li>
     <li>Invitaciones a eventos y actividades especiales.</li>
     <li>Programa de puntos para acumular beneficios adicionales.</li>
 </ul>
-
+</div>
+</section>
 <footer class="footer">
     <div class="container">
         <p>© 2023 Paseos "El Puerto". Todos los derechos reservados.</p>

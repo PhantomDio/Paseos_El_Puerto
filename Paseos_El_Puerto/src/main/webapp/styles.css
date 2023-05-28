@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Nirmala UI", sans-serif;
     background-color: #f5f5f5;
     margin: 0;
 }
@@ -8,65 +8,6 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-h1, h2, h3 {
-    color: #333;
-}
-
-p {
-    color: #666;
-    line-height: 1.5;
-}
-
-a {
-    color: #f9f9f9;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Estilos para la barra de navegación */
-.navigation {
-    position: fixed; /* Hace que la barra de navegación se superponga en el body */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999; /* Asegura que la barra de navegación esté en la parte superior */
-    height: 80px; /* Ajusta la altura de la barra de navegación */
-    background-color: transparent; /* Barra de navegación inicialmente transparente */
-    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
-    display: flex; /* Alinea los elementos horizontalmente */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente */
-}
-
-.navigation:hover {
-    background-color: #333; /* Color de fondo sólido al pasar el cursor sobre la barra de navegación */
-}
-
-.navigation ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-.navigation ul li {
-    margin-right: 20px;
-}
-
-.logo-nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo-nav-container img {
-    max-height: 45px; /* Ajusta el tamaño del logo */
 }
 
 /* Estilos para los títulos */
@@ -87,9 +28,71 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* Estilos para los párrafos */
+h1, h2, h3 {
+    color: #333;
+}
+
 p {
-    margin-bottom: 15px;
+    color: #666;
+    line-height: 1.5;
+    font-size: 24px;
+}
+
+/* Estilos para la barra de navegación */
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    height: 80px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation:hover,
+.navigation.scrolled {
+    background-color: #333;
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation a {
+    color: #333;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navigation:hover a, .navigation.scrolled a{
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.navigation ul li {
+    margin-right: 20px;
+}
+
+.logo-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-nav-container img {
+    max-height: 45px;
 }
 
 /* Estilos para las secciones */
@@ -103,7 +106,7 @@ p {
 }
 
 .parallax-section {
-    height: 100vh; /* Ajusta la altura según sea necesario */
+    height: 100vh;
     background-image: url('ElPuerto.png');
     background-size: cover;
     background-position: center;
@@ -112,14 +115,42 @@ p {
 }
 
 .parallax-content {
-    color: #ffffff; /* Color del texto superpuesto */
+    color: #333;
     text-align: center;
-    padding: 100px; /* Ajusta el espaciado según sea necesario */
+    padding: 100px;
 }
 
 .footer {
-    margin-top: 80px; /* Añade un margen superior para evitar que el footer se superponga con la sección de parallax */
+    margin-top: 80px;
     padding: 20px 0;
     background-color: #f5f5f5;
     text-align: center;
+}
+
+.fade-in-animation {
+    opacity: 0;
+    animation: fade-in-animation 1s ease-in-out forwards;
+}
+
+@keyframes fade-in-animation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+ul.fade-in {
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+ul.fade-in li {
+    font-size: 24px;
+    margin-left: 0;
+}
+
+.container_body{
+    background-color: #eee2c7;
 }
