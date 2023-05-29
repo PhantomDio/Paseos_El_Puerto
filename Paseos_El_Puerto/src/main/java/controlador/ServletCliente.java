@@ -12,16 +12,16 @@ import java.util.*;
 public class ServletCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
-        String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "list";
+        String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "lista";
 
-        if (op.equals("list")) {
+        if (op.equals("lista")) {
             ClientesDAO clidao = new ClientesDAO();
             List<Clientes> listaClientes = clidao.selectAll();
             rq.setAttribute("listaClientes", listaClientes);
             rq.getRequestDispatcher("/Clientes/lista_cliente.jsp").forward(rq, rp);
         }
 
-        else if (op.equals("Buscar")) {
+        else if (op.equals("buscar")) {
             int id_cliente = Integer.parseInt(rq.getParameter("id_cliente"));
             ClientesDAO clidao = new ClientesDAO();
                 Clientes cli = new Clientes();
@@ -31,7 +31,7 @@ public class ServletCliente extends HttpServlet {
                 
         }
 
-        else if (op.equals("Eliminar")) {
+        else if (op.equals("eliminar")) {
 
             int id_cliente = Integer.parseInt(rq.getParameter(("id_cliente")));
             ClientesDAO clientdao = new ClientesDAO();
@@ -41,9 +41,9 @@ public class ServletCliente extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
-        String op=(String)rq.getSession().getAttribute("op");
+        String op = rq.getParameter("op");
 
-       if (op.equals("nuevo")) {
+        if ("Registrar".equals(op)) {
 
             String nombre = rq.getParameter("nombre");
             String apellido_Pat = rq.getParameter("ap_pat");
@@ -53,10 +53,10 @@ public class ServletCliente extends HttpServlet {
             String email = rq.getParameter("email");
             String fecha_nac = rq.getParameter("fecha_nac");
 
-            Clientes client = new Clientes(nombre, apellido_Pat, apellido_Mat, direccion, email, telefono,fecha_nac);
-            ClientesDAO clidaoo = new ClientesDAO();
-            clidaoo.insert(client);
-            rp.sendRedirect("/Clientes/ServletCliente");
+            Clientes client = new Clientes(nombre, apellido_Pat, apellido_Mat, direccion, telefono, email, fecha_nac);
+            ClientesDAO clidao = new ClientesDAO();
+            clidao.insert(client);
+            rp.sendRedirect("/paseos_el_puerto/Clientes/inserta_cliente.jsp");
         }
        else if (op.equals("lista")){
            ClientesDAO clidao = new ClientesDAO();

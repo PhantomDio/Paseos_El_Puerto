@@ -7,7 +7,6 @@ datos\ClientesDAO.class
 controlador\ServletCliente.class
 Main.class
 model\Alquileres.class
-model\Alumnos_Bean.class
 model\Equipamiento.class
 datos\Conexion.class
 model\Embarcaciones.class

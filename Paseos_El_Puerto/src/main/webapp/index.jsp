@@ -13,11 +13,19 @@
     <div class="container">
         <nav class="scrolled">
             <ul>
-                <li><a href="index.jsp" class="logo-nav-container"><img src="logo.png"/></a></li>
+                <li><a href="/paseos_el_puerto/index.jsp" class="logo-nav-container"><img src="/paseos_el_puerto/logo.png"/></a></li>
                 <li><a href="" class="navigation-link">Embarcaciones</a></li>
                 <li><a href="" class="navigation-link">Propietarios</a></li>
                 <li><a href="" class="navigation-link">Alquileres</a></li>
-                <li><a href="Clientes/menu_cliente.jsp" class="navigation-link">Clientes</a></li>
+                <li class="dropdown">
+                    <a href="menu_cliente.jsp" class="navigation-link">Clientes</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Lista de Clientes</a></li>
+                        <li><a href="#">Registrar Cliente</a></li>
+                        <li><a href="#">Actualizar Cliente</a></li>
+                        <li><a href="#">Eliminar Cliente</a></li>
+                    </ul>
+                </li>
                 <li><a href="" class="navigation-link">Personal</a></li>
                 <li><a href="" class="navigation-link">Mantenimiento</a></li>
                 <li><a href="" class="navigation-link">Reparación</a></li>
@@ -26,6 +34,7 @@
         </nav>
     </div>
 </header>
+
 
 <section class="parallax-section">
     <div class="parallax-content">

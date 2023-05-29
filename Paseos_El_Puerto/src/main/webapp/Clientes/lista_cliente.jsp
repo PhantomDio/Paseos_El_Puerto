@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Clientes</title>
+    <title>Lista Clientes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
