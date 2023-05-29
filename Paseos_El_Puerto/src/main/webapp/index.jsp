@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Paseos "El Puerto"</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="animaciones.js"></script>
 </head>

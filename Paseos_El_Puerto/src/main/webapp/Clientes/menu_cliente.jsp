@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Menú Cliente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
 </head>
@@ -15,7 +16,7 @@
                 <li><a href="" class="navigation-link">Embarcaciones</a></li>
                 <li><a href="" class="navigation-link">Propietarios</a></li>
                 <li><a href="" class="navigation-link">Alquileres</a></li>
-                <li><a href="Clientes/menu_cliente.jsp" class="navigation-link">Clientes</a></li>
+                <li><a href="menu_cliente.jsp" class="navigation-link">Clientes</a></li>
                 <li><a href="" class="navigation-link">Personal</a></li>
                 <li><a href="" class="navigation-link">Mantenimiento</a></li>
                 <li><a href="" class="navigation-link">Reparación</a></li>
@@ -26,25 +27,25 @@
 </header>
 <section class="container">
     <div class="parallax-content">
-        <br/><h1>Cliente</h1>
-        <br>
-        <form class="center" action="/paseos_el_puerto/Cliente/cliente.jsp">
-            <input type="submit" class=" opc opc-green" value="Lista de Clientes">
-        </form><br>
-
-        <form class="center" action="/paseos_el_puerto/Cliente/inserta_cliente.jsp">
-            <input type="submit" class=" opc opc-green" value="Inserta Cliente">
-        </form><br>
-        <form class="center" action="/paseos_el_puerto/Cliente/actualiza_cliente.jsp">
-            <input type="submit" class=" opc opc-green" value="Actualiza Cliente">
-        </form><br>
-        <form class="center" action="/paseos_el_puerto/Cliente/elimina_cliente.jsp">
-            <input type="submit" class=" opc opc-green" value="Elimina Cliente">
-        </form>
-    </div><br>
+        <h1>Clientes</h1>
+        <div class="button-container">
+        <a href="/paseos_el_puerto/ServletCliente?opc=lista" methods="POST">
+            <input type="submit" class="button-minimal" value="Lista de Clientes">
+        </a></div>
+        <div class="button-container">
+            <a href="/paseos_el_puerto/ServletCliente?opc=lista" methods="POST">
+                <input type="submit" class="button-minimal" value="Registrar Cliente">
+            </a></div>
+        <div class="button-container">
+            <a href="/paseos_el_puerto/ServletCliente?opc=lista" methods="POST">
+                <input type="submit" class="button-minimal" value="Actualizar Cliente">
+            </a></div>
+        <div class="button-container">
+            <a href="/paseos_el_puerto/ServletCliente?opc=lista" methods="POST">
+                <input type="submit" class="button-minimal" value="Eliminar Cliente">
+            </a></div>
+    </div>
 </section>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="/XMenWebProject/javaS1.js"></script>
 </body>
 </html>

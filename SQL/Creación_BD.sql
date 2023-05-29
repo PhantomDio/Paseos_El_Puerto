@@ -1,9 +1,12 @@
 CREATE TABLE Propietarios (
 id_propietario SERIAL PRIMARY KEY,
-nombre VARCHAR(50) NOT NULL,
+nombre VARCHAR(20) NOT NULL,
+ap_pat VARCHAR(20) NOT NULL,
+ap_mat VARCHAR(20) NOT NULL,
 direccion VARCHAR(100) NOT NULL,
 telefono VARCHAR(15) NOT NULL,
-email VARCHAR(50) NOT NULL
+email VARCHAR(50) NOT NULL,
+fecha_nac DATE NOT NULL
 );
 
 CREATE TABLE Embarcaciones (
@@ -17,10 +20,13 @@ CONSTRAINT FK_ID_PROPIETARIO FOREIGN KEY (id_propietario) REFERENCES Propietario
 
 CREATE TABLE Clientes (
 id_cliente SERIAL PRIMARY KEY,
-nombre VARCHAR(50) NOT NULL,
+nombre VARCHAR(20) NOT NULL,
+ap_pat VARCHAR(20) NOT NULL,
+ap_mat VARCHAR(20) NOT NULL,
 direccion VARCHAR(100) NOT NULL,
 telefono VARCHAR(15) NOT NULL,
-email VARCHAR(50) NOT NULL
+email VARCHAR(50) NOT NULL,
+fecha_nac DATE NOT NULL
 );
 
 CREATE TABLE Alquileres (
@@ -43,13 +49,6 @@ id_embarcacion INT NOT NULL,
 CONSTRAINT FK_ID_EMBARCACION FOREIGN KEY (id_embarcacion) REFERENCES Embarcaciones(id_embarcacion)
 );
 
-CREATE TABLE Proveedores (
-id_proveedor SERIAL PRIMARY KEY,
-nombre VARCHAR(50) NOT NULL,
-direccion VARCHAR(100) NOT NULL,
-telefono VARCHAR(15) NOT NULL,
-email VARCHAR(50) NOT NULL
-);
 
 CREATE TABLE Mantenimiento (
 id_mantenimiento SERIAL PRIMARY KEY,
@@ -58,8 +57,7 @@ id_proveedor INT NOT NULL,
 fecha_inicio DATE NOT NULL,
 fecha_fin DATE NOT NULL,
 costo FLOAT NOT NULL,
-CONSTRAINT FK_ID_EMBARCACION FOREIGN KEY (id_embarcacion) REFERENCES Embarcaciones(id_embarcacion),
-CONSTRAINT FK_ID_PROVEEDOR FOREIGN KEY (id_proveedor) REFERENCES Proveedores(id_proveedor)
+CONSTRAINT FK_ID_EMBARCACION FOREIGN KEY (id_embarcacion) REFERENCES Embarcaciones(id_embarcacion)
 );
 
 CREATE TABLE Reparacion (
@@ -72,9 +70,12 @@ CONSTRAINT FK_ID_MANTENIMIENTO FOREIGN KEY (id_mantenimiento) REFERENCES Manteni
 
 CREATE TABLE Personal (
 id_personal SERIAL PRIMARY KEY,
-nombre VARCHAR(50) NOT NULL,
+nombre VARCHAR(20) NOT NULL,
+ap_pat VARCHAR(20) NOT NULL,
+ap_mat VARCHAR(20) NOT NULL,
 direccion VARCHAR(100) NOT NULL,
 telefono VARCHAR(15) NOT NULL,
 email VARCHAR(50) NOT NULL,
-costo_hora FLOAT NOT NULL
+costo_hora FLOAT NOT NULL,
+fecha_nac DATE NOT NULL
 );

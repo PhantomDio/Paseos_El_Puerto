@@ -37,6 +37,21 @@ p {
     line-height: 1.5;
     font-size: 24px;
 }
+.button-minimal {
+    background-color: transparent;
+    border: 2px solid #5D4E3C;
+    color: #333;
+    padding: 10px 20px;
+    font-size: 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-minimal:hover {
+    background-color: #5D4E3C;
+    color: #f8f8f8;
+}
 
 /* Estilos para la barra de navegación */
 .navigation {
@@ -55,7 +70,7 @@ p {
 
 .navigation:hover,
 .navigation.scrolled {
-    background-color: #333;
+    background-color: #5D4E3C;
 }
 
 .navigation ul {
@@ -74,7 +89,7 @@ p {
 }
 
 .navigation:hover a, .navigation.scrolled a{
-    color: #fff;
+    color: #f8f8f8;
 }
 
 a:hover {
@@ -153,4 +168,34 @@ ul.fade-in li {
 
 .container_body{
     background-color: #eee2c7;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: #333;
+    color: #f8f8f8;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody td {
+    background-color: #f8f8f8;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+}
+
+tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+.button-container {
+    margin-bottom: 20px;
 }

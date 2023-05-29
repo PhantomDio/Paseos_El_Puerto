@@ -7,31 +7,30 @@ import java.util.List;
 
 public class ClientesDAO {
 
-    public void select(int id) {
+    public Clientes select(int id) {
         String selectSQL = "SELECT * FROM clientes WHERE id_cliente=?";
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(selectSQL);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id_cliente"));
-                System.out.println("Nombre: " + rs.getString("nombre"));
-                System.out.println("Apellido paterno: " + rs.getString("ap_pat"));
-                System.out.println("Apellido materno: " + rs.getString("ap_mat"));
-                System.out.println("Edad: " + rs.getInt("edad"));
-                System.out.println("Fecha de nacimiento: " + rs.getDate("f_nac"));
-                System.out.println("Celular: " + rs.getString("cel"));
-                System.out.println("Teléfono: " + rs.getString("tel"));
-                System.out.println("Correo electrónico: " + rs.getString("email"));
-                System.out.println("Dirección: " + rs.getString("direccion"));
+            Clientes cli = new Clientes();
+            while (rs.next()) {
 
-            } else {
-                System.out.println("No se encontró ningún alumno con el ID " + id);
+                cli.setIdCliente(rs.getInt("id_cliente"));
+                cli.setNombre(rs.getString("nombre"));
+                cli.setApellidoP(rs.getString("ap_pat"));
+                cli.setApellidoM(rs.getString("ap_mat"));
+                cli.setDireccion(rs.getString("direccion"));
+                cli.setTelefono(rs.getString("telefono"));
+                cli.setEmail(rs.getString("email"));;
             }
             statement.close();
             rs.close();
+            return cli;
+
         } catch (SQLException ex) {
             System.out.println("Error al seleccionar alumno: " + ex.getMessage());
+            return null;
         }
     }
     public List<Clientes> selectAll(){

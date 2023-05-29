@@ -4,59 +4,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 import javax.servlet.*;
-import datos.Conexion;
 import model.Clientes;
 import datos.ClientesDAO;
-import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 
 @WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente"})
 public class ServletCliente extends HttpServlet {
-    //PETICION GET
     @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
-        String opc = (rq.getParameter("opc") != null) ? rq.getParameter("opc") : "list";
+        String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "list";
 
-        if (opc.equals("list")) {
+        if (op.equals("list")) {
             ClientesDAO clidao = new ClientesDAO();
             List<Clientes> listaClientes = clidao.selectAll();
             rq.setAttribute("listaClientes", listaClientes);
-            rq.getRequestDispatcher("/index.jsp").forward(rq, rp);
+            rq.getRequestDispatcher("/Clientes/lista_cliente.jsp").forward(rq, rp);
         }
 
-        else if (opc.equals("mostrar")) {
-            Conexion con = new Conexion();
-            Connection c = con.getConnection();
-            PreparedStatement ps;
-            ResultSet rs;
-            int id_cliente = Integer.parseInt(rq.getParameter(("id_cliente")));
-            try {
-                String updateSql = "SELECT * FROM clientes WHERE id_cliente = ? ";
-                ps = c.prepareStatement(updateSql);
-                ps.setInt(1, id_cliente);
-                rs = ps.executeQuery();
+        else if (op.equals("Buscar")) {
+            int id_cliente = Integer.parseInt(rq.getParameter("id_cliente"));
+            ClientesDAO clidao = new ClientesDAO();
                 Clientes cli = new Clientes();
-                while (rs.next()) {
-
-                    cli.setIdCliente(rs.getInt("id_cliente"));
-                    cli.setNombre(rs.getString("nombre"));
-                    cli.setApellidoP(rs.getString("ap_pat"));
-                    cli.setApellidoM(rs.getString("ap_mat"));
-                    cli.setDireccion(rs.getString("direccion"));
-                    cli.setTelefono(rs.getString("telefono"));
-                    cli.setEmail(rs.getString("email"));;
-                }
+                cli = clidao.select(id_cliente);
                 rq.setAttribute("cliente", cli);
-
-                rq.getRequestDispatcher("vistas/clientes/modificar.jsp").forward(rq, rp);
-               
-            } catch (SQLException ex) {
-                System.out.println("Error en SQL " + ex.getMessage());
-            }
+                rq.getRequestDispatcher("/Clientes/lista_cliente.jsp").forward(rq, rp);
+                
         }
-      
-        else if (opc.equals("eliminar")) {
+
+        else if (op.equals("Eliminar")) {
 
             int id_cliente = Integer.parseInt(rq.getParameter(("id_cliente")));
             ClientesDAO clientdao = new ClientesDAO();
@@ -66,8 +41,8 @@ public class ServletCliente extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
-        String op;
-        op=(String)rq.getSession().getAttribute("op");
+        String op=(String)rq.getSession().getAttribute("op");
+
        if (op.equals("nuevo")) {
 
             String nombre = rq.getParameter("nombre");
@@ -81,8 +56,13 @@ public class ServletCliente extends HttpServlet {
             Clientes client = new Clientes(nombre, apellido_Pat, apellido_Mat, direccion, email, telefono,fecha_nac);
             ClientesDAO clidaoo = new ClientesDAO();
             clidaoo.insert(client);
-            rp.sendRedirect("/EjemploCliente/ServletCliente");
+            rp.sendRedirect("/Clientes/ServletCliente");
         }
-
+       else if (op.equals("lista")){
+           ClientesDAO clidao = new ClientesDAO();
+           List<Clientes> listaClientes = clidao.selectAll();
+           rq.getSession().setAttribute("listaClientes", listaClientes);
+           rp.sendRedirect("/Clientes/lista_cliente.jsp");
+       }
     }
 }
