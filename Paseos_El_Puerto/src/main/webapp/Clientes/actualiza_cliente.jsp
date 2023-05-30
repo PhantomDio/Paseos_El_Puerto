@@ -1,15 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Paseos "El Puerto"</title>
+    <title>Actualiza Cliente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="navbar.css">
-    <script src="animaciones.js"></script>
+    <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
+    <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
+    <script src="/paseos_el_puerto/animaciones.js"></script>
 </head>
-<body>
+<body class="container_body">
 <header>
     <nav class="navigation">
         <ul>
@@ -90,42 +88,70 @@
     </nav>
 </header>
 
-<section class="parallax-section">
-    <div class="parallax-content">
-    </div>
-</section>
 <section class="container">
-<div class="parallax-content">
-<h1 class="fade-in">Descripción del proyecto</h1>
-<p class="fade-in">
-    Paseos "El Puerto" es una agencia que alquila embarcaciones a sus clientes mediante una tarjeta
-    de membresía. Nuestro objetivo es brindar a nuestros clientes una experiencia inolvidable en el mar,
-    ofreciendo una amplia selección de embarcaciones de alta calidad y servicios personalizados.
-</p>
+    <div class="parallax-content">
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
 
-<h1 class="fade-in">Servicios ofrecidos:</h1>
-<ul class="fade-in">
-    <li>Alquiler de embarcaciones de diferentes tamaños y capacidades.</li>
-    <li>Tours guiados por lugares turísticos y pintorescos.</li>
-    <li>Equipo de buceo y snorkel disponible para los amantes del agua.</li>
-    <li>Servicios de catering y eventos especiales a bordo.</li>
-    <li>Transporte y traslado desde y hacia el puerto.</li>
-</ul>
+            form {
+                display: flex;
+                flex-direction: column;
+            }
 
-<h1 class="fade-in">Beneficios de la membresía:</h1>
-<ul class="fade-in">
-    <li>Descuentos exclusivos en alquileres y servicios adicionales.</li>
-    <li>Acceso prioritario a las embarcaciones más populares.</li>
-    <li>Asistencia personalizada para planificar su viaje.</li>
-    <li>Invitaciones a eventos y actividades especiales.</li>
-    <li>Programa de puntos para acumular beneficios adicionales.</li>
-</ul>
-</div>
-</section>
-<footer class="footer">
-    <div class="container">
-        <p>© 2023 Paseos "El Puerto". Todos los derechos reservados.</p>
+            p {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                margin: 10px 0;
+            }
+
+
+            p input[type="text"] {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+                margin-left: 9px;
+                width: 200px; /* Ajusta el ancho según sea necesario */
+            }
+        </style>
+        <script>
+            function clearValue(input) {
+                if (input.dataset.clicked !== "true") {
+                    input.value = '';
+                    input.dataset.clicked = "true";
+                }
+            }
+
+            function validateDate(input) {
+                var regex = /^\d{4}-\d{2}-\d{2}$/;
+
+                if (!regex.test(input.value)) {
+                    alert("El formato de fecha debe ser (yyyy-mm-dd).");
+                    input.value = '';
+                }
+            }
+        </script>
+        <form action="/paseos_el_puerto/ServletCliente" method="post">
+            <p>ID: <input type="text" name="id_cliente"></p>
+            <p>Nombre: <input type="text" name="nombre"></p>
+            <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
+            <p>Apellido Materno: <input type="text" name="ap_mat"></p>
+            <p>Dirección: <input type="text" name="direccion"></p>
+            <p>Telefono: <input type="text" name="telefono"></p>
+            <p>Correo: <input type="text" name="email"></p>
+            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)" onblur="validateDate(this)"></p>
+            <br>
+            <div class="button-container">
+                <input type="submit" class="button-minimal" value="Actualizar" name="op">
+            </div>
+        </form>
     </div>
-</footer>
+</section>
 </body>
 </html>

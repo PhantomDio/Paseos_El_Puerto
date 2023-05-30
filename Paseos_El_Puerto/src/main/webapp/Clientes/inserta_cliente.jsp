@@ -4,95 +4,10 @@
     <title>Inserta Cliente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
+    <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
 </head>
 <body class="container_body">
-<style>
-    .navigation {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 999;
-        height: 80px;
-        background-color: transparent;
-        transition: background-color 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .navigation:hover,
-    .navigation.scrolled {
-        background-color: #5d4e3c;
-    }
-
-    .navigation ul {
-        list-style: none;
-        display: flex;
-        align-items: center;
-        margin: 0;
-        padding: 0;
-    }
-
-    .navigation a {
-        color: #333;
-        transition: color 0.3s ease;
-        text-decoration: none;
-        font-size: 20px;
-    }
-
-    .navigation:hover a,
-    .navigation.scrolled a {
-        color: #f8f8f8;
-    }
-
-    .logo-nav-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-right: 36px;
-    }
-
-    .logo-nav-container img {
-        max-height: 45px;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-        margin-right: 15px; /* Espacio entre las opciones principales */
-        text-transform: uppercase;
-    }
-
-    .dropdown-menu {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1;
-        padding: 10px;
-        min-width: 150px;
-        opacity: 0%;
-    }
-
-    .dropdown:hover .dropdown-menu {
-        display: block;
-        background-color: #5d4e3c;
-        opacity: 100%;
-    }
-
-    .dropdown-menu li {margin-top: 20px;}
-
-    .navigation-link:hover > a {
-        background-color: #5d4e3c;
-        color: #f8f8f8;
-    }
-
-    .navigation-link:hover .dropdown-menu {
-        display: block;
-    }
-</style>
 <header>
     <nav class="navigation">
         <ul>
@@ -127,12 +42,10 @@
             <li class="dropdown">
                 <a href="#" class="navigation-link">Clientes</a>
                 <ul class="dropdown-menu">
-                    <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="POST">
-                        Lista
-                    </a></li>
+                    <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="POST">Lista</a></li>
                     <li><a href="/paseos_el_puerto/Clientes/inserta_cliente.jsp">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li><a href="/paseos_el_puerto/Clientes/actualiza_cliente.jsp">Actualizar</a></li>
+                    <li><a href="/paseos_el_puerto/Clientes/elimina_cliente.jsp">Eliminar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -178,15 +91,62 @@
 <section class="container">
     <div class="parallax-content">
 
-        <br/><br/>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            p {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                margin: 10px 0;
+            }
+
+
+            p input[type="text"] {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+                margin-left: 9px;
+                width: 200px; /* Ajusta el ancho según sea necesario */
+            }
+        </style>
+        <script>
+            function clearValue(input) {
+                if (input.dataset.clicked !== "true") {
+                    input.value = '';
+                    input.dataset.clicked = "true";
+                }
+            }
+
+            function validateDate(input) {
+                var regex = /^\d{4}-\d{2}-\d{2}$/;
+
+                if (!regex.test(input.value)) {
+                    alert("El formato de fecha debe ser (yyyy-mm-dd).");
+                    input.value = '';
+                }
+            }
+        </script>
         <form action="/paseos_el_puerto/ServletCliente" method="post">
-            <p>Nombre <input type="text" name="nombre"></p>
-            <p>Apellido Paterno <input type="text" name="ap_pat"></p>
-            <p>Apellido Materno <input type="text" name="ap_mat"></p>
-            <p>Dirección <input type="text" name="direccion"></p>
-            <p>Telefono <input type="text" name="telefono"></p>
-            <p>Correo <input type="text" name="email"></p>
-            <p>Fecha de nacimiento <input type="text" name="fecha_nac"></p>
+            <p>Nombre: <input type="text" name="nombre"></p>
+            <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
+            <p>Apellido Materno: <input type="text" name="ap_mat"></p>
+            <p>Dirección: <input type="text" name="direccion"></p>
+            <p>Telefono: <input type="text" name="telefono"></p>
+            <p>Correo: <input type="text" name="email"></p>
+            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)" onblur="validateDate(this)"></p>
+            <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Registrar" name="op">
             </div>
