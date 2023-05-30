@@ -28,7 +28,9 @@ h3 {
     margin-bottom: 10px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     color: #333;
 }
 
@@ -37,9 +39,10 @@ p {
     line-height: 1.5;
     font-size: 24px;
 }
+
 .button-minimal {
     background-color: transparent;
-    border: 2px solid #5D4E3C;
+    border: 2px solid #5d4e3c;
     color: #333;
     padding: 10px 20px;
     font-size: 24px;
@@ -49,84 +52,8 @@ p {
 }
 
 .button-minimal:hover {
-    background-color: #5D4E3C;
+    background-color: #5d4e3c;
     color: #f8f8f8;
-}
-
-/* Estilos para la barra de navegación */
-.navigation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    height: 80px;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.navigation:hover,
-.navigation.scrolled {
-    background-color: #5D4E3C;
-}
-
-.navigation ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-.navigation a {
-    color: #333;
-    transition: color 0.3s ease;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.navigation:hover a, .navigation.scrolled a{
-    color: #f8f8f8;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.navigation ul li {
-    margin-right: 20px;
-}
-
-.logo-nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo-nav-container img {
-    max-height: 45px;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1;
-    background-color: #fff;
-    padding: 10px;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block;
 }
 
 /* Estilos para las secciones */
@@ -185,7 +112,7 @@ ul.fade-in li {
     margin-left: 0;
 }
 
-.container_body{
+.container_body {
     background-color: #eee2c7;
 }
 
@@ -215,6 +142,7 @@ tr:nth-child(even) td {
 .table-container {
     margin-top: 20px;
 }
+
 .button-container {
     margin-bottom: 20px;
 }
