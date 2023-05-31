@@ -1,0 +1,236 @@
+body {
+    font-family: "Nirmala UI", sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Estilos para los títulos */
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h1,
+h2,
+h3 {
+    color: #333;
+}
+
+p {
+    color: #666;
+    line-height: 1.5;
+    font-size: 24px;
+}
+
+.button-minimal {
+    background-color: transparent;
+    border: 2px solid #5d4e3c;
+    color: #333;
+    padding: 10px 20px;
+    font-size: 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-minimal:hover {
+    background-color: #5d4e3c;
+    color: #f8f8f8;
+}
+
+/* Estilos para las secciones */
+.container > h2,
+.container > h3 {
+    margin-top: 40px;
+}
+
+.container > p {
+    margin-bottom: 30px;
+}
+
+.parallax-section {
+    height: 100vh;
+    background-image: url('ElPuerto.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.parallax-content {
+    color: #333;
+    text-align: center;
+    padding: 100px;
+}
+
+.footer {
+    margin-top: 80px;
+    padding: 20px 0;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.fade-in-animation {
+    opacity: 0;
+    animation: fade-in-animation 1s ease-in-out forwards;
+}
+
+@keyframes fade-in-animation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+ul.fade-in {
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+ul.fade-in li {
+    font-size: 24px;
+    margin-left: 0;
+}
+
+.container_body {
+    background-color: #eee2c7;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: #333;
+    color: #f8f8f8;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody td {
+    background-color: #f8f8f8;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+}
+
+tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+.button-container {
+    margin-bottom: 20px;
+}
+
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    height: 80px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation:hover,
+.navigation.scrolled {
+    background-color: #5d4e3c;
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation a {
+    color: #333;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navigation:hover a,
+.navigation.scrolled a {
+    color: #f8f8f8;
+}
+
+.logo-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 36px;
+}
+
+.logo-nav-container img {
+    max-height: 45px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px; /* Espacio entre las opciones principales */
+    text-transform: uppercase;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+    padding: 10px;
+    min-width: 113px;
+    opacity: 0%;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 100%;
+    display: block;
+    background-color: #5d4e3c;
+}
+
+.dropdown-menu li {
+    margin-top: 20px;
+    margin-left: 13px;
+    text-transform: initial;
+}
+
+.navigation-link:hover > a {
+    background-color: #5d4e3c;
+    color: #f8f8f8;
+}
+
+.navigation-link:hover .dropdown-menu {
+    display: block;
+}
