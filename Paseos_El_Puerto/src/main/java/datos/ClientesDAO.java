@@ -23,6 +23,7 @@ public class ClientesDAO {
                 cli.setDireccion(rs.getString("direccion"));
                 cli.setTelefono(rs.getString("telefono"));
                 cli.setEmail(rs.getString("email"));;
+                cli.setFecha_nac(rs.getDate("fecha_nac"));
             }
             statement.close();
             rs.close();
@@ -36,7 +37,7 @@ public class ClientesDAO {
     public List<Clientes> selectAll(){
         Connection conn = null;
         Statement state = null;
-        ResultSet result = null;
+        ResultSet rs = null;
         Clientes client = null;
         String selectSQL = "SELECT * FROM clientes";
 
@@ -44,24 +45,24 @@ public class ClientesDAO {
         try {
             conn = Conexion.getConnection();
             state = conn.createStatement();
-            result = state.executeQuery(selectSQL);
+            rs = state.executeQuery(selectSQL);
 
-            while (result.next()) {
-                int id_cliente = result.getInt("id_cliente");
-                String nombre = result.getString("nombre");
-                String apellido_Pat = result.getString("ap_pat");
-                String apellido_Mat = result.getString("ap_mat");
-                String direccion = result.getString("direccion");
-                String telefono = result.getString("telefono");
-                String email = result.getString("email");
-                String fecha_nac = result.getString("fecha_nac");
+            while (rs.next()) {
+                int id_cliente = rs.getInt("id_cliente");
+                String nombre = rs.getString("nombre");
+                String apellido_Pat = rs.getString("ap_pat");
+                String apellido_Mat = rs.getString("ap_mat");
+                String direccion = rs.getString("direccion");
+                String telefono = rs.getString("telefono");
+                String email = rs.getString("email");
+                String fecha_nac = rs.getString("fecha_nac");
 
                 client = new Clientes(id_cliente,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, fecha_nac);
                 clientes.add(client);
 
             }
 
-            Conexion.close(result);
+            Conexion.close(rs);
             Conexion.close(state);
             Conexion.close(conn);
 

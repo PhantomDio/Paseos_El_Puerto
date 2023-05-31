@@ -19,19 +19,19 @@ public class ServletCliente extends HttpServlet {
             List<Clientes> listaClientes = clidao.selectAll();
             rq.setAttribute("listaClientes", listaClientes);
             rq.getRequestDispatcher("/Clientes/lista_cliente.jsp").forward(rq, rp);
-        } else if (op.equals("buscar")) {
+        }
+        else if (op.equals("Buscar")) {
             int id_cliente = Integer.parseInt(rq.getParameter("id_cliente"));
             ClientesDAO clidao = new ClientesDAO();
-            Clientes cli = new Clientes();
-            cli = clidao.select(id_cliente);
+            Clientes cli = clidao.select(id_cliente);
             rq.setAttribute("cliente", cli);
             rq.getRequestDispatcher("/Clientes/lista_cliente.jsp").forward(rq, rp);
-
-        } else if (op.equals("Eliminar")) {
+        }
+        else if (op.equals("Eliminar")) {
             int id_cliente = Integer.parseInt(rq.getParameter(("id_cliente")));
             ClientesDAO clientdao = new ClientesDAO();
             clientdao.delete(id_cliente);
-            rp.sendRedirect("/paseos_el_puerto/Clientes/elimina_cliente.jsp");
+            rp.sendRedirect("/paseos_el_puerto/ServletCliente");
         }
     }
 
@@ -68,13 +68,6 @@ public class ServletCliente extends HttpServlet {
             ClientesDAO clidao = new ClientesDAO();
             clidao.update(client);
             rp.sendRedirect("/paseos_el_puerto/Clientes/actualiza_cliente.jsp");
-        }
-
-        else if (op.equals("lista")) {
-            ClientesDAO clidao = new ClientesDAO();
-            List<Clientes> listaClientes = clidao.selectAll();
-            rq.getSession().setAttribute("listaClientes", listaClientes);
-            rp.sendRedirect("/Clientes/lista_cliente.jsp");
         }
     }
 }

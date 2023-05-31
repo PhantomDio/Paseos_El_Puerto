@@ -19,8 +19,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li><a href="#">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -28,8 +27,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li><a href="#">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -37,17 +35,15 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li><a href="#">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="navigation-link">Clientes</a>
                 <ul class="dropdown-menu">
-                    <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="POST">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="GET">Lista</a></li>
                     <li><a href="/paseos_el_puerto/Clientes/inserta_cliente.jsp">Registrar</a></li>
-                    <li><a href="/paseos_el_puerto/Clientes/actualiza_cliente.jsp">Actualizar</a></li>
-                    <li><a href="/paseos_el_puerto/Clientes/elimina_cliente.jsp">Eliminar</a></li>
+                    <li><a href="/paseos_el_puerto/Clientes/actualiza_cliente.jsp">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -55,8 +51,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li><a href="#">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -64,8 +59,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li><a href="#">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -73,8 +67,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li><a href="#">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -82,8 +75,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
-                    <li><a href="#">Eliminar</a></li>
+                    <li><a href="#">Modificar</a></li>
                 </ul>
             </li>
         </ul>
