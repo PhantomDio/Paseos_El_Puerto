@@ -30,7 +30,7 @@ public class ClientesDAO {
             return cli;
 
         } catch (SQLException ex) {
-            System.out.println("Error al seleccionar alumno: " + ex.getMessage());
+            System.out.println("Error al seleccionar cliente: " + ex.getMessage());
             return null;
         }
     }
@@ -123,7 +123,7 @@ public class ClientesDAO {
             statement.close();
             System.out.println("Registro eliminado exitosamente.");
         } catch (SQLException ex) {
-            System.out.println("Error al eliminar el alumno: " + ex.getMessage());
+            System.out.println("Error al eliminar el cliente: " + ex.getMessage());
         }
     }
 }

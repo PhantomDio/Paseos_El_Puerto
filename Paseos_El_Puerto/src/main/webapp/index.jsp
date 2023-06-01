@@ -25,9 +25,9 @@
             <li class="dropdown">
                 <a href="#" class="navigation-link">Propietarios</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
+                    <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
+                    <li><a href="/paseos_el_puerto/Propietarios/actualiza_propietario.jsp">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
