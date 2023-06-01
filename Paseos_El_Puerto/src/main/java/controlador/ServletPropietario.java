@@ -51,9 +51,9 @@ public class ServletPropietario extends HttpServlet {
             String email = rq.getParameter("email");
             String fecha_nac = rq.getParameter("fecha_nac");
 
-            Propietarios client = new Propietarios(nombre, apellido_Pat, apellido_Mat, direccion, telefono, email, fecha_nac);
+            Propietarios propietario = new Propietarios(nombre, apellido_Pat, apellido_Mat, direccion, telefono, email, fecha_nac);
             PropietariosDAO propdao = new PropietariosDAO();
-            propdao.insert(client);
+            propdao.insert(propietario);
             rp.sendRedirect("/paseos_el_puerto/Propietarios/inserta_propietario.jsp");
         }
 
@@ -67,9 +67,9 @@ public class ServletPropietario extends HttpServlet {
             String email = rq.getParameter("email");
             String fecha_nac = rq.getParameter("fecha_nac");
 
-            Propietarios client = new Propietarios(id_propietario,nombre, apellido_Pat, apellido_Mat, direccion, telefono, email, fecha_nac);
+            Propietarios propietario = new Propietarios(id_propietario,nombre, apellido_Pat, apellido_Mat, direccion, telefono, email, fecha_nac);
             PropietariosDAO propdao = new PropietariosDAO();
-            propdao.update(client);
+            propdao.update(propietario);
             rp.sendRedirect("/paseos_el_puerto/Propietarios/actualiza_propietario.jsp");
         }
     }
