@@ -54,7 +54,7 @@ public class ServletCliente extends HttpServlet {
             rp.sendRedirect("/paseos_el_puerto/Clientes/inserta_cliente.jsp");
         }
 
-        else if (op.equals("Actualizar")) {
+        else if (op.equals("Modificar")) {
             int id_cliente = Integer.parseInt(rq.getParameter("id_cliente"));
             String nombre = rq.getParameter("nombre");
             String apellido_Pat = rq.getParameter("ap_pat");
