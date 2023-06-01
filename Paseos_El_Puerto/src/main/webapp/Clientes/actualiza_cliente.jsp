@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
 </head>
-<body class="container_body">
+<body class="body_color">
 <header>
     <nav class="navigation">
         <ul>
@@ -88,7 +88,7 @@
     </nav>
 </header>
 
-<section class="container">
+<section>
     <div class="parallax-content">
         <style>
             body {

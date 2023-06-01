@@ -10,12 +10,13 @@
     <script src="animaciones.js"></script>
 </head>
 <body>
-<header>
-    <nav class="navigation">
-        <ul>
-            <li><a href="/paseos_el_puerto/index.jsp" class="logo-nav-container"><img src="/paseos_el_puerto/logo.png" alt="Logo"></a></li>
+<header class="navigation">
+        <ul class="cont_ul">
+            <li class="logo-nav-container"><a href="/paseos_el_puerto/index.jsp"><img src="/paseos_el_puerto/logo.png" alt="Logo">
+            </a>
+            </li>
             <li class="dropdown">
-                <a href="#" class="navigation-link">Embarcaciones</a>
+                <a href="#" class="">Embarcaciones</a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
@@ -79,7 +80,6 @@
                 </ul>
             </li>
         </ul>
-    </nav>
 </header>
 
 <section class="parallax-section">
