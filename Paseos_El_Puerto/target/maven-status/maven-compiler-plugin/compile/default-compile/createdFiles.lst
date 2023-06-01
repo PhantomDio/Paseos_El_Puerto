@@ -1,5 +1,6 @@
 model\Personal.class
 model\Propietarios.class
+datos\PropietariosDAO.class
 model\Clientes.class
 model\Mantenimiento.class
 model\Reparacion.class

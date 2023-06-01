@@ -66,18 +66,6 @@ public class ClientesDAO {
             Conexion.close(state);
             Conexion.close(conn);
 
-            for(Clientes cliente: clientes) {
-                System.out.println("ID_cliente: " + cliente.getIdCliente());
-                System.out.println("Nombre: " + cliente.getNombre());
-                System.out.println("Apellido Paterno: " + cliente.getApellidoP());
-                System.out.println("Apellido Materno: " + cliente.getApellidoM());
-                System.out.println("Direccion: " + cliente.getDireccion());
-                System.out.println("Telefono: " + cliente.getTelefono());
-                System.out.println("Email: " + cliente.getEmail());
-                System.out.println("Fecha de nacimiento: " + cliente.getFecha_nac());
-                System.out.println(" \n ");
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

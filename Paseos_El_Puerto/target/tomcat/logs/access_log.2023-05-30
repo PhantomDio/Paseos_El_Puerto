@@ -200,3 +200,7 @@
 0:0:0:0:0:0:0:1 - - [30/May/2023:20:19:18 -0600] "GET /paseos_el_puerto/ServletCliente?id_cliente=19&op=Buscar HTTP/1.1" 200 5861 http-bio-8888-exec-1 21
 0:0:0:0:0:0:0:1 - - [30/May/2023:20:19:20 -0600] "GET /paseos_el_puerto/ServletCliente HTTP/1.1" 200 6620 http-bio-8888-exec-1 21
 0:0:0:0:0:0:0:1 - - [30/May/2023:20:19:38 -0600] "GET /paseos_el_puerto/ServletCliente?op=lista HTTP/1.1" 200 6620 http-bio-8888-exec-1 22
+0:0:0:0:0:0:0:1 - - [30/May/2023:20:23:22 -0600] "GET /paseos_el_puerto HTTP/1.1" 302 - http-bio-8888-exec-1 0
+0:0:0:0:0:0:0:1 - - [30/May/2023:20:23:22 -0600] "GET /paseos_el_puerto/ HTTP/1.1" 200 5042 http-bio-8888-exec-2 17
+0:0:0:0:0:0:0:1 - - [30/May/2023:20:23:25 -0600] "GET /paseos_el_puerto/ServletCliente?op=lista HTTP/1.1" 200 6620 http-bio-8888-exec-3 131
+0:0:0:0:0:0:0:1 - - [30/May/2023:20:23:30 -0600] "GET /paseos_el_puerto/index.jsp HTTP/1.1" 200 5042 http-bio-8888-exec-4 1

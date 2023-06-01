@@ -90,7 +90,5 @@ public class Clientes {
     public void setFecha_nac(java.sql.Date fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
-    
-    
-}
 
+}
