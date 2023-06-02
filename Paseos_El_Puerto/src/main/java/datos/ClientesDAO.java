@@ -3,7 +3,6 @@ package datos;
 import model.Clientes;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClientesDAO {
 
@@ -34,14 +33,14 @@ public class ClientesDAO {
             return null;
         }
     }
-    public List<Clientes> selectAll(){
-        Connection conn = null;
-        Statement state = null;
-        ResultSet rs = null;
-        Clientes client = null;
+    public ArrayList<Clientes> selectAll(){
+        Connection conn;
+        Statement state;
+        ResultSet rs;
+        Clientes client;
         String selectSQL = "SELECT * FROM clientes";
 
-        List<Clientes> clientes = new ArrayList<>();
+        ArrayList<Clientes> clientes = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             state = conn.createStatement();

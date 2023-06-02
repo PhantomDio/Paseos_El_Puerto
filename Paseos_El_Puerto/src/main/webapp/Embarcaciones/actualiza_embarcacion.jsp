@@ -99,46 +99,21 @@
         width: 200px; /* Ajusta el ancho según sea necesario */
     }
 </style>
-
-<script>
-    function clearValue(input) {
-        if (input.dataset.clicked !== "true") {
-            input.value = '';
-            input.dataset.clicked = "true";
-        }
-    }
-
-    function validarFormulario() {
-        var fechaInput = document.querySelector('input[name="fecha_nac"]');
-        var fechaValue = fechaInput.value;
-        var regex = /^\d{4}-\d{2}-\d{2}$/;
-
-        if (!regex.test(fechaValue)) {
-            alert("El formato de fecha debe ser (yyyy-mm-dd).");
-            fechaInput.value = '';
-            return false;
-        }
-
-        return true;
-    }
-</script>
 <br>
 <br>
 <section class="container">
     <div class="parallax-content">
 
-        <form action="/paseos_el_puerto/ServletPropietario" method="post" onsubmit="return validarFormulario()">
-            <p>ID: <input type="text" name="id_propietario"></p>
+        <form action="/paseos_el_puerto/ServletEmbarcacion" method="post">
+            <p>ID: <input type="text" name="id_embarcacion"></p>
             <p>Nombre: <input type="text" name="nombre"></p>
-            <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
-            <p>Apellido Materno: <input type="text" name="ap_mat"></p>
-            <p>Dirección: <input type="text" name="direccion"></p>
-            <p>Teléfono: <input type="text" name="telefono"></p>
-            <p>Correo: <input type="text" name="email"></p>
-            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <p>Modelo: <input type="text" name="modelo"></p>
+            <p>Longitud<input type="text" name="longitud"></p>
+            <p>Año: <input type="text" name="anio"></p>
+            <p>ID del propietario: <input type="text" name="id_propietario"></p>
             <br>
             <div class="button-container">
-                <input type="submit" class="button-minimal" value="Modificar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
+                <input type="submit" class="button-minimal" value="Modificar" name="op">
             </div>
         </form>
 

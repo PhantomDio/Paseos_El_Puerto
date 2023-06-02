@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 @WebServlet(name = "ServletEmbarcacion", urlPatterns = {"/ServletEmbarcacion"})
 public class ServletEmbarcacion extends HttpServlet {
@@ -17,7 +17,7 @@ public class ServletEmbarcacion extends HttpServlet {
 
         if (op.equals("lista")) {
             EmbarcacionesDAO embardao = new EmbarcacionesDAO();
-            List<Embarcaciones> lista = embardao.selectAll();
+            ArrayList<Embarcaciones> lista = embardao.selectAll();
             rq.setAttribute("lista", lista);
             rq.getRequestDispatcher("/Embarcaciones/lista_embarcacion.jsp").forward(rq, rp);
         }
@@ -50,7 +50,7 @@ public class ServletEmbarcacion extends HttpServlet {
             Embarcaciones embarcacion = new Embarcaciones(nombre, modelo, longitud, anio, id_propietario);
             EmbarcacionesDAO embardao = new EmbarcacionesDAO();
             embardao.insert(embarcacion);
-            rp.sendRedirect("/paseos_el_puerto/Embarcaciones/inserta_embarcacion.jsp");
+            rp.sendRedirect("/paseos_el_puerto/Embarcaciones/inserta_contrato.jsp");
         }
 
         else if (op.equals("Modificar")) {

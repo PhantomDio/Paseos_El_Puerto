@@ -4,7 +4,6 @@ import model.Embarcaciones;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EmbarcacionesDAO {
 
@@ -33,14 +32,14 @@ public class EmbarcacionesDAO {
             return null;
         }
     }
-    public List<Embarcaciones> selectAll(){
-        Connection conn = null;
-        Statement state = null;
-        ResultSet rs = null;
-        Embarcaciones embarcacion = null;
+    public ArrayList<Embarcaciones> selectAll(){
+        Connection conn;
+        Statement state;
+        ResultSet rs;
+        Embarcaciones embarcacion;
         String selectSQL = "SELECT * FROM embarcaciones";
 
-        List<Embarcaciones> embarcaciones = new ArrayList<>();
+        ArrayList<Embarcaciones> embarcaciones = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             state = conn.createStatement();
@@ -93,10 +92,9 @@ public class EmbarcacionesDAO {
             System.out.println("No se pudo agregar el embarcacion: " + ex.getMessage());
         }
     }
-
     public void update(Embarcaciones embarcacion) {
-        String updateSQL = "UPDATE embarcaciones SET nombre = ?, modelo = ?, longitud = ?, anio = ?, id_propietario = ?, " +
-                "WHERE id_embarcacion = ?";
+        String updateSQL = "UPDATE embarcaciones SET nombre = ?, modelo = ?, longitud = ?, anio = ?, id_propietario = ?" +
+                " WHERE id_embarcacion = ?";
         try (Connection con = Conexion.getConnection()) {
             int R = INSERT_UPDATE(embarcacion, updateSQL, con);
             if (R > 0) {

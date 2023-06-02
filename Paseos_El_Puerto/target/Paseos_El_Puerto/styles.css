@@ -18,6 +18,9 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Estilos para los títulos */
@@ -89,6 +92,7 @@ p {
     color: #333;
     text-align: center;
     padding: 100px;
+    max-width: fit-content;
 }
 
 .footer {
@@ -151,4 +155,8 @@ tr:nth-child(even) td {
 
 .button-container {
     margin-bottom: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
 }

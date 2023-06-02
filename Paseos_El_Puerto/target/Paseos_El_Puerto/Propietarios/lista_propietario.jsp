@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Propietarios" %>
-<%@ page import="java.util.List" %>
 
 <html>
 <head>
@@ -12,92 +11,82 @@
     <script src="/paseos_el_puerto/animaciones.js"></script>
 </head>
 <body class="body_color">
-<header>
-    <nav class="navigation">
-        <ul>
-            <li><a href="/paseos_el_puerto/index.jsp" class="logo-nav-container"><img src="/paseos_el_puerto/logo.png" alt="Logo"></a></li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Embarcaciones</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Propietarios</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Alquileres</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Propietarios</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/paseos_el_puerto/ServletPropietario?op=lista" methods="GET">Lista</a></li>
-                    <li><a href="/paseos_el_puerto/Propietarios/inserta_cliente.jsp">Registrar</a></li>
-                    <li><a href="/paseos_el_puerto/Propietarios/actualiza_cliente.jsp">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Personal</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Mantenimiento</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Reparación</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Equipamiento</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+<header class="navigation">
+    <ul class="cont_ul">
+        <li class="logo-nav-container"><a href="/paseos_el_puerto/index.jsp"><img src="/paseos_el_puerto/logo.png" alt="Logo">
+        </a>
+        </li>
+        <li class="dropdown">
+            <a href="#">Embarcaciones</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/actualiza_embarcacion.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Propietarios</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/actualiza_propietario.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Alquileres</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Clientes</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="GET">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Clientes/inserta_cliente.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Clientes/actualiza_cliente.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Personal</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Mantenimiento</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Reparación</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Equipamiento</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+    </ul>
 </header>
-
 <style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
 
-    form {
-        display: flex;
-        flex-direction: column;
+    form{
         align-items: center;
     }
-
     p {
         display: flex;
         justify-content: flex-end;
@@ -121,6 +110,8 @@
     }
 </style>
 
+<br>
+<br>
 <section class="container">
     <div class="parallax-content">
         <form method="get" action="/paseos_el_puerto/ServletPropietario">
@@ -128,6 +119,7 @@
             <input type="submit" class="button-minimal button-container" value="Buscar" name="op">
             <input type="submit" class="button-minimal" value="Eliminar" name="op">
         </form>
+        <br>
         <a href="/paseos_el_puerto/ServletPropietario">Mostrar lista completa</a>
         <div class="table-container">
             <table>
@@ -146,7 +138,7 @@
                 <tbody>
                 <%
                     Propietarios propietario = (Propietarios) request.getAttribute("propietario");
-                    List<Propietarios> lista = (List<Propietarios>) request.getAttribute("lista");
+                    ArrayList<Propietarios> lista = (ArrayList<Propietarios>) request.getAttribute("lista");
 
                     if (propietario != null) {
                 %>
@@ -175,8 +167,6 @@
                 </tr>
                 <% }
                 } else {
-                        session.removeAttribute("lista");
-                        session.removeAttribute("propietario");
                 %>
                 <tr>
                     <td colspan="8"><h1>No hay propietarios a mostrar</h1></td>

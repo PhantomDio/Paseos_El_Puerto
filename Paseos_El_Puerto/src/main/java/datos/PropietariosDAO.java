@@ -3,7 +3,6 @@ package datos;
 import model.Propietarios;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PropietariosDAO {
 
@@ -34,14 +33,14 @@ public class PropietariosDAO {
             return null;
         }
     }
-    public List<Propietarios> selectAll(){
-        Connection conn = null;
-        Statement state = null;
-        ResultSet rs = null;
-        Propietarios propietario = null;
+    public ArrayList<Propietarios> selectAll(){
+        Connection conn;
+        Statement state;
+        ResultSet rs;
+        Propietarios propietario;
         String selectSQL = "SELECT * FROM propietarios";
 
-        List<Propietarios> propietarios = new ArrayList<>();
+        ArrayList<Propietarios> propietarios = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             state = conn.createStatement();

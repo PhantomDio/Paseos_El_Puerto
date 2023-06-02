@@ -16,7 +16,7 @@ public class ServletCliente extends HttpServlet {
 
         if (op.equals("lista")) {
             ClientesDAO clidao = new ClientesDAO();
-            List<Clientes> listaClientes = clidao.selectAll();
+            ArrayList<Clientes> listaClientes = clidao.selectAll();
             rq.setAttribute("listaClientes", listaClientes);
             rq.getRequestDispatcher("/Clientes/lista_cliente.jsp").forward(rq, rp);
         }

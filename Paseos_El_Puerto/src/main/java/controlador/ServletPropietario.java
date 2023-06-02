@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 @WebServlet(name = "ServletPropietario", urlPatterns = {"/ServletPropietario"})
 public class ServletPropietario extends HttpServlet {
@@ -19,7 +19,7 @@ public class ServletPropietario extends HttpServlet {
 
         if (op.equals("lista")) {
             PropietariosDAO propdao = new PropietariosDAO();
-            List<Propietarios> lista = propdao.selectAll();
+            ArrayList<Propietarios> lista = propdao.selectAll();
             rq.setAttribute("lista", lista);
             rq.getRequestDispatcher("/Propietarios/lista_propietario.jsp").forward(rq, rp);
         }

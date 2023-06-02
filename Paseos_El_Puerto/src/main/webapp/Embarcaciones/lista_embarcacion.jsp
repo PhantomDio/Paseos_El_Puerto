@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Embarcaciones" %>
-<%@ page import="java.util.List" %>
 
 <html>
 <head>
@@ -138,7 +137,7 @@
                 <tbody>
                 <%
                     Embarcaciones embarcacion = (Embarcaciones) request.getAttribute("embarcacion");
-                    List<Embarcaciones> lista = (List<Embarcaciones>) request.getAttribute("lista");
+                    ArrayList<Embarcaciones> lista = (ArrayList<Embarcaciones>) request.getAttribute("lista");
 
                     if (embarcacion != null) {
                 %>

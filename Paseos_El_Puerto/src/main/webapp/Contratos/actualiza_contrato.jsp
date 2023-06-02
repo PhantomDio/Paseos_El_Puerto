@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Inserta Cliente</title>
+    <title>Actualiza Embarcación</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
@@ -80,52 +80,55 @@
     </ul>
 </header>
 
-        <style>
-            p {
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                margin: 10px 0;
-            }
+<style>
+
+    p {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 10px 0;
+    }
 
 
-            p input[type="text"] {
-                padding: 5px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 14px;
-                margin-left: 9px;
-                width: 200px; /* Ajusta el ancho según sea necesario */
-            }
-        </style>
-        <script>
-            function clearValue(input) {
-                if (input.dataset.clicked !== "true") {
-                    input.value = '';
-                    input.dataset.clicked = "true";
-                }
-            }
+    p input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-left: 9px;
+        width: 200px; /* Ajusta el ancho según sea necesario */
+    }
+</style>
 
-            function validarFormulario() {
-                var fechaInput = document.querySelector('input[name="fecha_nac"]');
-                var fechaValue = fechaInput.value;
-                var regex = /^\d{4}-\d{2}-\d{2}$/;
+<script>
+    function clearValue(input) {
+        if (input.dataset.clicked !== "true") {
+            input.value = '';
+            input.dataset.clicked = "true";
+        }
+    }
 
-                if (!regex.test(fechaValue)) {
-                    alert("El formato de fecha debe ser (yyyy-mm-dd).");
-                    fechaInput.value = '';
-                    return false;
-                }
+    function validarFormulario() {
+        var fechaInput = document.querySelector('input[name="fecha_nac"]');
+        var fechaValue = fechaInput.value;
+        var regex = /^\d{4}-\d{2}-\d{2}$/;
 
-                return true;
-            }
-        </script>
+        if (!regex.test(fechaValue)) {
+            alert("El formato de fecha debe ser (yyyy-mm-dd).");
+            fechaInput.value = '';
+            return false;
+        }
 
+        return true;
+    }
+</script>
 <br>
 <br>
 <section class="container">
     <div class="parallax-content">
-        <form action="/paseos_el_puerto/ServletCliente" method="post" onsubmit="return validarFormulario()">
+
+        <form action="/paseos_el_puerto/ServletPropietario" method="post" onsubmit="return validarFormulario()">
+            <p>ID: <input type="text" name="id_propietario"></p>
             <p>Nombre: <input type="text" name="nombre"></p>
             <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
             <p>Apellido Materno: <input type="text" name="ap_mat"></p>
@@ -135,9 +138,10 @@
             <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
             <br>
             <div class="button-container">
-                <input type="button" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
+                <input type="submit" class="button-minimal" value="Modificar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
             </div>
         </form>
+
     </div>
 </section>
 </body>
