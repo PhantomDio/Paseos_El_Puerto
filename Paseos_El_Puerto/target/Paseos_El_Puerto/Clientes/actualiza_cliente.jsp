@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
 </head>
-<body class="container_body">
+<body class="body_color">
 <header>
     <nav class="navigation">
         <ul>
@@ -17,7 +17,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
+                    <li><a href="#">Modificar</a></li>
                     <li><a href="#">Eliminar</a></li>
                 </ul>
             </li>
@@ -26,7 +26,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
+                    <li><a href="#">Modificar</a></li>
                     <li><a href="#">Eliminar</a></li>
                 </ul>
             </li>
@@ -35,16 +35,16 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
+                    <li><a href="#">Modificar</a></li>
                     <li><a href="#">Eliminar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="navigation-link">Clientes</a>
                 <ul class="dropdown-menu">
-                    <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="POST">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="GET">Lista</a></li>
                     <li><a href="/paseos_el_puerto/Clientes/inserta_cliente.jsp">Registrar</a></li>
-                    <li><a href="/paseos_el_puerto/Clientes/actualiza_cliente.jsp">Actualizar</a></li>
+                    <li><a href="/paseos_el_puerto/Clientes/actualiza_cliente.jsp">Modificar</a></li>
                     <li><a href="/paseos_el_puerto/Clientes/elimina_cliente.jsp">Eliminar</a></li>
                 </ul>
             </li>
@@ -53,7 +53,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
+                    <li><a href="#">Modificar</a></li>
                     <li><a href="#">Eliminar</a></li>
                 </ul>
             </li>
@@ -62,7 +62,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
+                    <li><a href="#">Modificar</a></li>
                     <li><a href="#">Eliminar</a></li>
                 </ul>
             </li>
@@ -71,7 +71,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
+                    <li><a href="#">Modificar</a></li>
                     <li><a href="#">Eliminar</a></li>
                 </ul>
             </li>
@@ -80,7 +80,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Actualizar</a></li>
+                    <li><a href="#">Modificar</a></li>
                     <li><a href="#">Eliminar</a></li>
                 </ul>
             </li>
@@ -88,7 +88,7 @@
     </nav>
 </header>
 
-<section class="container">
+<section>
     <div class="parallax-content">
         <style>
             body {
@@ -120,6 +120,7 @@
                 width: 200px; /* Ajusta el ancho según sea necesario */
             }
         </style>
+
         <script>
             function clearValue(input) {
                 if (input.dataset.clicked !== "true") {
@@ -128,27 +129,33 @@
                 }
             }
 
-            function validateDate(input) {
+            function validarFormulario() {
+                var fechaInput = document.querySelector('input[name="fecha_nac"]');
+                var fechaValue = fechaInput.value;
                 var regex = /^\d{4}-\d{2}-\d{2}$/;
 
-                if (!regex.test(input.value)) {
+                if (!regex.test(fechaValue)) {
                     alert("El formato de fecha debe ser (yyyy-mm-dd).");
-                    input.value = '';
+                    fechaInput.value = '';
+                    return false;
                 }
+
+                return true;
             }
         </script>
-        <form action="/paseos_el_puerto/ServletCliente" method="post">
+
+        <form action="/paseos_el_puerto/ServletCliente" method="post" onsubmit="return validarFormulario()">
             <p>ID: <input type="text" name="id_cliente"></p>
             <p>Nombre: <input type="text" name="nombre"></p>
             <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
             <p>Apellido Materno: <input type="text" name="ap_mat"></p>
             <p>Dirección: <input type="text" name="direccion"></p>
-            <p>Telefono: <input type="text" name="telefono"></p>
+            <p>Teléfono: <input type="text" name="telefono"></p>
             <p>Correo: <input type="text" name="email"></p>
-            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)" onblur="validateDate(this)"></p>
+            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
             <br>
             <div class="button-container">
-                <input type="submit" class="button-minimal" value="Actualizar" name="op">
+                <input type="submit" class="button-minimal" value="Modificar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
             </div>
         </form>
     </div>

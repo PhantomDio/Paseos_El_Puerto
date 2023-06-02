@@ -42,12 +42,12 @@ public class ServletEmbarcacion extends HttpServlet {
 
         if ("Registrar".equals(op)) {
             String nombre = rq.getParameter("nombre");
-            String modelo = rq.getParameter("ap_pat");
-            float longitud = Float.parseFloat(rq.getParameter("ap_mat"));
-            int anio = Integer.parseInt(rq.getParameter("direccion"));
+            String modelo = rq.getParameter("modelo");
+            float longitud = Float.parseFloat(rq.getParameter("longitud"));
+            int anio = Integer.parseInt(rq.getParameter("anio"));
             int id_propietario = Integer.parseInt(rq.getParameter("id_propietario"));
 
-            Embarcaciones embarcacion = new Embarcaciones(nombre,modelo,longitud, anio, id_propietario);
+            Embarcaciones embarcacion = new Embarcaciones(nombre, modelo, longitud, anio, id_propietario);
             EmbarcacionesDAO embardao = new EmbarcacionesDAO();
             embardao.insert(embarcacion);
             rp.sendRedirect("/paseos_el_puerto/Embarcaciones/inserta_embarcacion.jsp");
@@ -56,12 +56,12 @@ public class ServletEmbarcacion extends HttpServlet {
         else if (op.equals("Modificar")) {
             int id_embarcacion = Integer.parseInt(rq.getParameter("id_embarcacion"));
             String nombre = rq.getParameter("nombre");
-            String modelo = rq.getParameter("ap_pat");
-            float longitud = Float.parseFloat(rq.getParameter("ap_mat"));
-            int anio = Integer.parseInt(rq.getParameter("direccion"));
+            String modelo = rq.getParameter("modelo");
+            float longitud = Float.parseFloat(rq.getParameter("longitud"));
+            int anio = Integer.parseInt(rq.getParameter("anio"));
             int id_propietario = Integer.parseInt(rq.getParameter("id_propietario"));
 
-            Embarcaciones embarcacion = new Embarcaciones(id_embarcacion,nombre,modelo,longitud, anio, id_propietario);
+            Embarcaciones embarcacion = new Embarcaciones(id_embarcacion, nombre, modelo, longitud, anio, id_propietario);
             EmbarcacionesDAO embardao = new EmbarcacionesDAO();
             embardao.update(embarcacion);
             rp.sendRedirect("/paseos_el_puerto/Embarcaciones/actualiza_embarcacion.jsp");

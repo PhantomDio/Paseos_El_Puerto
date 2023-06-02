@@ -1,5 +1,6 @@
 model\Personal.class
 model\Propietarios.class
+datos\EmbarcacionesDAO.class
 datos\PropietariosDAO.class
 model\Clientes.class
 model\Mantenimiento.class
@@ -8,6 +9,7 @@ datos\ClientesDAO.class
 controlador\ServletCliente.class
 Main.class
 model\Equipamiento.class
+controlador\ServletEmbarcacion.class
 datos\Conexion.class
 model\Embarcaciones.class
 controlador\ServletPropietario.class

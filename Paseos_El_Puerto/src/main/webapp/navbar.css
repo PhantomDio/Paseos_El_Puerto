@@ -28,11 +28,6 @@ header.scrolled a {
     color: #f8f8f8;
 }
 
-.navigation-link:hover > a {
-    background-color: #5d4e3c;
-    color: #f8f8f8;
-}
-
 .cont_ul {
     display: flex;
     align-items: center;
@@ -58,7 +53,7 @@ header.scrolled a {
 .dropdown-menu > li {
     width: 180px;
     transform: translateX(-25px);
-    border-bottom: solid 1px #fff;
+    border-bottom: solid 3px #eee2c7;
     text-align: center;
     text-transform: initial;
     background-color: #5d4e3c;

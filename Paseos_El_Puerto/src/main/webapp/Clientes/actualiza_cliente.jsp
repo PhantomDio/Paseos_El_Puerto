@@ -8,117 +8,96 @@
     <script src="/paseos_el_puerto/animaciones.js"></script>
 </head>
 <body class="body_color">
-<header>
-    <nav class="navigation">
-        <ul>
-            <li><a href="/paseos_el_puerto/index.jsp" class="logo-nav-container"><img src="/paseos_el_puerto/logo.png" alt="Logo"></a></li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Embarcaciones</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Propietarios</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Alquileres</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Clientes</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="GET">Lista</a></li>
-                    <li><a href="/paseos_el_puerto/Clientes/inserta_cliente.jsp">Registrar</a></li>
-                    <li><a href="/paseos_el_puerto/Clientes/actualiza_cliente.jsp">Modificar</a></li>
-                    <li><a href="/paseos_el_puerto/Clientes/elimina_cliente.jsp">Eliminar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Personal</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Mantenimiento</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Reparación</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="navigation-link">Equipamiento</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
-                    <li><a href="#">Eliminar</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+<header class="navigation">
+    <ul class="cont_ul">
+        <li class="logo-nav-container"><a href="/paseos_el_puerto/index.jsp"><img src="/paseos_el_puerto/logo.png" alt="Logo">
+        </a>
+        </li>
+        <li class="dropdown">
+            <a href="#">Embarcaciones</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/actualiza_embarcacion.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Propietarios</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/actualiza_propietario.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Alquileres</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Clientes</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="GET">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Clientes/inserta_cliente.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Clientes/actualiza_cliente.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Personal</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Mantenimiento</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Reparación</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Equipamiento</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Lista</a></li>
+                <li><a href="#">Registrar</a></li>
+                <li><a href="#">Modificar</a></li>
+            </ul>
+        </li>
+    </ul>
 </header>
 
-<section>
-    <div class="parallax-content">
-        <style>
-            body {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-            }
+<style>
 
-            form {
-                display: flex;
-                flex-direction: column;
-            }
-
-            p {
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                margin: 10px 0;
-            }
+    p {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 10px 0;
+    }
 
 
-            p input[type="text"] {
-                padding: 5px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                font-size: 14px;
-                margin-left: 9px;
-                width: 200px; /* Ajusta el ancho según sea necesario */
-            }
+    p input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-left: 9px;
+        width: 200px; /* Ajusta el ancho según sea necesario */
+    }
         </style>
 
         <script>
@@ -143,7 +122,10 @@
                 return true;
             }
         </script>
-
+<br>
+<br>
+<section class="container">
+    <div class="parallax-content">
         <form action="/paseos_el_puerto/ServletCliente" method="post" onsubmit="return validarFormulario()">
             <p>ID: <input type="text" name="id_cliente"></p>
             <p>Nombre: <input type="text" name="nombre"></p>

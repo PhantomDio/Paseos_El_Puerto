@@ -11,9 +11,20 @@ public class Embarcaciones implements Serializable {
     public Embarcaciones() {}
 
     public Embarcaciones(int idEmbarcacion, String nombre, String modelo, float longitud, int anio, int idPropietario) {
+        this.idEmbarcacion = idEmbarcacion;
+        this.nombre = nombre;
+        this.modelo = modelo;
+        this.longitud = longitud;
+        this.anio = anio;
+        this.idPropietario = idPropietario;
     }
 
     public Embarcaciones(String nombre, String modelo, float longitud, int anio, int idPropietario) {
+        this.nombre = nombre;
+        this.modelo = modelo;
+        this.longitud = longitud;
+        this.anio = anio;
+        this.idPropietario = idPropietario;
     }
 
 

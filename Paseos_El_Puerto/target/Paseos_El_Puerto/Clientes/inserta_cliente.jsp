@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
 </head>
-<body class="container_body">
+<body class="body_color">
 <header>
     <nav class="navigation">
         <ul>
@@ -129,29 +129,34 @@
                 }
             }
 
-            function validateDate(input) {
+            function validarFormulario() {
+                var fechaInput = document.querySelector('input[name="fecha_nac"]');
+                var fechaValue = fechaInput.value;
                 var regex = /^\d{4}-\d{2}-\d{2}$/;
 
-                if (!regex.test(input.value)) {
+                if (!regex.test(fechaValue)) {
                     alert("El formato de fecha debe ser (yyyy-mm-dd).");
-                    input.value = '';
+                    fechaInput.value = '';
+                    return false;
                 }
+
+                return true;
             }
         </script>
-        <form action="/paseos_el_puerto/ServletCliente" method="post">
+
+        <form action="/paseos_el_puerto/ServletCliente" method="post" onsubmit="return validarFormulario()">
             <p>Nombre: <input type="text" name="nombre"></p>
             <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
             <p>Apellido Materno: <input type="text" name="ap_mat"></p>
             <p>Dirección: <input type="text" name="direccion"></p>
-            <p>Telefono: <input type="text" name="telefono"></p>
+            <p>Teléfono: <input type="text" name="telefono"></p>
             <p>Correo: <input type="text" name="email"></p>
-            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)" onblur="validateDate(this)"></p>
+            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
             <br>
             <div class="button-container">
-                <input type="submit" class="button-minimal" value="Registrar" name="op">
+                <input type="button" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
             </div>
         </form>
-
     </div>
 </section>
 </body>

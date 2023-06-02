@@ -18,15 +18,15 @@
         </a>
         </li>
         <li class="dropdown">
-            <a href="#" class="">Embarcaciones</a>
+            <a href="#">Embarcaciones</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/actualiza_embarcacion.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="navigation-link">Propietarios</a>
+            <a href="#">Propietarios</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
@@ -34,7 +34,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="navigation-link">Alquileres</a>
+            <a href="#">Alquileres</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Lista</a></li>
                 <li><a href="#">Registrar</a></li>
@@ -42,7 +42,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="navigation-link">Clientes</a>
+            <a href="#">Clientes</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletCliente?op=lista" methods="GET">Lista</a></li>
                 <li><a href="/paseos_el_puerto/Clientes/inserta_cliente.jsp">Registrar</a></li>
@@ -50,7 +50,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="navigation-link">Personal</a>
+            <a href="#">Personal</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Lista</a></li>
                 <li><a href="#">Registrar</a></li>
@@ -58,7 +58,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="navigation-link">Mantenimiento</a>
+            <a href="#">Mantenimiento</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Lista</a></li>
                 <li><a href="#">Registrar</a></li>
@@ -66,7 +66,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="navigation-link">Reparación</a>
+            <a href="#">Reparación</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Lista</a></li>
                 <li><a href="#">Registrar</a></li>
@@ -74,7 +74,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="navigation-link">Equipamiento</a>
+            <a href="#">Equipamiento</a>
             <ul class="dropdown-menu">
                 <li><a href="#">Lista</a></li>
                 <li><a href="#">Registrar</a></li>
@@ -86,12 +86,9 @@
 
 <style>
 
-    form {
-        display: flex;
-        flex-direction: column;
+    form{
         align-items: center;
     }
-
     p {
         display: flex;
         justify-content: flex-end;
@@ -115,6 +112,8 @@
     }
 </style>
 
+<br>
+<br>
 <section class="container">
     <div class="parallax-content">
         <form method="get" action="/paseos_el_puerto/ServletCliente">
@@ -122,6 +121,7 @@
             <input type="submit" class="button-minimal button-container" value="Buscar" name="op">
             <input type="submit" class="button-minimal" value="Eliminar" name="op">
         </form>
+        <br>
         <a href="/paseos_el_puerto/ServletCliente">Mostrar lista completa</a>
         <div class="table-container">
             <table>
@@ -169,8 +169,6 @@
                 </tr>
                 <% }
                 } else {
-                        session.removeAttribute("listaClientes");
-                        session.removeAttribute("cliente");
                 %>
                 <tr>
                     <td colspan="8"><h1>No hay clientes a mostrar</h1></td>

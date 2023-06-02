@@ -1,7 +1,17 @@
-body {
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
     font-family: "Nirmala UI", sans-serif;
+}
+
+body {
+    height: 100vh;
     background-color: #f5f5f5;
-    margin: 0;
+}
+
+.body_color {
+    background-color: #eee2c7;
 }
 
 .container {
@@ -112,10 +122,6 @@ ul.fade-in li {
     margin-left: 0;
 }
 
-.container_body {
-    background-color: #eee2c7;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -145,92 +151,4 @@ tr:nth-child(even) td {
 
 .button-container {
     margin-bottom: 20px;
-}
-
-.navigation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    height: 80px;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.navigation:hover,
-.navigation.scrolled {
-    background-color: #5d4e3c;
-}
-
-.navigation ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-.navigation a {
-    color: #333;
-    transition: color 0.3s ease;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.navigation:hover a,
-.navigation.scrolled a {
-    color: #f8f8f8;
-}
-
-.logo-nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 36px;
-}
-
-.logo-nav-container img {
-    max-height: 45px;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-    margin-right: 15px; /* Espacio entre las opciones principales */
-    text-transform: uppercase;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    z-index: 1;
-    padding: 10px;
-    min-width: 113px;
-    opacity: 0%;
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 100%;
-    display: block;
-    background-color: #5d4e3c;
-}
-
-.dropdown-menu li {
-    margin-top: 20px;
-    margin-left: 13px;
-    text-transform: initial;
-}
-
-.navigation-link:hover > a {
-    background-color: #5d4e3c;
-    color: #f8f8f8;
-}
-
-.navigation-link:hover .dropdown-menu {
-    display: block;
 }
