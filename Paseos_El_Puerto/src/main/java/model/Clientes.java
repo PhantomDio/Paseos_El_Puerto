@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Clientes {
+public class Clientes implements Serializable {
     private int idCliente;
     private String nombre, apellidoP, apellidoM, direccion, telefono, email;
     private Date fecha_nac;

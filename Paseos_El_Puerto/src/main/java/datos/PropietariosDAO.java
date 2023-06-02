@@ -13,21 +13,21 @@ public class PropietariosDAO {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(selectSQL);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            Propietarios cli = new Propietarios();
+            Propietarios prop = new Propietarios();
             while (rs.next()) {
 
-                cli.setIdPropietario(rs.getInt("id_propietario"));
-                cli.setNombre(rs.getString("nombre"));
-                cli.setApellidoP(rs.getString("ap_pat"));
-                cli.setApellidoM(rs.getString("ap_mat"));
-                cli.setDireccion(rs.getString("direccion"));
-                cli.setTelefono(rs.getString("telefono"));
-                cli.setEmail(rs.getString("email"));;
-                cli.setFecha_nac(rs.getDate("fecha_nac"));
+                prop.setIdPropietario(rs.getInt("id_propietario"));
+                prop.setNombre(rs.getString("nombre"));
+                prop.setApellidoP(rs.getString("ap_pat"));
+                prop.setApellidoM(rs.getString("ap_mat"));
+                prop.setDireccion(rs.getString("direccion"));
+                prop.setTelefono(rs.getString("telefono"));
+                prop.setEmail(rs.getString("email"));;
+                prop.setFecha_nac(rs.getDate("fecha_nac"));
             }
             statement.close();
             rs.close();
-            return cli;
+            return prop;
 
         } catch (SQLException ex) {
             System.out.println("Error al seleccionar propietario: " + ex.getMessage());
@@ -38,7 +38,7 @@ public class PropietariosDAO {
         Connection conn = null;
         Statement state = null;
         ResultSet rs = null;
-        Propietarios client = null;
+        Propietarios propietario = null;
         String selectSQL = "SELECT * FROM propietarios";
 
         List<Propietarios> propietarios = new ArrayList<>();
@@ -57,8 +57,8 @@ public class PropietariosDAO {
                 String email = rs.getString("email");
                 String fecha_nac = rs.getString("fecha_nac");
 
-                client = new Propietarios(id_propietario,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, fecha_nac);
-                propietarios.add(client);
+                propietario = new Propietarios(id_propietario,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, fecha_nac);
+                propietarios.add(propietario);
 
             }
 

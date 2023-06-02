@@ -1,22 +1,21 @@
 package model;
 
-public class Embarcaciones {
-    private int idEmbarcacion;
-    private String modelo;
+import java.io.Serializable;
+
+public class Embarcaciones implements Serializable {
+    private int idEmbarcacion, anio, idPropietario;
+    private String nombre, modelo;
     private float longitud;
-    private int anio;
-    private int idPropietario;
 
-    public Embarcaciones() {
+
+    public Embarcaciones() {}
+
+    public Embarcaciones(int idEmbarcacion, String nombre, String modelo, float longitud, int anio, int idPropietario) {
     }
 
-    public Embarcaciones(int idEmbarcacion, String modelo, float longitud, int anio, int idPropietario) {
-        this.idEmbarcacion = idEmbarcacion;
-        this.modelo = modelo;
-        this.longitud = longitud;
-        this.anio = anio;
-        this.idPropietario = idPropietario;
+    public Embarcaciones(String nombre, String modelo, float longitud, int anio, int idPropietario) {
     }
+
 
     public int getIdEmbarcacion() {
         return idEmbarcacion;
@@ -24,6 +23,14 @@ public class Embarcaciones {
 
     public void setIdEmbarcacion(int idEmbarcacion) {
         this.idEmbarcacion = idEmbarcacion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getModelo() {
