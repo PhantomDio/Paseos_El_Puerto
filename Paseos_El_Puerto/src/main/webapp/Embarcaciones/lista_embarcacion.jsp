@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Embarcaciones" %>
-<%@ page import="model.Contratos" %>
 <html>
 <head>
     <title>Lista Embarcaciones</title>
@@ -131,7 +130,9 @@
                     <th>Modelo</th>
                     <th>Longitud</th>
                     <th>Año</th>
-                    <th>ID_Propietario</th>
+                    <th>Nombre_Propietario</th>
+                    <th>Costo_Hora</th>
+                    <th>Contrato</th>
                     <th>Estado</th>
                 </tr>
                 </thead>
@@ -148,7 +149,10 @@
                     <td><%= embarcacion.getModelo() %></td>
                     <td><%= embarcacion.getLongitud() %></td>
                     <td><%= embarcacion.getAnio() %></td>
-                    <td><%= embarcacion.getIdPropietario() %></td>
+                    <td><%= embarcacion.getNombreProp() %></td>
+                    <td><%= embarcacion.getCostoHora() %></td>
+                    <td><%= embarcacion.getEstadoContrato(embarcacion.getFechaFinContrato()) %></td>
+                    <td><%= embarcacion.getEstadoPaseo(embarcacion.getFechaFinPaseo()) %></td>
                 </tr>
                 <% } else if (lista != null && !lista.isEmpty()) {
                     for (Embarcaciones embarc : lista) {
@@ -159,12 +163,15 @@
                     <td><%= embarc.getModelo() %></td>
                     <td><%= embarc.getLongitud() %></td>
                     <td><%= embarc.getAnio() %></td>
-                    <td><%= embarc.getIdPropietario() %></td>
+                    <td><%= embarc.getNombreProp() %></td>
+                    <td><%= embarc.getCostoHora() %></td>
+                    <td><%= embarc.getEstadoContrato(embarc.getFechaFinContrato()) %></td>
+                    <td><%= embarc.getEstadoPaseo(embarc.getFechaFinPaseo()) %></td>
                 </tr>
                 <% }
                 } else { %>
                 <tr>
-                    <td colspan="6"><h1>No hay embarcaciones a mostrar</h1></td>
+                    <td colspan="9"><h1>No hay embarcaciones a mostrar</h1></td>
                 </tr>
                 <% } %>
                 </tbody>

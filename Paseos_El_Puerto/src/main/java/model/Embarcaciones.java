@@ -1,22 +1,23 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Embarcaciones implements Serializable {
     private int idEmbarcacion, anio, idPropietario;
-    private String nombre, modelo;
-    private float longitud;
+    private String nombre, modelo, estado, nombreProp;
+    private Date fechaFinPaseo, fechaFinContrato;
+    private float costoHora, longitud;
 
 
     public Embarcaciones() {}
 
-    public Embarcaciones(int idEmbarcacion, String nombre, String modelo, float longitud, int anio, int idPropietario) {
+    public Embarcaciones(int idEmbarcacion, String nombre, String modelo, float longitud, int anio) {
         this.idEmbarcacion = idEmbarcacion;
         this.nombre = nombre;
         this.modelo = modelo;
         this.longitud = longitud;
         this.anio = anio;
-        this.idPropietario = idPropietario;
     }
 
     public Embarcaciones(String nombre, String modelo, float longitud, int anio, int idPropietario) {
@@ -71,8 +72,67 @@ public class Embarcaciones implements Serializable {
     public int getIdPropietario() {
         return idPropietario;
     }
-
-    public void setIdPropietario(int idPropietario) {
-        this.idPropietario = idPropietario;
+    public void setnombreProp(String nombreProp) {
+        this.nombreProp = nombreProp;
     }
+    public String getNombreProp(){
+        return nombreProp;
+    }
+
+    public Date getFechaFinContrato() {
+        return fechaFinContrato;
+    }
+
+    public void setFechaFinContrato(Date fechaFinContrato) {
+        this.fechaFinContrato = fechaFinContrato;
+    }
+    public Date getFechaFinPaseo() {
+        return fechaFinPaseo;
+    }
+
+    public void setFechaFinPaseo(Date fechaFinPaseo) {
+        this.fechaFinPaseo = fechaFinPaseo;
+    }
+
+    public float getCostoHora() {
+        return costoHora;
+    }
+
+    public void setCostoHora(float costoHora) {
+        this.costoHora = costoHora;
+    }
+
+    public String getEstadoContrato(Date fechaFin) {
+
+        Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
+        int comparacion = fechaActual.compareTo(fechaFin);
+
+        if (comparacion > 0) {
+            // La fecha actual es mayor que fecha2
+            return estado = "Vencido";
+        } else if (comparacion < 0) {
+            // La fecha actual es menor que fecha2
+            return estado = "Vigente";
+        } else {
+            // Las fechas son iguales
+            return estado = "Vigente";
+        }
+    }
+    public String getEstadoPaseo(Date fechaFin) {
+
+        Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
+        int comparacion = fechaActual.compareTo(fechaFin);
+
+        if (comparacion > 0) {
+            // La fecha actual es mayor que fecha2
+            return estado = "Ocupado";
+        } else if (comparacion < 0) {
+            // La fecha actual es menor que fecha2
+            return estado = "Disponible";
+        } else {
+            // Las fechas son iguales
+            return estado = "Disponible";
+        }
+    }
+
 }

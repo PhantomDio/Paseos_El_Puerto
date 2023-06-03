@@ -21,7 +21,6 @@ public class EmbarcacionesDAO {
                 embar.setModelo(rs.getString("modelo"));
                 embar.setLongitud(rs.getFloat("longitud"));
                 embar.setAnio(rs.getInt("anio"));
-                embar.setIdPropietario(rs.getInt("id_propietario"));
             }
             statement.close();
             rs.close();
@@ -32,12 +31,16 @@ public class EmbarcacionesDAO {
             return null;
         }
     }
-    public ArrayList<Embarcaciones> selectAll(){
+    public ArrayList<Embarcaciones> selectAll() {
         Connection conn;
         Statement state;
         ResultSet rs;
         Embarcaciones embarcacion;
-        String selectSQL = "SELECT * FROM embarcaciones";
+        String selectSQL = "SELECT e.id_embarcacion, e.nombre, e.modelo, e.longitud, e.anio, " +
+                "CONCAT(p.nombre, ' ', p.ap_pat, ' ', p.ap_mat) AS nombre_propietario, c.fecha_fin AS fecha_fin_contrato, " +
+                "c.costo_hora, ps.fecha_fin AS fecha_fin_paseo FROM embarcaciones e INNER JOIN propietarios p " +
+                "ON e.id_propietario = p.id_propietario LEFT JOIN contratos c ON e.id_embarcacion = c.id_embarcacion " +
+                "LEFT JOIN paseos ps ON e.id_embarcacion = ps.id_embarcacion";
 
         ArrayList<Embarcaciones> embarcaciones = new ArrayList<>();
         try {
@@ -50,11 +53,15 @@ public class EmbarcacionesDAO {
                 String nombre = rs.getString("nombre");
                 String modelo = rs.getString("modelo");
                 float longitud = rs.getFloat("longitud");
-                int anio = rs.getInt("anio")    ;
-                int id_propietario = rs.getInt("id_propietario");
-                embarcacion = new Embarcaciones(id_embarcacion,nombre,modelo,longitud, anio, id_propietario);
-                embarcaciones.add(embarcacion);
+                int anio = rs.getInt("anio");
 
+                embarcacion = new Embarcaciones(id_embarcacion, nombre, modelo, longitud, anio);
+                embarcacion.setnombreProp(rs.getString("nombre_propietario"));
+                embarcacion.setFechaFinContrato(rs.getDate("fecha_fin_contrato"));
+                embarcacion.setCostoHora(rs.getFloat("costo_hora"));
+                embarcacion.setFechaFinPaseo(rs.getDate("fecha_fin_paseo"));
+
+                embarcaciones.add(embarcacion);
             }
 
             Conexion.close(rs);
@@ -67,6 +74,7 @@ public class EmbarcacionesDAO {
 
         return embarcaciones;
     }
+
     private int INSERT_UPDATE(Embarcaciones embarcacion, String query, Connection con) throws SQLException {
         PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, embarcacion.getNombre());

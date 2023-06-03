@@ -13,15 +13,6 @@ public class Contratos implements Serializable {
 
         }
 
-    public Contratos(int idContrato, int idEmbarcacion, String fechaInicio, String fechaFin, float costoHora, String estado) {
-            this.idContrato = idContrato;
-            this.idEmbarcacion = idEmbarcacion;
-            this.costoHora = costoHora;
-            this.fechaFin = java.sql.Date.valueOf(fechaFin);
-            this.fechaInicio = java.sql.Date.valueOf(fechaInicio);
-            this.estado = estado;
-    }
-
     public Contratos(int idContrato, int idEmbarcacion, String fechaInicio, String fechaFin, float costoHora) {
         this.idContrato = idContrato;
         this.idEmbarcacion = idEmbarcacion;
@@ -92,10 +83,6 @@ public class Contratos implements Serializable {
             // Las fechas son iguales
             return estado = "Vigente";
         }
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
 
 }

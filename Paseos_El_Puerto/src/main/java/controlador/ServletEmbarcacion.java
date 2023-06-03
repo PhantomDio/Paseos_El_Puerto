@@ -59,9 +59,8 @@ public class ServletEmbarcacion extends HttpServlet {
             String modelo = rq.getParameter("modelo");
             float longitud = Float.parseFloat(rq.getParameter("longitud"));
             int anio = Integer.parseInt(rq.getParameter("anio"));
-            int id_propietario = Integer.parseInt(rq.getParameter("id_propietario"));
 
-            Embarcaciones embarcacion = new Embarcaciones(id_embarcacion, nombre, modelo, longitud, anio, id_propietario);
+            Embarcaciones embarcacion = new Embarcaciones(id_embarcacion, nombre, modelo, longitud, anio);
             EmbarcacionesDAO embardao = new EmbarcacionesDAO();
             embardao.update(embarcacion);
             rp.sendRedirect("/paseos_el_puerto/Embarcaciones/actualiza_embarcacion.jsp");
