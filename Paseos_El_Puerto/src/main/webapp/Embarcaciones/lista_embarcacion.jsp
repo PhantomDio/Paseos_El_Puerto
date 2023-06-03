@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Embarcaciones" %>
-
+<%@ page import="model.Contratos" %>
 <html>
 <head>
     <title>Lista Embarcaciones</title>
@@ -132,6 +132,7 @@
                     <th>Longitud</th>
                     <th>Año</th>
                     <th>ID_Propietario</th>
+                    <th>Estado</th>
                 </tr>
                 </thead>
                 <tbody>
