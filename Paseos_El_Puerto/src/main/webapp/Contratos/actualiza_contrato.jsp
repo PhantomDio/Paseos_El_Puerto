@@ -127,15 +127,12 @@
 <section class="container">
     <div class="parallax-content">
 
-        <form action="/paseos_el_puerto/ServletPropietario" method="post" onsubmit="return validarFormulario()">
-            <p>ID: <input type="text" name="id_propietario"></p>
-            <p>Nombre: <input type="text" name="nombre"></p>
-            <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
-            <p>Apellido Materno: <input type="text" name="ap_mat"></p>
-            <p>Dirección: <input type="text" name="direccion"></p>
-            <p>Teléfono: <input type="text" name="telefono"></p>
-            <p>Correo: <input type="text" name="email"></p>
-            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+        <form action="/paseos_el_puerto/ServletContrato" method="post" onsubmit="return validarFormulario()">
+            <p>ID del contrato: <input type="text" name="id_contrato"></p>
+            <p>ID de la embarcación: <input type="text" name="id_embarcacion"></p>
+            <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <p>Fecha de termino: <input type="text" name="fecha_fin" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <p>Costo por hora: <input type="text" name="costo_hora"></p>
             <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Modificar" name="op" onclick="validarFormulario() ? this.form.submit() : false">

@@ -16,12 +16,11 @@ public class ContratosDAO {
             Contratos contrato = new Contratos();
             while (rs.next()) {
 
-                contrato.setIdEmbarcacion(rs.getInt("id_contrato"));
+                contrato.setIdContrato(rs.getInt("id_contrato"));
                 contrato.setIdEmbarcacion(rs.getInt("id_embarcacion"));
                 contrato.setFechaInicio(rs.getDate("fecha_inicio"));
                 contrato.setFechaFin(rs.getDate("fecha_fin"));
                 contrato.setCostoHora(rs.getFloat("costo_hora"));
-                contrato.setEstado(contrato.getEstado());
             }
             statement.close();
             rs.close();
@@ -50,9 +49,8 @@ public class ContratosDAO {
                 int id_embarcacion = rs.getInt("id_embarcacion");
                 String fecha_inicio = rs.getString("fecha_inicio");
                 String fecha_fin = rs.getString("fecha_fin");
-                float costo_hora = rs.getInt("costo_hora")    ;
-                String estado = contrato.getEstado();
-                contrato = new Contratos(id_contrato,id_embarcacion,fecha_inicio,fecha_fin, costo_hora, estado);
+                float costo_hora = rs.getInt("costo_hora");
+                contrato = new Contratos(id_contrato,id_embarcacion,fecha_inicio,fecha_fin, costo_hora);
                 contratos.add(contrato);
 
             }

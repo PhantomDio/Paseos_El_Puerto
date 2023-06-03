@@ -77,20 +77,20 @@ public class Contratos implements Serializable {
             this.costoHora = costoHora;
         }
 
-    public String getEstado() {
+    public String getEstado(Date fechaFin) {
 
-        Date fechaActual = new java.sql.Date(System.currentTimeMillis()); // Fecha actual
-        int comparacion = fechaActual.compareTo(getFechaFin());
+        Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
+        int comparacion = fechaActual.compareTo(fechaFin);
 
         if (comparacion > 0) {
         // La fecha actual es mayor que fecha2
-            return estado = "NO_DISP";
+            return estado = "Vencido";
         } else if (comparacion < 0) {
             // La fecha actual es menor que fecha2
-            return estado = "DISP";
+            return estado = "Vigente";
         } else {
             // Las fechas son iguales
-            return estado = "DISP";
+            return estado = "Vigente";
         }
     }
 

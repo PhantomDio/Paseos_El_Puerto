@@ -28,7 +28,7 @@ public class ServletContrato extends HttpServlet {
             ContratosDAO contratodao = new ContratosDAO();
             Contratos contrato = contratodao.select(id_contrato);
             rq.setAttribute("contrato", contrato);
-            rq.getRequestDispatcher("/Contratos/lista_embarcacion.jsp").forward(rq, rp);
+            rq.getRequestDispatcher("/Contratos/lista_contrato.jsp").forward(rq, rp);
         }
         else if (op.equals("Eliminar")) {
             int id_contrato = Integer.parseInt(rq.getParameter(("id_contrato")));
@@ -62,7 +62,7 @@ public class ServletContrato extends HttpServlet {
             Contratos contrato = new Contratos(id_contrato,id_embarcacion,fecha_inicio,fecha_fin, costo_hora);
             ContratosDAO contratodao = new ContratosDAO();
             contratodao.update(contrato);
-            rp.sendRedirect("/paseos_el_puerto/Contratos/actualiza_embarcacion.jsp");
+            rp.sendRedirect("/paseos_el_puerto/Contratos/actualiza_contrato.jsp");
         }
     }
 }
