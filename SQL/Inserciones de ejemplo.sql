@@ -19,7 +19,7 @@ VALUES ('Yate de lujo', 'ABC123', 25.5, 2022, 1),
        ('Catamarán familiar', 'JKL012', 18.6, 2015, 4),
        ('Bote de pesca', 'MNO345', 12.4, 2010, 5);
 
-INSERT INTO Contrato (id_embarcacion, fecha_inicio, fecha_fin, costo_hora)
+INSERT INTO Contratos (id_embarcacion, fecha_inicio, fecha_fin, costo_hora)
 VALUES (1, '2023-05-01', '2023-05-10', 150.00),
        (2, '2023-05-03', '2023-05-08', 120.00),
        (3, '2023-05-05', '2023-05-12', 200.00),
