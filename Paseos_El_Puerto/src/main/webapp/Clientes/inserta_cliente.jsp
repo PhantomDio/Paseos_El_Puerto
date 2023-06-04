@@ -125,6 +125,9 @@
 <br>
 <section class="container">
     <div class="parallax-content">
+        <br>
+        <h1>Nuevo Cliente</h1>
+        <br>
         <form action="/paseos_el_puerto/ServletCliente" method="post" onsubmit="return validarFormulario()">
             <p>Nombre: <input type="text" name="nombre"></p>
             <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
@@ -133,6 +136,7 @@
             <p>Teléfono: <input type="text" name="telefono"></p>
             <p>Correo: <input type="text" name="email"></p>
             <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <br>
             <br>
             <div class="button-container">
                 <input type="button" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">

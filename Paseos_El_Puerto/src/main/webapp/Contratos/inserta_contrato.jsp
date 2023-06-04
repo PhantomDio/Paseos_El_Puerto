@@ -1,3 +1,4 @@
+<%@ page import="datos.ContratosDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -126,12 +127,16 @@
     <br>
     <section class="container">
         <div class="parallax-content">
-
+            <br>
+            <h1>Nuevo Contrato</h1>
+            <br>
+            <% ContratosDAO contratoDAO = new ContratosDAO(); %>
             <form action="/paseos_el_puerto/ServletContrato" method="post" onsubmit="return validarFormulario()">
-                <p>ID de la embarcación: <input type="text" name="id_embarcacion"></p>
+                <p>ID de la embarcación: <input type="text" value="<%= contratoDAO.getIdEmbarcacion() %>" name="id_embarcacion" readonly></p>
                 <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
                 <p>Fecha de termino: <input type="text" name="fecha_fin" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
                 <p>Costo por hora: <input type="text" name="costo_hora"></p>
+                <br>
                 <br>
                 <div class="button-container">
                     <input type="submit" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">

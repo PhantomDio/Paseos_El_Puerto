@@ -35,7 +35,7 @@ public class ContratosDAO {
         Connection conn;
         Statement state;
         ResultSet rs;
-        Contratos contrato = new Contratos();
+        Contratos contrato;
         String selectSQL = "SELECT * FROM contratos";
 
         ArrayList<Contratos> contratos = new ArrayList<>();
@@ -114,5 +114,38 @@ public class ContratosDAO {
         } catch (SQLException ex) {
             System.out.println("Error al eliminar el contrato: " + ex.getMessage());
         }
+    }
+
+    public int getIdEmbarcacion() {
+        int idEmbarcacion = 0;
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            // Obtener la conexión a la base de datos
+            conn = Conexion.getConnection();
+
+            // Crear la consulta SQL para obtener el último ID de embarcación registrado
+            String sql = "SELECT id_embarcacion FROM embarcaciones ORDER BY id_embarcacion DESC LIMIT 1";
+
+            // Crear el objeto Statement y ejecutar la consulta
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            // Obtener el último ID de embarcación
+            if (rs.next()) {
+                idEmbarcacion = rs.getInt("id_embarcacion");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar los recursos de base de datos
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+        }
+
+        return idEmbarcacion;
     }
 }

@@ -103,13 +103,16 @@
 <br>
 <section class="container">
     <div class="parallax-content">
-
+        <br>
+        <h1>Nueva Embarcación</h1>
+        <br>
         <form action="/paseos_el_puerto/ServletEmbarcacion" method="post">
             <p>Nombre: <input type="text" name="nombre"></p>
             <p>Modelo: <input type="text" name="modelo"></p>
             <p>Longitud<input type="text" name="longitud"></p>
             <p>Año: <input type="text" name="anio"></p>
             <p>ID del propietario: <input type="text" name="id_propietario"></p>
+            <br>
             <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Registrar" name="op">

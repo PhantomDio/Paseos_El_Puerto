@@ -36,9 +36,7 @@ public class Contratos implements Serializable {
             this.idContrato = idContrato;
         }
 
-        public int getIdEmbarcacion() {
-            return idEmbarcacion;
-        }
+        public int getIdEmbarcacion() {return idEmbarcacion; }
 
         public void setIdEmbarcacion(int idEmbarcacion) {
             this.idEmbarcacion = idEmbarcacion;
