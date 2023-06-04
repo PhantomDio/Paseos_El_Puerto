@@ -126,13 +126,15 @@
 <br>
 <section class="container">
     <div class="parallax-content">
-
+        <br>
+        <h1>Modificar Contrato</h1>
+        <br>
         <form action="/paseos_el_puerto/ServletContrato" method="post" onsubmit="return validarFormulario()">
             <p>ID del contrato: <input type="text" name="id_contrato"></p>
-            <p>ID de la embarcación: <input type="text" name="id_embarcacion"></p>
             <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
             <p>Fecha de termino: <input type="text" name="fecha_fin" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
             <p>Costo por hora: <input type="text" name="costo_hora"></p>
+            <br>
             <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Modificar" name="op" onclick="validarFormulario() ? this.form.submit() : false">

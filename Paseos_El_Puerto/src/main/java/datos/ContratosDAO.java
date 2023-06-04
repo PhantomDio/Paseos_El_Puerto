@@ -65,43 +65,51 @@ public class ContratosDAO {
 
         return contratos;
     }
-    private int INSERT_UPDATE(Contratos contrato, String query, Connection con) throws SQLException {
-        PreparedStatement ps = con.prepareStatement(query);
-        ps.setInt(1, contrato.getIdEmbarcacion());
-        ps.setDate(2, contrato.getFechaInicio());
-        ps.setDate(3, contrato.getFechaFin());
-        ps.setFloat(4, contrato.getCostoHora());
-        if (contrato.getIdContrato() != 0)
-            // Si el ID del contrato es diferente de cero, se trata de una actualización
-            ps.setInt(5, contrato.getIdContrato());
-        return ps.executeUpdate();
-    }
 
     public void insert(Contratos contrato) {
         String insertSQL = "INSERT INTO contratos (id_embarcacion, fecha_inicio, fecha_fin, costo_hora) " +
                 "VALUES (?, ?, ?, ?)";
         try (Connection con = Conexion.getConnection()) {
-            int R = INSERT_UPDATE(contrato, insertSQL, con);
-            if (R > 0) {
-                System.out.println("Registro agregado exitosamente.");
-            }
+            PreparedStatement ps = con.prepareStatement(insertSQL);
+            ps.setInt(1, contrato.getIdEmbarcacion());
+            ps.setDate(2, contrato.getFechaInicio());
+            ps.setDate(3, contrato.getFechaFin());
+            ps.setFloat(4, contrato.getCostoHora());
+
+            int registros = ps.executeUpdate();
+
+            if(registros>0)
+                System.out.println("Registro agregado exitosamente");
+
+            Conexion.close(ps);
+            Conexion.close(con);
         } catch (SQLException ex) {
             System.out.println("No se pudo agregar el contrato: " + ex.getMessage());
         }
     }
+
     public void update(Contratos contrato) {
-        String updateSQL = "UPDATE contratos SET id_embarcacion = ?, fecha_inicio = ?, fecha_fin = ?, costo_hora = ?" +
+        String updateSQL = "UPDATE contratos SET fecha_inicio = ?, fecha_fin = ?, costo_hora = ?" +
                 " WHERE id_contrato = ?";
-        try (Connection con = Conexion.getConnection()) {
-            int R = INSERT_UPDATE(contrato, updateSQL, con);
-            if (R > 0) {
-                System.out.println("Registro modificado exitosamente.");
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(updateSQL)) {
+
+            ps.setDate(1, contrato.getFechaInicio());
+            ps.setDate(2, contrato.getFechaFin());
+            ps.setFloat(3, contrato.getCostoHora());
+            ps.setInt(4, contrato.getIdContrato());
+
+            int registros = ps.executeUpdate();
+
+            if (registros > 0) {
+                System.out.println("Se han modificado " + registros + " registros exitosamente.");
+            } else {
+                System.out.println("No se ha modificado ningún registro.");
             }
         } catch (SQLException ex) {
             System.out.println("Error al modificar el contrato: " + ex.getMessage());
         }
     }
-
 
     public void delete(int id) {
         String deleteSQL = "DELETE FROM contratos WHERE id_contrato=?";
