@@ -118,21 +118,24 @@ public class Embarcaciones implements Serializable {
             return estado = "Vigente";
         }
     }
-    public String getEstadoPaseo(Date fechaFin) {
+    public String getEstadoPaseo(Date fechaFinPaseo, Date fechaFinContrato) {
 
         Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
-        int comparacion = fechaActual.compareTo(fechaFin);
+        int comparacion = fechaActual.compareTo(fechaFinPaseo);
+        int comparacion2 = fechaActual.compareTo(fechaFinContrato);
 
-        if (comparacion > 0) {
-            // La fecha actual es mayor que fecha2
-            return estado = "Ocupado";
-        } else if (comparacion < 0) {
-            // La fecha actual es menor que fecha2
+        if (comparacion < 0 && comparacion2 > 0) {
+            // La fecha actual es mayor que la fechas_fin de contrato y menor a la de paseo
+            return estado = "No disponible";
+        } else if (comparacion > 0 && comparacion2 < 0) {
+            // La fecha actual es menor que la fechas_fin de contrato y mayor a la de paseo
             return estado = "Disponible";
-        } else {
+        } else if (comparacion == 0 && comparacion2 == 0){
             // Las fechas son iguales
             return estado = "Disponible";
         }
+        else
+            return estado = "No disponible";
     }
 
 }

@@ -162,7 +162,7 @@
                     <%
                         if (embarcacion.getFechaFinPaseo() != null){
                     %>
-                    <td><%= embarcacion.getEstadoPaseo(embarcacion.getFechaFinPaseo()) %></td>
+                    <td><%= embarcacion.getEstadoPaseo(embarcacion.getFechaFinPaseo(), embarcacion.getFechaFinContrato()) %></td>
                     <%
                     } else
                     %>
@@ -188,16 +188,19 @@
                     %>
                     <td>Sin contrato</td>
                     <%
-                        }if (embarc.getFechaFinPaseo() != null){
+                        }if (embarc.getFechaFinPaseo() != null && embarc.getFechaFinContrato() != null){
                     %>
-                    <td><%= embarc.getEstadoPaseo(embarc.getFechaFinPaseo()) %></td>
+                    <td><%= embarc.getEstadoPaseo(embarc.getFechaFinPaseo(), embarc.getFechaFinContrato()) %></td>
                     <%
-                    } else {
+                    } else if (embarc.getFechaFinContrato() != null && embarc.getFechaFinPaseo() == null) {
                     %>
                     <td>Disponible</td>
                 </tr>
-                <%    }
-                    }
+                <%} else { %>
+                <td>No disponible</td>
+                <% }
+                        }
+
                 } else { %>
                     <td colspan="9"><h1>No hay embarcaciones a mostrar</h1></td>
                 </tr>
