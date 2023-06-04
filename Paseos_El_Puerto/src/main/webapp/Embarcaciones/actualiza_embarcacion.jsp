@@ -105,12 +105,11 @@
     <div class="parallax-content">
 
         <form action="/paseos_el_puerto/ServletEmbarcacion" method="post">
-            <p>ID: <input type="text" name="id_embarcacion"></p>
+            <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
             <p>Nombre: <input type="text" name="nombre"></p>
             <p>Modelo: <input type="text" name="modelo"></p>
             <p>Longitud<input type="text" name="longitud"></p>
             <p>Año: <input type="text" name="anio"></p>
-            <p>ID del propietario: <input type="text" name="id_propietario"></p>
             <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Modificar" name="op">

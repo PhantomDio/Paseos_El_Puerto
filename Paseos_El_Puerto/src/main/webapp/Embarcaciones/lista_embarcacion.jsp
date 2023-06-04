@@ -151,8 +151,22 @@
                     <td><%= embarcacion.getAnio() %></td>
                     <td><%= embarcacion.getNombreProp() %></td>
                     <td><%= embarcacion.getCostoHora() %></td>
+                        <%
+                    if (embarcacion.getFechaFinContrato() != null){
+                        %>
                     <td><%= embarcacion.getEstadoContrato(embarcacion.getFechaFinContrato()) %></td>
+                    <%
+                    } else
+                    %>
+                    <td>Sin contrato</td>
+                    <%
+                        if (embarcacion.getFechaFinPaseo() != null){
+                    %>
                     <td><%= embarcacion.getEstadoPaseo(embarcacion.getFechaFinPaseo()) %></td>
+                    <%
+                    } else
+                    %>
+                    <td>Disponible</td>
                 </tr>
                 <% } else if (lista != null && !lista.isEmpty()) {
                     for (Embarcaciones embarc : lista) {
@@ -165,12 +179,26 @@
                     <td><%= embarc.getAnio() %></td>
                     <td><%= embarc.getNombreProp() %></td>
                     <td><%= embarc.getCostoHora() %></td>
+                    <%
+                        if (embarc.getFechaFinContrato() != null){
+                    %>
                     <td><%= embarc.getEstadoContrato(embarc.getFechaFinContrato()) %></td>
+                    <%
+                    } else {
+                    %>
+                    <td>Sin contrato</td>
+                    <%
+                        }if (embarc.getFechaFinPaseo() != null){
+                    %>
                     <td><%= embarc.getEstadoPaseo(embarc.getFechaFinPaseo()) %></td>
+                    <%
+                    } else {
+                    %>
+                    <td>Disponible</td>
                 </tr>
-                <% }
+                <%    }
+                    }
                 } else { %>
-                <tr>
                     <td colspan="9"><h1>No hay embarcaciones a mostrar</h1></td>
                 </tr>
                 <% } %>

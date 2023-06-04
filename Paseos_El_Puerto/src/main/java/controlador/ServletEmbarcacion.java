@@ -50,7 +50,7 @@ public class ServletEmbarcacion extends HttpServlet {
             Embarcaciones embarcacion = new Embarcaciones(nombre, modelo, longitud, anio, id_propietario);
             EmbarcacionesDAO embardao = new EmbarcacionesDAO();
             embardao.insert(embarcacion);
-            rp.sendRedirect("/paseos_el_puerto/Embarcaciones/inserta_contrato.jsp");
+            rp.sendRedirect("/paseos_el_puerto/Contratos/inserta_contrato.jsp");
         }
 
         else if (op.equals("Modificar")) {

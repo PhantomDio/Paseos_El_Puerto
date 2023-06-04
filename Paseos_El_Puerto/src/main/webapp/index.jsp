@@ -35,7 +35,6 @@
                 <a href="#">Contratos</a>
                 <ul class="dropdown-menu">
                     <li><a href="/paseos_el_puerto/ServletContrato?op=lista">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
                     <li><a href="/paseos_el_puerto/Contratos/actualiza_contrato.jsp">Modificar</a></li>
                 </ul>
             </li>
@@ -48,19 +47,18 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#">Personal</a>
+                <a href="#">Empleados</a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
                     <li><a href="#">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#">Mantenimiento</a>
+                <a href="#">Paseos</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
+                    <li><a href="/paseos_el_puerto/ServletPaseo?op=lista">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/Paseos/inserta_paseo.jsp">Nuevo</a></li>
+                    <li><a href="/paseos_el_puerto/Paseos/actualiza_cliente.jsp">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">

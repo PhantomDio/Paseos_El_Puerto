@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Registrar Embarcación</title>
+    <title>Nuevo Contrato</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
@@ -80,44 +80,65 @@
     </ul>
 </header>
 
-<style>
+    <style>
 
-    p {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin: 10px 0;
-    }
-
-
-    p input[type="text"] {
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 14px;
-        margin-left: 9px;
-        width: 200px; /* Ajusta el ancho según sea necesario */
-    }
-</style>
-<br>
-<br>
-<section class="container">
-    <div class="parallax-content">
-
-        <form action="/paseos_el_puerto/ServletEmbarcacion" method="post">
-            <p>Nombre: <input type="text" name="nombre"></p>
-            <p>Modelo: <input type="text" name="modelo"></p>
-            <p>Longitud<input type="text" name="longitud"></p>
-            <p>Año: <input type="text" name="anio"></p>
-            <p>ID del propietario: <input type="text" name="id_propietario"></p>
-            <br>
-            <div class="button-container">
-                <input type="submit" class="button-minimal" value="Registrar" name="op">
-            </div>
-        </form>
+        p {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin: 10px 0;
+        }
 
 
-    </div>
-</section>
+        p input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-left: 9px;
+            width: 200px; /* Ajusta el ancho según sea necesario */
+        }
+    </style>
+
+    <script>
+        function clearValue(input) {
+            if (input.dataset.clicked !== "true") {
+                input.value = '';
+                input.dataset.clicked = "true";
+            }
+        }
+
+        function validarFormulario() {
+            var fechaInput = document.querySelector('input[name="fecha_nac"]');
+            var fechaValue = fechaInput.value;
+            var regex = /^\d{4}-\d{2}-\d{2}$/;
+
+            if (!regex.test(fechaValue)) {
+                alert("El formato de fecha debe ser (yyyy-mm-dd).");
+                fechaInput.value = '';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <br>
+    <br>
+    <section class="container">
+        <div class="parallax-content">
+
+            <form action="/paseos_el_puerto/ServletContrato" method="post" onsubmit="return validarFormulario()">
+                <p>ID de la embarcación: <input type="text" name="id_embarcacion"></p>
+                <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+                <p>Fecha de termino: <input type="text" name="fecha_fin" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+                <p>Costo por hora: <input type="text" name="costo_hora"></p>
+                <br>
+                <div class="button-container">
+                    <input type="submit" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
+                </div>
+            </form>
+
+        </div>
+    </section>
 </body>
 </html>
