@@ -58,7 +58,7 @@ public class ServletContrato extends HttpServlet {
             String fecha_inicio = rq.getParameter("fecha_inicio");
             String fecha_fin = rq.getParameter("fecha_fin");
             float costo_hora = Float.parseFloat(rq.getParameter("costo_hora"));
-            Contratos contrato = new Contratos(id_contrato,fecha_inicio,fecha_fin,costo_hora);
+            Contratos contrato = new Contratos(fecha_inicio, id_contrato, fecha_fin,costo_hora);
             ContratosDAO contratodao = new ContratosDAO();
             contratodao.update(contrato);
             rp.sendRedirect("/paseos_el_puerto/Contratos/actualiza_contrato.jsp");
