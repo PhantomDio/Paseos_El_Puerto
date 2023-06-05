@@ -8,6 +8,13 @@ public class Paseos {
     private int idPaseo, idEmbarcacion, idCliente;
     private Date fechaInicioPaseo, fechaFinPaseo;
 
+    public Paseos(int idEmbarcacion, int idCliente, String fechaInicio, String fechaFin) {
+        this.idEmbarcacion = idEmbarcacion;
+        this.idCliente = idCliente;
+        this.fechaInicioPaseo = Date.valueOf(fechaInicio);
+        this.fechaFinPaseo = Date.valueOf(fechaFin);
+    }
+
 
     public int getIdPaseo() {
         return idPaseo;

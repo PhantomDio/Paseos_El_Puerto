@@ -43,13 +43,12 @@ public class ServletPaseo extends HttpServlet {
         String op = rq.getParameter("op");
 
         if ("Registrar".equals(op)) {
-            String nombre = rq.getParameter("nombre");
-            String modelo = rq.getParameter("modelo");
-            float longitud = Float.parseFloat(rq.getParameter("longitud"));
-            int anio = Integer.parseInt(rq.getParameter("anio"));
-            int id_propietario = Integer.parseInt(rq.getParameter("id_propietario"));
+            int id_embarcacion = Integer.parseInt(rq.getParameter("id_embarcacion"));
+            int id_cliente = Integer.parseInt(rq.getParameter("id_cliente"));
+            String fecha_inicio = rq.getParameter("fecha_inicio");
+            String fecha_fin = rq.getParameter("fecha_fin");
 
-            Paseos paseo = new Paseos(nombre, modelo, longitud, anio, id_propietario);
+            Paseos paseo = new Paseos(id_embarcacion, id_cliente, fecha_inicio, fecha_fin);
             PaseosDAO paseoDAO = new PaseosDAO();
             paseoDAO.insert(paseo);
             rp.sendRedirect("/paseos_el_puerto/Contratos/inserta_paseo.jsp");
