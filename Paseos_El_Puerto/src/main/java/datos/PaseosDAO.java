@@ -21,7 +21,7 @@ public class PaseosDAO {
             ResultSet rs = statement.executeQuery();
             Paseos embar = new Paseos();
             while (rs.next()) {
-                embar.setIdPaseo(rs.getInt("id_paseos"));
+                embar.setIdPaseo(rs.getInt("id_paseo"));
                 embar.setFechaInicioPaseo(rs.getDate("fecha_inicio_paseo"));
                 embar.setFechaFinPaseo(rs.getDate("fecha_fin_paseo"));
                 embar.setIdEmbarcacion(rs.getInt("id_embarcacion"));

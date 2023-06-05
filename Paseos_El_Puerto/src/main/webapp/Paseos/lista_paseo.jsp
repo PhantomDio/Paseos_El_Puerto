@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Embarcaciones" %>
+<%@ page import="model.Paseos" %>
 <html>
 <head>
-    <title>Lista Embarcaciones</title>
+    <title>Lista Paseos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
@@ -16,7 +16,7 @@
         </a>
         </li>
         <li class="dropdown">
-            <a href="#">Embarcaciones</a>
+            <a href="#">Paseos</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
@@ -114,95 +114,74 @@
 <br>
 <section class="container">
     <div class="parallax-content">
-        <form method="get" action="/paseos_el_puerto/ServletEmbarcacion">
-            <p>ID:<input type="text" name = "id_embarcacion"></p>
+        <form method="get" action="/paseos_el_puerto/ServletPaseo">
+            <p>ID:<input type="text" name = "id_paseo"></p>
             <input type="submit" class="button-minimal button-container" value="Buscar" name="op">
             <input type="submit" class="button-minimal" value="Eliminar" name="op">
         </form>
         <br>
-        <a href="/paseos_el_puerto/ServletEmbarcacion">Mostrar lista completa</a>
+        <a href="/paseos_el_puerto/ServletPaseo">Mostrar lista completa</a>
         <div class="table-container">
             <table>
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Modelo</th>
-                    <th>Longitud</th>
-                    <th>Año</th>
+                    <th>Fecha_inicio</th>
+                    <th>Fecha___fin</th>
+                    <th>ID
+                        Embarcacion</th>
+                    <th>Nombre_Embarcacion</th>
+                    <th>ID
+                        Propietario</th>
                     <th>Nombre_Propietario</th>
-                    <th>Costo_Hora</th>
-                    <th>Contrato</th>
+                    <th>ID
+                        Cliente</th>
+                    <th>Nombre_Cliente</th>
+                    <th>Monto_total</th>
                     <th>Estado</th>
                 </tr>
                 </thead>
                 <tbody>
                 <%
-                    Embarcaciones embarcacion = (Embarcaciones) request.getAttribute("embarcacion");
-                    ArrayList<Embarcaciones> lista = (ArrayList<Embarcaciones>) request.getAttribute("lista");
+                    Paseos paseo = (Paseos) request.getAttribute("paseo");
+                    ArrayList<Paseos> lista = (ArrayList<Paseos>) request.getAttribute("lista");
 
-                    if (embarcacion != null) {
+                    if (paseo != null) {
                 %>
                 <tr>
-                    <td><%= embarcacion.getIdEmbarcacion() %></td>
-                    <td><%= embarcacion.getNombre() %></td>
-                    <td><%= embarcacion.getModelo() %></td>
-                    <td><%= embarcacion.getLongitud() %></td>
-                    <td><%= embarcacion.getAnio() %></td>
-                    <td><%= embarcacion.getNombreProp() %></td>
-                    <td><%= embarcacion.getCostoHora() %></td>
-                        <%
-                    if (embarcacion.getFechaFinContrato() != null){
-                        %>
-                    <td><%= embarcacion.getEstadoContrato(embarcacion.getFechaFinContrato()) %></td>
-                    <%
-                    } else
-                    %>
-                    <td>Sin contrato</td>
-                    <%
-                        if (embarcacion.getFechaFinPaseo() != null){
-                    %>
-                    <td><%= embarcacion.getEstado(embarcacion.getFechaFinPaseo(), embarcacion.getFechaFinContrato()) %></td>
-                    <%
-                    } else
-                    %>
-                    <td>Disponible</td>
+                    <td><%= paseo.getIdPaseo() %></td>
+                    <td><%= paseo.getFechaInicioPaseo() %></td>
+                    <td><%= paseo.getFechaFinPaseo() %></td>
+                    <td><%= paseo.getIdEmbarcacion() %></td>
+                    <td><%= paseo.getNombreEmbarcacion() %></td>
+                    <td><%= paseo.getIdPropietario() %></td>
+                    <td><%= paseo.getNombreProp() %></td>
+                    <td><%= paseo.getIdCliente() %></td>
+                    <td><%= paseo.getNombreCliente() %></td>
+                    <td>$<%= paseo.getMontoTotal(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo(), paseo.getCostoHora()) %></td>
+                    <td><%= paseo.getEstadoPaseo(paseo.getFechaFinPaseo()) %></td>
                 </tr>
-                <% } else if (lista != null && !lista.isEmpty()) {
-                    for (Embarcaciones embarc : lista) {
+                <% 
+                    } else if (lista != null && !lista.isEmpty()) {
+                    for (Paseos paseos : lista) {
                 %>
                 <tr>
-                    <td><%= embarc.getIdEmbarcacion() %></td>
-                    <td><%= embarc.getNombre() %></td>
-                    <td><%= embarc.getModelo() %></td>
-                    <td><%= embarc.getLongitud() %></td>
-                    <td><%= embarc.getAnio() %></td>
-                    <td><%= embarc.getNombreProp() %></td>
-                    <td><%= embarc.getCostoHora() %></td>
-                    <%
-                        if (embarc.getFechaFinContrato() != null){
-                    %>
-                    <td><%= embarc.getEstadoContrato(embarc.getFechaFinContrato()) %></td>
-                    <%
-                    } else {
-                    %>
-                    <td>Sin contrato</td>
-                    <%
-                        }if (embarc.getFechaFinPaseo() != null && embarc.getFechaFinContrato() != null){
-                    %>
-                    <td><%= embarc.getEstado(embarc.getFechaFinPaseo(), embarc.getFechaFinContrato()) %></td>
-                    <%
-                    } else if (embarc.getFechaFinContrato() != null && embarc.getFechaFinPaseo() == null) {
-                    %>
-                    <td>Disponible</td>
+                    <td><%= paseos.getIdPaseo() %></td>
+                    <td><%= paseos.getFechaInicioPaseo() %></td>
+                    <td><%= paseos.getFechaFinPaseo() %></td>
+                    <td><%= paseos.getIdEmbarcacion() %></td>
+                    <td><%= paseos.getNombreEmbarcacion() %></td>
+                    <td><%= paseos.getIdPropietario() %></td>
+                    <td><%= paseos.getNombreProp() %></td>
+                    <td><%= paseos.getIdCliente() %></td>
+                    <td><%= paseos.getNombreCliente() %></td>
+                    <td>$<%= paseos.getMontoTotal(paseos.getFechaInicioPaseo(), paseos.getFechaFinPaseo(), paseos.getCostoHora()) %></td>
+                    <td><%= paseos.getEstadoPaseo(paseos.getFechaFinPaseo()) %></td>
                 </tr>
-                <%} else { %>
-                <td>No disponible</td>
-                <% }
-                        }
-
+                <%
+                    }
                 } else { %>
-                    <td colspan="9"><h1>No hay embarcaciones a mostrar</h1></td>
+                    <td colspan="9"><h1>No hay paseos a mostrar</h1></td>
                 </tr>
                 <% } %>
                 </tbody>

@@ -76,6 +76,15 @@ public class Paseos implements Serializable {
         this.idCliente = idCliente;
     }
 
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
     public Date getFechaInicioPaseo() {
         return fechaInicioPaseo;
     }
@@ -118,24 +127,16 @@ public class Paseos implements Serializable {
         return costoHora;
     }
 
-    public String getEstadoPaseo(Date fechaFinPaseo, Date fechaFinContrato) {
-
-        Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
+    public String getEstadoPaseo(Date fechaFinPaseo) {
+        Date fechaActual = new Date(System.currentTimeMillis());
         int comparacion = fechaActual.compareTo(fechaFinPaseo);
-        int comparacion2 = fechaActual.compareTo(fechaFinContrato);
 
-        if (comparacion < 0 && comparacion2 > 0) {
-            // La fecha actual es mayor que la fechas_fin de contrato y menor a la de paseo
-            return "No disponible";
-        } else if (comparacion > 0 && comparacion2 < 0) {
-            // La fecha actual es menor que la fechas_fin de contrato y mayor a la de paseo
-            return "Disponible";
-        } else if (comparacion == 0 && comparacion2 == 0){
-            // Las fechas son iguales
-            return "Disponible";
+        if (comparacion < 0 || comparacion == 0) {
+            // La fecha actual es menor o igual a la fecha final del paseo
+            return "En curso";
         }
-        else
-            return "No disponible";
+
+        return "Concluido";
     }
 
     public float getMontoTotal (Date fechaInicioPaseo, Date fechaFinPaseo, float costoHora){
@@ -148,9 +149,7 @@ public class Paseos implements Serializable {
         long diferenciaHoras = Duration.between(timestamp1.toLocalDateTime(), timestamp2.toLocalDateTime()).toHours();
 
         // Calcula el monto total a partir de la diferencia en horas * el costo por hora establecido en el contrato
-        float monto_total = diferenciaHoras * costoHora;
-        return monto_total;
+        return diferenciaHoras * costoHora;
     }
-
 }
 

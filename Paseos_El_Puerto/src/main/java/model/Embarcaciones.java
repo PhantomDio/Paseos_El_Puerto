@@ -119,27 +119,20 @@ public class Embarcaciones implements Serializable {
         }
     }
     public String getEstado(Date fechaFinPaseo, Date fechaFinContrato) {
+        fechaFinPaseo = fechaFinPaseo != null ? fechaFinPaseo : Date.valueOf("0001-01-01");
 
-        if(fechaFinPaseo == null){
-            fechaFinPaseo = Date.valueOf("0001-01-01");
-        }
-
-        Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
+        Date fechaActual = new Date(System.currentTimeMillis());
         int comparacion = fechaActual.compareTo(fechaFinPaseo);
         int comparacion2 = fechaActual.compareTo(fechaFinContrato);
 
         if (comparacion < 0 && comparacion2 > 0) {
-            // La fecha actual es mayor que la fechas_fin de contrato y menor a la de paseo
             return "No disponible";
         } else if (comparacion > 0 && comparacion2 < 0) {
-            // La fecha actual es menor que la fechas_fin de contrato y mayor a la de paseo
-            return "Disponible";
-        } else if (comparacion == 0 && comparacion2 == 0){
-            // Las fechas son iguales
             return "Disponible";
         }
-        else
-            return "No disponible";
+
+        return "No disponible";
     }
+
 
 }
