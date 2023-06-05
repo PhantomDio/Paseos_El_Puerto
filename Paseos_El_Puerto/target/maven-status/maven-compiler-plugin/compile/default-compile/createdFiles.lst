@@ -8,6 +8,7 @@ datos\ClientesDAO.class
 controlador\ServletCliente.class
 model\Contratos.class
 datos\ContratosDAO.class
+model\Paseos.class
 Main.class
 controlador\ServletEmbarcacion.class
 datos\Conexion.class

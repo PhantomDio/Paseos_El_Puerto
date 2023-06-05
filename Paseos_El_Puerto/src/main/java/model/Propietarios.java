@@ -23,7 +23,7 @@ public class Propietarios implements Serializable {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.fecha_nac = java.sql.Date.valueOf(fecha_nac);
+        this.fecha_nac = Date.valueOf(fecha_nac);
     }
 
     public Propietarios(String nombre, String apellidoP, String apellidoM, String direccion, String telefono, String email, String fecha_nac) {
@@ -33,7 +33,7 @@ public class Propietarios implements Serializable {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
-        this.fecha_nac = java.sql.Date.valueOf(fecha_nac);    }
+        this.fecha_nac = Date.valueOf(fecha_nac);    }
 
 
     public int getIdPropietario() {
@@ -88,7 +88,7 @@ public class Propietarios implements Serializable {
     public Date getFecha_nac() {
         return fecha_nac;
     }
-    public void setFecha_nac(java.sql.Date fecha_nac) {
+    public void setFecha_nac(Date fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
 

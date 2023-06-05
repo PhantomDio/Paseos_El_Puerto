@@ -16,14 +16,14 @@ public class Contratos implements Serializable {
         public Contratos(String fechaInicio, int idContrato, String fechaFin, float costoHora) {
         this.idContrato = idContrato;
         this.costoHora = costoHora;
-        this.fechaFin = java.sql.Date.valueOf(fechaFin);
-        this.fechaInicio = java.sql.Date.valueOf(fechaInicio);
+        this.fechaFin = Date.valueOf(fechaFin);
+        this.fechaInicio = Date.valueOf(fechaInicio);
     }
     public Contratos(int idEmbarcacion, String fechaInicio, String fechaFin, float costoHora) {
         this.idEmbarcacion = idEmbarcacion;
         this.costoHora = costoHora;
-        this.fechaFin = java.sql.Date.valueOf(fechaFin);
-        this.fechaInicio = java.sql.Date.valueOf(fechaInicio);
+        this.fechaFin = Date.valueOf(fechaFin);
+        this.fechaInicio = Date.valueOf(fechaInicio);
     }
 
     public Contratos(int idContrato, int idEmbarcacion, String fechaInicio, String fechaFin, float costoHora) {

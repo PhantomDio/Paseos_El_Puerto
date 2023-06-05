@@ -24,18 +24,26 @@
                 </ul>
             </li>
             <li class="dropdown">
+                <a href="#">Contratos</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/paseos_el_puerto/ServletContrato?op=lista">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/Contratos/actualiza_contrato.jsp">Modificar</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Paseos</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/paseos_el_puerto/ServletPaseo?op=lista">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/ServletPaseo?op=listaEmb.jsp">Nuevo</a></li>
+                    <li><a href="/paseos_el_puerto/Paseos/actualiza_paseo.jsp">Modificar</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
                 <a href="#">Propietarios</a>
                 <ul class="dropdown-menu">
                     <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
                     <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
                     <li><a href="/paseos_el_puerto/Propietarios/actualiza_propietario.jsp">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#">Contratos</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/paseos_el_puerto/ServletContrato?op=lista">Lista</a></li>
-                    <li><a href="/paseos_el_puerto/Contratos/actualiza_contrato.jsp">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -54,14 +62,6 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#">Paseos</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/paseos_el_puerto/ServletPaseo?op=lista">Lista</a></li>
-                    <li><a href="/paseos_el_puerto/Paseos/inserta_paseo.jsp">Nuevo</a></li>
-                    <li><a href="/paseos_el_puerto/Paseos/actualiza_cliente.jsp">Modificar</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
                 <a href="#">Reparación</a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
@@ -70,7 +70,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#">Equipamiento</a>
+                <a href="#">Mantenimiento</a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Lista</a></li>
                     <li><a href="#">Registrar</a></li>

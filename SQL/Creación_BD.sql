@@ -67,7 +67,6 @@ CREATE TABLE Paseos (
 	id_cliente INT NOT NULL,
 	fecha_inicio DATE NOT NULL,
 	fecha_fin DATE NOT NULL,
-	monto_total FLOAT NOT NULL,
 	CONSTRAINT FK_ID_EMBARCACION FOREIGN KEY (id_embarcacion)
 	REFERENCES Embarcaciones(id_embarcacion) ON DELETE CASCADE,
 	CONSTRAINT FK_ID_CLIENTE FOREIGN KEY (id_cliente)

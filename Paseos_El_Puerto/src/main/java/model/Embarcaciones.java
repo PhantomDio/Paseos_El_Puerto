@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Embarcaciones implements Serializable {
     private int idEmbarcacion, anio, idPropietario;
-    private String nombre, modelo, estado, nombreProp;
+    private String nombre, modelo, nombreProp;
     private Date fechaFinPaseo, fechaFinContrato;
     private float costoHora, longitud;
 
@@ -109,16 +109,16 @@ public class Embarcaciones implements Serializable {
 
         if (comparacion > 0) {
             // La fecha actual es mayor que fecha2
-            return estado = "Vencido";
+            return "Vencido";
         } else if (comparacion < 0) {
             // La fecha actual es menor que fecha2
-            return estado = "Vigente";
+            return "Vigente";
         } else {
             // Las fechas son iguales
-            return estado = "Vigente";
+            return "Vigente";
         }
     }
-    public String getEstadoPaseo(Date fechaFinPaseo, Date fechaFinContrato) {
+    public String getEstado(Date fechaFinPaseo, Date fechaFinContrato) {
 
         Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
         int comparacion = fechaActual.compareTo(fechaFinPaseo);
@@ -126,16 +126,16 @@ public class Embarcaciones implements Serializable {
 
         if (comparacion < 0 && comparacion2 > 0) {
             // La fecha actual es mayor que la fechas_fin de contrato y menor a la de paseo
-            return estado = "No disponible";
+            return "No disponible";
         } else if (comparacion > 0 && comparacion2 < 0) {
             // La fecha actual es menor que la fechas_fin de contrato y mayor a la de paseo
-            return estado = "Disponible";
+            return "Disponible";
         } else if (comparacion == 0 && comparacion2 == 0){
             // Las fechas son iguales
-            return estado = "Disponible";
+            return "Disponible";
         }
         else
-            return estado = "No disponible";
+            return "No disponible";
     }
 
 }
