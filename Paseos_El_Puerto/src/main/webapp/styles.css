@@ -151,6 +151,7 @@ tr:nth-child(even) td {
 
 .table-container {
     margin-top: 20px;
+    text-align: center;
 }
 
 .button-container {

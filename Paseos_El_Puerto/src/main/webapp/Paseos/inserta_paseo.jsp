@@ -1,7 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="model.Embarcaciones" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.Date" %>
 <html>
 <head>
-    <title>Registrar Embarcación</title>
+    <title>Nuevo Paseo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
@@ -89,7 +92,6 @@
         margin: 10px 0;
     }
 
-
     p input[type="text"] {
         padding: 5px;
         border: 1px solid #ccc;
@@ -104,23 +106,69 @@
 <section class="container">
     <div class="parallax-content">
         <br>
-        <h1>Nueva Embarcación</h1>
+        <h1>Nuevo Paseo</h1>
         <br>
-        <form action="/paseos_el_puerto/ServletEmbarcacion" method="post">
-            <p>Nombre: <input type="text" name="nombre"></p>
-            <p>Modelo: <input type="text" name="modelo"></p>
-            <p>Longitud<input type="text" name="longitud"></p>
-            <p>Año: <input type="text" name="anio"></p>
-            <p>ID del propietario: <input type="text" name="id_propietario"></p>
+        <form action="/paseos_el_puerto/ServletPaseos" method="post">
+            <p>ID_Embarcación: <input type="text" name="nombre"></p>
+            <p>ID_Cliente: <input type="text" name="modelo"></p>
+            <p>Fecha_inicio: <input type="text" name="longitud"></p>
+            <p>Fecha_fin: <input type="text" name="anio"></p>
             <br>
             <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Registrar" name="op">
             </div>
         </form>
+        </div>
+        <br>
+        <div class="table-container">
+            <h1>Embarcaciones disponibles</h1>
+            <a href="/paseos_el_puerto/ServletPaseo?op=listaEmb">Actualizar lista</a>
+            <br>
+            <br>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Modelo</th>
+                    <th>Longitud</th>
+                    <th>Año</th>
+                    <th>Nombre_Propietario</th>
+                    <th>Costo_Hora</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    ArrayList<Embarcaciones> lista = (ArrayList<Embarcaciones>) request.getAttribute("listaemb");
 
-
-    </div>
+                    if (lista != null && !lista.isEmpty()) {
+                    for (Embarcaciones embarc : lista) {
+                        if (embarc.getFechaFinContrato() != null ) {
+                          if(embarc.getEstado(embarc.getFechaFinPaseo(), embarc.getFechaFinContrato()) == "Disponible"){
+                            if (embarc.getEstadoContrato(embarc.getFechaFinContrato()) == "Vigente"){
+                %>
+                <tr>
+                    <td><%= embarc.getIdEmbarcacion() %></td>
+                    <td><%= embarc.getNombre() %></td>
+                    <td><%= embarc.getModelo() %></td>
+                    <td><%= embarc.getLongitud() %></td>
+                    <td><%= embarc.getAnio() %></td>
+                    <td><%= embarc.getNombreProp() %></td>
+                    <td><%= embarc.getCostoHora() %></td>
+                    <%
+                    }
+                    }
+                    }
+                    }
+                    }
+                            else { %>
+                <td colspan="9"><h1>No hay embarcaciones disponibles</h1></td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
 </section>
 </body>
 </html>

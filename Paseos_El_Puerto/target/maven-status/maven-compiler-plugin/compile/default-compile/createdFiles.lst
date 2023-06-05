@@ -6,10 +6,12 @@ model\Clientes.class
 controlador\ServletContrato.class
 datos\ClientesDAO.class
 controlador\ServletCliente.class
+controlador\ServletPaseo.class
 model\Contratos.class
 datos\ContratosDAO.class
 model\Paseos.class
 Main.class
+datos\PaseosDAO.class
 controlador\ServletEmbarcacion.class
 datos\Conexion.class
 model\Embarcaciones.class

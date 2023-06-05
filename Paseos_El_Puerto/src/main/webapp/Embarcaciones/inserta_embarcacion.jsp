@@ -118,9 +118,8 @@
                 <input type="submit" class="button-minimal" value="Registrar" name="op">
             </div>
         </form>
-
-
     </div>
+
 </section>
 </body>
 </html>

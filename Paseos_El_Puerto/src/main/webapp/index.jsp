@@ -34,7 +34,7 @@
                 <a href="#">Paseos</a>
                 <ul class="dropdown-menu">
                     <li><a href="/paseos_el_puerto/ServletPaseo?op=lista">Lista</a></li>
-                    <li><a href="/paseos_el_puerto/ServletPaseo?op=listaEmb.jsp">Nuevo</a></li>
+                    <li><a href="/paseos_el_puerto/ServletPaseo?op=listaEmb">Nuevo</a></li>
                     <li><a href="/paseos_el_puerto/Paseos/actualiza_paseo.jsp">Modificar</a></li>
                 </ul>
             </li>

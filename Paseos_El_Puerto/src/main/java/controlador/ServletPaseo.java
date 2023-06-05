@@ -1,6 +1,8 @@
 package controlador;
 
+import datos.EmbarcacionesDAO;
 import datos.PaseosDAO;
+import model.Embarcaciones;
 import model.Paseos;
 
 import javax.servlet.ServletException;
@@ -23,6 +25,14 @@ public class ServletPaseo extends HttpServlet {
             rq.setAttribute("lista", lista);
             rq.getRequestDispatcher("/Paseos/lista_paseo.jsp").forward(rq, rp);
         }
+
+        else if (op.equals("listaEmb")) {
+            EmbarcacionesDAO embardao = new EmbarcacionesDAO();
+            ArrayList<Embarcaciones> lista = embardao.selectAll();
+            rq.setAttribute("listaemb", lista);
+            rq.getRequestDispatcher("/Paseos/inserta_paseo.jsp").forward(rq, rp);
+        }
+
         else if (op.equals("Buscar")) {
             int id_paseo = Integer.parseInt(rq.getParameter("id_paseo"));
             PaseosDAO paseoDAO = new PaseosDAO();
@@ -51,17 +61,17 @@ public class ServletPaseo extends HttpServlet {
             Paseos paseo = new Paseos(id_embarcacion, id_cliente, fecha_inicio, fecha_fin);
             PaseosDAO paseoDAO = new PaseosDAO();
             paseoDAO.insert(paseo);
-            rp.sendRedirect("/paseos_el_puerto/Contratos/inserta_paseo.jsp");
+            rp.sendRedirect("/paseos_el_puerto/Paseos/inserta_paseo.jsp");
         }
 
         else if (op.equals("Modificar")) {
             int id_paseo = Integer.parseInt(rq.getParameter("id_paseo"));
-            String nombre = rq.getParameter("nombre");
-            String modelo = rq.getParameter("modelo");
-            float longitud = Float.parseFloat(rq.getParameter("longitud"));
-            int anio = Integer.parseInt(rq.getParameter("anio"));
+            int id_embarcacion = Integer.parseInt(rq.getParameter("id_embarcacion"));
+            int id_cliente = Integer.parseInt(rq.getParameter("id_cliente"));
+            String fecha_inicio = rq.getParameter("fecha_inicio");
+            String fecha_fin = rq.getParameter("fecha_fin");
 
-            Paseos paseo = new Paseos(id_paseo, nombre, modelo, longitud, anio);
+            Paseos paseo = new Paseos(id_paseo, id_embarcacion, id_cliente, fecha_inicio, fecha_fin);
             PaseosDAO paseoDAO = new PaseosDAO();
             paseoDAO.update(paseo);
             rp.sendRedirect("/paseos_el_puerto/Paseos/actualiza_paseo.jsp");

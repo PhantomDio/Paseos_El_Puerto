@@ -120,6 +120,10 @@ public class Embarcaciones implements Serializable {
     }
     public String getEstado(Date fechaFinPaseo, Date fechaFinContrato) {
 
+        if(fechaFinPaseo == null){
+            fechaFinPaseo = Date.valueOf("0001-01-01");
+        }
+
         Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
         int comparacion = fechaActual.compareTo(fechaFinPaseo);
         int comparacion2 = fechaActual.compareTo(fechaFinContrato);
