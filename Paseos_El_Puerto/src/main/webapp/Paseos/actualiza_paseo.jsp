@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
+    <script src="/paseos_el_puerto/Formato_fecha.js"></script>
 </head>
 <body class="body_color">
 <header class="navigation">
@@ -100,32 +101,54 @@
         width: 200px; /* Ajusta el ancho según sea necesario */
     }
 </style>
-<script>function autollenar() {
-    var id_paseo = document.getElementById('id_paseo').value;
-    var url = '/paseos_el_puerto/ServletPaseo?op=Autollenado&id_paseo=' + id_paseo;
+<script>
+    function autollenar() {
+        var id_paseo = document.getElementById('id_paseo').value;
+        var url = '/paseos_el_puerto/ServletPaseo?op=Autollenado&id_paseo=' + id_paseo;
 
-// Realizar redirección a la página de actualización con los parámetros en la URL
-    window.location.href = url;
-}
+        // Almacenar el valor de id_paseo en el almacenamiento local del navegador
+        localStorage.setItem('id_paseo_value', id_paseo);
+
+        // Realizar redirección a la página de actualización con los parámetros en la URL
+        window.location.href = url;
+    }
+
+    // Obtener el valor de id_paseo del almacenamiento local y asignarlo al campo después de cargar la página
+    window.addEventListener('DOMContentLoaded', function() {
+        var id_paseo = localStorage.getItem('id_paseo_value');
+        if (id_paseo) {
+            document.getElementById('id_paseo').value = id_paseo;
+        }
+    });
 </script>
+
 
 <br>
 <br>
 <section class="container">
     <div class="parallax-content">
-        <%Paseos paseo = (Paseos) request.getAttribute("paseo"); %>
-        <form action="/paseos_el_puerto/ServletPaseo" method="post">
+        <% Paseos paseo = (Paseos) request.getAttribute("paseo"); %>
+
+        <form action="/paseos_el_puerto/ServletPaseo" method="post" onsubmit="return validarFormulario2()">
             <p>ID_Paseo: <input type="text" name="id_paseo" id="id_paseo" onblur="autollenar()"></p>
+
+            <% if (paseo != null) { %>
             <p>ID_Embarcación: <input type="text" name="id_embarcacion" value="<%= paseo.getIdEmbarcacion() %>"></p>
             <p>ID_Cliente: <input type="text" name="id_cliente" value="<%= paseo.getIdCliente() %>"></p>
             <p>Fecha_inicio: <input type="text" name="fecha_inicio" value="<%= paseo.getFechaInicioPaseo() %>"></p>
             <p>Fecha_fin: <input type="text" name="fecha_fin" value="<%= paseo.getFechaFinPaseo() %>"></p>
+            <% } else { %>
+            <p>ID_Embarcación: <input type="text" name="id_embarcacion" value=""></p>
+            <p>ID_Cliente: <input type="text" name="id_cliente" value=""></p>
+            <p>Fecha_inicio: <input type="text" name="fecha_inicio" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <p>Fecha_fin: <input type="text" name="fecha_fin" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <% } %>
+
             <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Modificar" name="op">
             </div>
         </form>
-
     </div>
 </section>
 </body>

@@ -157,5 +157,4 @@ public class Embarcaciones implements Serializable {
         return Objects.hash(idEmbarcacion);
     }
 
-
 }

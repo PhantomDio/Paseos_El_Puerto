@@ -39,7 +39,7 @@ public class ServletCliente extends HttpServlet {
     protected void doPost(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
         String op = rq.getParameter("op");
 
-        if ("Registrar".equals(op)) {
+        if (op.equals("Registrar")) {
             String nombre = rq.getParameter("nombre");
             String apellido_Pat = rq.getParameter("ap_pat");
             String apellido_Mat = rq.getParameter("ap_mat");

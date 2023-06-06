@@ -48,7 +48,7 @@ public class EmbarcacionesDAO {
                 "CONCAT(p.nombre, ' ', p.ap_pat, ' ', p.ap_mat) AS nombre_propietario, c.fecha_fin AS fecha_fin_contrato, " +
                 "c.costo_hora, ps.fecha_fin AS fecha_fin_paseo FROM embarcaciones e INNER JOIN propietarios p " +
                 "ON e.id_propietario = p.id_propietario LEFT JOIN contratos c ON e.id_embarcacion = c.id_embarcacion " +
-                "LEFT JOIN paseos ps ON e.id_embarcacion = ps.id_embarcacion";
+                "LEFT JOIN paseos ps ON e.id_embarcacion = ps.id_embarcacion ORDER BY e.id_embarcacion ASC";
 
         ArrayList<Embarcaciones> embarcaciones = new ArrayList<>();
         try {

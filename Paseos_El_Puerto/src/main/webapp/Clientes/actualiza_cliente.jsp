@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
+    <script src="/paseos_el_puerto/Formato_fecha.js"></script>
 </head>
 <body class="body_color">
 <header class="navigation">
@@ -99,29 +100,6 @@
         width: 200px; /* Ajusta el ancho según sea necesario */
     }
         </style>
-
-        <script>
-            function clearValue(input) {
-                if (input.dataset.clicked !== "true") {
-                    input.value = '';
-                    input.dataset.clicked = "true";
-                }
-            }
-
-            function validarFormulario() {
-                var fechaInput = document.querySelector('input[name="fecha_nac"]');
-                var fechaValue = fechaInput.value;
-                var regex = /^\d{4}-\d{2}-\d{2}$/;
-
-                if (!regex.test(fechaValue)) {
-                    alert("El formato de fecha debe ser (yyyy-mm-dd).");
-                    fechaInput.value = '';
-                    return false;
-                }
-
-                return true;
-            }
-        </script>
 <br>
 <br>
 <section class="container">

@@ -38,7 +38,7 @@ public class PropietariosDAO {
         Statement state;
         ResultSet rs;
         Propietarios propietario;
-        String selectSQL = "SELECT * FROM propietarios";
+        String selectSQL = "SELECT * FROM propietarios ORDER BY id_propietario ASC";
 
         ArrayList<Propietarios> propietarios = new ArrayList<>();
         try {

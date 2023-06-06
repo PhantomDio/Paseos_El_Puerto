@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="model.Embarcaciones" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.Date" %>
 <html>
 <head>
     <title>Nuevo Paseo</title>
@@ -9,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
+    <script src="/paseos_el_puerto/Formato_fecha.js"></script>
 </head>
 <body class="body_color">
 <header class="navigation">
@@ -108,15 +108,15 @@
         <br>
         <h1>Nuevo Paseo</h1>
         <br>
-        <form action="/paseos_el_puerto/ServletPaseo" method="post">
+        <form action="/paseos_el_puerto/ServletPaseo" method="post" onsubmit="return validarFormulario2()">
             <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
             <p>ID_Cliente: <input type="text" name="id_cliente"></p>
-            <p>Fecha_inicio: <input type="text" name="fecha_inicio"></p>
-            <p>Fecha_fin: <input type="text" name="fecha_fin"></p>
+            <p>Fecha_inicio: <input type="text" value="(yyyy-mm-dd)" onclick="clearValue(this)" name="fecha_inicio"></p>
+            <p>Fecha_fin: <input type="text" value="(yyyy-mm-dd)" onclick="clearValue(this)" name="fecha_fin"></p>
             <br>
             <br>
             <div class="button-container">
-                <input type="submit" class="button-minimal" value="Registrar" name="op">
+                <input type="submit" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
             </div>
         </form>
         </div>

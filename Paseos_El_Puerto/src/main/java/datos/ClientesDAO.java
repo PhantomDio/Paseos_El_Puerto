@@ -38,7 +38,7 @@ public class ClientesDAO {
         Statement state;
         ResultSet rs;
         Clientes client;
-        String selectSQL = "SELECT * FROM clientes";
+        String selectSQL = "SELECT * FROM clientes ORDER BY id_cliente ASC";
 
         ArrayList<Clientes> clientes = new ArrayList<>();
         try {

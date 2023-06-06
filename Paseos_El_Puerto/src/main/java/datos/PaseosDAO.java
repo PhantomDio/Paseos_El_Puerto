@@ -26,6 +26,8 @@ public class PaseosDAO {
                 embar.setFechaFinPaseo(rs.getDate("fecha_fin_paseo"));
                 embar.setIdEmbarcacion(rs.getInt("id_embarcacion"));
                 embar.setNombreEmbarcacion(rs.getString("nombre_embarcacion"));
+                embar.setIdCliente(rs.getInt("id_cliente"));
+                embar.setNombreCliente(rs.getString("nombre_cliente"));
                 embar.setIdPropietario(rs.getInt("id_propietario"));
                 embar.setNombreProp(rs.getString("nombre_propietario"));
                 embar.setCostoHora(rs.getFloat("costo_hora"));
@@ -50,7 +52,7 @@ public class PaseosDAO {
                 " ' ', cl.ap_mat) AS nombre_cliente, c.fecha_fin AS fecha_fin_contrato, c.costo_hora FROM Paseos p" +
                 " INNER JOIN Embarcaciones e ON p.id_embarcacion = e.id_embarcacion INNER JOIN Contratos c ON" +
                 " p.id_embarcacion = c.id_embarcacion INNER JOIN Propietarios pr ON e.id_propietario = pr.id_propietario" +
-                " INNER JOIN Clientes cl ON p.id_cliente = cl.id_cliente";
+                " INNER JOIN Clientes cl ON p.id_cliente = cl.id_cliente ORDER BY p.id_paseo ASC";
 
         ArrayList<Paseos> paseos = new ArrayList<>();
         try {
