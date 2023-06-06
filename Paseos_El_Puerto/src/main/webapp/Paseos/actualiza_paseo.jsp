@@ -1,3 +1,4 @@
+<%@ page import="model.Paseos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -99,17 +100,26 @@
         width: 200px; /* Ajusta el ancho según sea necesario */
     }
 </style>
+<script>function autollenar() {
+    var id_paseo = document.getElementById('id_paseo').value;
+    var url = '/paseos_el_puerto/ServletPaseo?op=Autollenado&id_paseo=' + id_paseo;
+
+// Realizar redirección a la página de actualización con los parámetros en la URL
+    window.location.href = url;
+}
+</script>
+
 <br>
 <br>
 <section class="container">
     <div class="parallax-content">
-
+        <%Paseos paseo = (Paseos) request.getAttribute("paseo"); %>
         <form action="/paseos_el_puerto/ServletPaseo" method="post">
-            <p>ID_Paseo: <input type="text" name="id_paseo"></p>
-            <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
-            <p>ID_Cliente: <input type="text" name="id_cliente"></p>
-            <p>Fecha_inicio: <input type="text" name="fecha_inicio"></p>
-            <p>Fecha_fin: <input type="text" name="fecha_fin"></p>
+            <p>ID_Paseo: <input type="text" name="id_paseo" id="id_paseo" onblur="autollenar()"></p>
+            <p>ID_Embarcación: <input type="text" name="id_embarcacion" value="<%= paseo.getIdEmbarcacion() %>"></p>
+            <p>ID_Cliente: <input type="text" name="id_cliente" value="<%= paseo.getIdCliente() %>"></p>
+            <p>Fecha_inicio: <input type="text" name="fecha_inicio" value="<%= paseo.getFechaInicioPaseo() %>"></p>
+            <p>Fecha_fin: <input type="text" name="fecha_fin" value="<%= paseo.getFechaFinPaseo() %>"></p>
             <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Modificar" name="op">

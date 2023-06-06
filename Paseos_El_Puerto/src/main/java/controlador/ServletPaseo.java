@@ -40,6 +40,15 @@ public class ServletPaseo extends HttpServlet {
             rq.setAttribute("paseo", paseo);
             rq.getRequestDispatcher("/Paseos/lista_paseo.jsp").forward(rq, rp);
         }
+
+        else if (op.equals("Autollenado")) {
+            int id_paseo = Integer.parseInt(rq.getParameter("id_paseo"));
+            PaseosDAO paseoDAO = new PaseosDAO();
+            Paseos paseo = paseoDAO.select(id_paseo);
+            rq.setAttribute("paseo", paseo);
+            rq.getRequestDispatcher("/Paseos/actualiza_paseo.jsp").forward(rq, rp);
+        }
+
         else if (op.equals("Eliminar")) {
             int id_paseo = Integer.parseInt(rq.getParameter(("id_paseo")));
             PaseosDAO paseoDAO = new PaseosDAO();

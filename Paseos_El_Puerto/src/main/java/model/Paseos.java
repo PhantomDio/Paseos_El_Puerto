@@ -43,6 +43,11 @@ public class Paseos implements Serializable {
         this.costoHora = costoHora;
     }
 
+    public Paseos(int idPaseo, String fechaInicio, String fechaFin) {
+        this.idPaseo = idPaseo;
+        this.fechaInicioPaseo = Date.valueOf(fechaInicio);
+        this.fechaFinPaseo = Date.valueOf(fechaFin);
+    }
 
 
     public int getIdPaseo() {
