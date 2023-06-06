@@ -67,7 +67,6 @@ public class EmbarcacionesDAO {
                 embarcacion.setnombreProp(rs.getString("nombre_propietario"));
                 embarcacion.setFechaFinContrato(rs.getDate("fecha_fin_contrato"));
                 embarcacion.setCostoHora(rs.getFloat("costo_hora"));
-                embarcacion.setFechaFinPaseo(rs.getDate("fecha_fin_paseo"));
 
                 embarcaciones.add(embarcacion);
             }
@@ -122,7 +121,6 @@ public class EmbarcacionesDAO {
         }
     }
 
-
     public void delete(int id) {
         String deleteSQL = "DELETE FROM embarcaciones WHERE id_embarcacion=?";
         try {
@@ -134,5 +132,20 @@ public class EmbarcacionesDAO {
         } catch (SQLException ex) {
             System.out.println("Error al eliminar el embarcacion: " + ex.getMessage());
         }
+    }
+    public Date obtenerFechaFinPaseo(int idEmbarcacion) {
+        Date fechaFinPaseo = null;
+        try (Connection con = Conexion.getConnection()) {
+            String query = "SELECT fecha_fin FROM Paseos WHERE id_embarcacion = ? ORDER BY fecha_fin DESC LIMIT 1";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idEmbarcacion);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                fechaFinPaseo = rs.getDate("fecha_fin");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return fechaFinPaseo;
     }
 }

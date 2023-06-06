@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Embarcaciones" %>
+<%@ page import="java.util.Collections" %>
 <html>
 <head>
     <title>Lista Embarcaciones</title>
@@ -140,6 +141,13 @@
                 <%
                     Embarcaciones embarcacion = (Embarcaciones) request.getAttribute("embarcacion");
                     ArrayList<Embarcaciones> lista = (ArrayList<Embarcaciones>) request.getAttribute("lista");
+                    ArrayList<Embarcaciones> listaSinDuplicados = new ArrayList<Embarcaciones>();
+
+                    for (Embarcaciones e : lista) {
+                        if (!listaSinDuplicados.contains(e)) {
+                            listaSinDuplicados.add(e);
+                        }
+                    }
 
                     if (embarcacion != null) {
                 %>
@@ -155,21 +163,18 @@
                     if (embarcacion.getFechaFinContrato() != null){
                         %>
                     <td><%= embarcacion.getEstadoContrato(embarcacion.getFechaFinContrato()) %></td>
+                    <td><%= embarcacion.getEstado(embarcacion.getIdEmbarcacion(), embarcacion.getFechaFinContrato()) %></td>
                     <%
-                    } else
+                    } else {
                     %>
                     <td>Sin contrato</td>
+                    <td>No disponible</td>
                     <%
-                        if (embarcacion.getFechaFinPaseo() != null){
+                        }
                     %>
-                    <td><%= embarcacion.getEstado(embarcacion.getFechaFinPaseo(), embarcacion.getFechaFinContrato()) %></td>
-                    <%
-                    } else
-                    %>
-                    <td>Disponible</td>
                 </tr>
-                <% } else if (lista != null && !lista.isEmpty()) {
-                    for (Embarcaciones embarc : lista) {
+                <% } else if (listaSinDuplicados != null && !listaSinDuplicados.isEmpty()) {
+                    for (Embarcaciones embarc : listaSinDuplicados) {
                 %>
                 <tr>
                     <td><%= embarc.getIdEmbarcacion() %></td>
@@ -183,25 +188,19 @@
                         if (embarc.getFechaFinContrato() != null){
                     %>
                     <td><%= embarc.getEstadoContrato(embarc.getFechaFinContrato()) %></td>
+                    <td><%= embarc.getEstado(embarc.getIdEmbarcacion(), embarc.getFechaFinContrato()) %></td>
                     <%
                     } else {
                     %>
                     <td>Sin contrato</td>
+                    <td>No disponible</td>
                     <%
-                        }if (embarc.getFechaFinPaseo() != null && embarc.getFechaFinContrato() != null){
-                    %>
-                    <td><%= embarc.getEstado(embarc.getFechaFinPaseo(), embarc.getFechaFinContrato()) %></td>
-                    <%
-                    } else if (embarc.getFechaFinContrato() != null && embarc.getFechaFinPaseo() == null) {
-                    %>
-                    <td>Disponible</td>
-                </tr>
-                <%} else { %>
-                <td>No disponible</td>
-                <% }
                         }
-
-                } else { %>
+                    %>
+                </tr>
+                <%
+                }
+                    } else { %>
                     <td colspan="9"><h1>No hay embarcaciones a mostrar</h1></td>
                 </tr>
                 <% } %>

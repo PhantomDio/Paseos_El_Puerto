@@ -127,7 +127,7 @@ public class PaseosDAO {
 
 
     public void delete(int id) {
-        String deleteSQL = "DELETE FROM paseos WHERE id_paseos=?";
+        String deleteSQL = "DELETE FROM paseos WHERE id_paseo=?";
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(deleteSQL);
             statement.setInt(1, id);

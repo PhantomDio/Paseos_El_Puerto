@@ -108,11 +108,11 @@
         <br>
         <h1>Nuevo Paseo</h1>
         <br>
-        <form action="/paseos_el_puerto/ServletPaseos" method="post">
-            <p>ID_Embarcación: <input type="text" name="nombre"></p>
-            <p>ID_Cliente: <input type="text" name="modelo"></p>
-            <p>Fecha_inicio: <input type="text" name="longitud"></p>
-            <p>Fecha_fin: <input type="text" name="anio"></p>
+        <form action="/paseos_el_puerto/ServletPaseo" method="post">
+            <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
+            <p>ID_Cliente: <input type="text" name="id_cliente"></p>
+            <p>Fecha_inicio: <input type="text" name="fecha_inicio"></p>
+            <p>Fecha_fin: <input type="text" name="fecha_fin"></p>
             <br>
             <br>
             <div class="button-container">
@@ -145,8 +145,7 @@
                     if (lista != null && !lista.isEmpty()) {
                     for (Embarcaciones embarc : lista) {
                         if (embarc.getFechaFinContrato() != null ) {
-                          if(embarc.getEstado(embarc.getFechaFinPaseo(), embarc.getFechaFinContrato()) == "Disponible"){
-                            if (embarc.getEstadoContrato(embarc.getFechaFinContrato()) == "Vigente"){
+                          if(embarc.getEstado(embarc.getIdEmbarcacion(), embarc.getFechaFinContrato()).equals("Disponible")){
                 %>
                 <tr>
                     <td><%= embarc.getIdEmbarcacion() %></td>
@@ -157,7 +156,6 @@
                     <td><%= embarc.getNombreProp() %></td>
                     <td><%= embarc.getCostoHora() %></td>
                     <%
-                    }
                     }
                     }
                     }

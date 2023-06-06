@@ -104,12 +104,12 @@
 <section class="container">
     <div class="parallax-content">
 
-        <form action="/paseos_el_puerto/ServletEmbarcacion" method="post">
+        <form action="/paseos_el_puerto/ServletPaseo" method="post">
+            <p>ID_Paseo: <input type="text" name="id_paseo"></p>
             <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
-            <p>Nombre: <input type="text" name="nombre"></p>
-            <p>Modelo: <input type="text" name="modelo"></p>
-            <p>Longitud<input type="text" name="longitud"></p>
-            <p>Año: <input type="text" name="anio"></p>
+            <p>ID_Cliente: <input type="text" name="id_cliente"></p>
+            <p>Fecha_inicio: <input type="text" name="fecha_inicio"></p>
+            <p>Fecha_fin: <input type="text" name="fecha_fin"></p>
             <br>
             <div class="button-container">
                 <input type="submit" class="button-minimal" value="Modificar" name="op">

@@ -1,13 +1,17 @@
 package model;
 
+import datos.EmbarcacionesDAO;
+
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Objects;
 
 public class Embarcaciones implements Serializable {
     private int idEmbarcacion, anio, idPropietario;
     private String nombre, modelo, nombreProp;
     private Date fechaFinPaseo, fechaFinContrato;
     private float costoHora, longitud;
+    private boolean id_embarcacion;
 
 
     public Embarcaciones() {}
@@ -118,7 +122,9 @@ public class Embarcaciones implements Serializable {
             return "Vigente";
         }
     }
-    public String getEstado(Date fechaFinPaseo, Date fechaFinContrato) {
+    public String getEstado(int idEmbarcacion, Date fechaFinContrato) {
+        EmbarcacionesDAO embarDAO = new EmbarcacionesDAO();
+        Date fechaFinPaseo = embarDAO.obtenerFechaFinPaseo(idEmbarcacion);
         fechaFinPaseo = fechaFinPaseo != null ? fechaFinPaseo : Date.valueOf("0001-01-01");
 
         Date fechaActual = new Date(System.currentTimeMillis());
@@ -132,6 +138,23 @@ public class Embarcaciones implements Serializable {
         }
 
         return "No disponible";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Embarcaciones other = (Embarcaciones) o;
+        return idEmbarcacion == other.idEmbarcacion;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEmbarcacion);
     }
 
 
