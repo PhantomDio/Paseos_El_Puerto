@@ -1,14 +1,13 @@
-<%@ page import="datos.ContratosDAO" %>
+<%@ page import="datos.PersonalDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Nuevo Contrato</title>
+    <title>Registrar Propietario</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
     <script src="/paseos_el_puerto/Formato_fecha.js"></script>
-
 </head>
 <body class="body_color">
 <header class="navigation">
@@ -83,45 +82,51 @@
     </ul>
 </header>
 
-    <style>
-        p {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin: 10px 0;
-        }
+<style>
+
+    p {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 10px 0;
+    }
 
 
-        p input[type="text"] {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            margin-left: 9px;
-            width: 200px; /* Ajusta el ancho según sea necesario */
-        }
-    </style>
-    <br>
-    <br>
-    <section class="container">
-        <div class="parallax-content">
+    p input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-left: 9px;
+        width: 200px; /* Ajusta el ancho según sea necesario */
+    }
+</style>
+<br>
+<br>
+<section class="container">
+    <div class="parallax-content">
+        <br>
+        <h1>Nuevo Propietario</h1>
+        <br>
+        <% PersonalDAO personalDAO = new PersonalDAO(); %>
+        <form action="/paseos_el_puerto/ServletPersonal" method="post" onsubmit="return validarFormulario()">
+            <p>Nombre: <input type="text" name="nombre"></p>
+            <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
+            <p>Apellido Materno: <input type="text" name="ap_mat"></p>
+            <p>Dirección: <input type="text" name="direccion"></p>
+            <p>Teléfono: <input type="text" name="telefono"></p>
+            <p>Correo: <input type="text" name="email"></p>
+            <p>Costo por hora: <input type="text" name="costo_hora"></p>
+            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
             <br>
-            <h1>Nuevo Contrato</h1>
             <br>
-            <% ContratosDAO contratoDAO = new ContratosDAO(); %>
-            <form action="/paseos_el_puerto/ServletContrato" method="post" onsubmit="return validarFormulario2()">
-                <p>ID de la embarcación: <input type="text" value="<%= contratoDAO.getIdUltimaEmbarcacion()%>" name="id_embarcacion" readonly></p>
-                <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
-                <p>Fecha de termino: <input type="text" name="fecha_fin" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
-                <p>Costo por hora: <input type="text" name="costo_hora"></p>
-                <br>
-                <br>
-                <div class="button-container">
-                    <input type="submit" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
-                </div>
-            </form>
+            <div class="button-container">
+                <input type="submit" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
+            </div>
+        </form>
 
-        </div>
-    </section>
+
+    </div>
+</section>
 </body>
 </html>

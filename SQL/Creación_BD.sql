@@ -73,8 +73,8 @@ CREATE TABLE Paseos (
 	REFERENCES Clientes(id_cliente) ON DELETE CASCADE
 );
 
-CREATE TABLE Empleados (
-	id_empleado SERIAL PRIMARY KEY,
+CREATE TABLE Personal (
+	id_personal SERIAL PRIMARY KEY,
 	nombre VARCHAR(20) NOT NULL,
 	ap_pat VARCHAR(20) NOT NULL,
 	ap_mat VARCHAR(20) NOT NULL,
@@ -85,13 +85,13 @@ CREATE TABLE Empleados (
 	fecha_nac DATE NOT NULL
 );
 
-CREATE TABLE Paseos_Empleados (
+CREATE TABLE Paseos_Personal (
 	id_paseo INT NOT NULL,
-	id_empleado INT NOT NULL,
+	id_personal INT NOT NULL,
 	CONSTRAINT FK_ID_PASEO FOREIGN KEY (id_paseo)
 	REFERENCES Paseos(id_paseo) ON DELETE CASCADE,
-	CONSTRAINT FK_ID_EMPLEADO FOREIGN KEY (id_empleado)
-	REFERENCES Empleados(id_empleado) ON DELETE CASCADE
+	CONSTRAINT FK_ID_PERSONAL FOREIGN KEY (id_personal)
+	REFERENCES Personal(id_personal) ON DELETE CASCADE
 );
 
 CREATE TABLE Mantenimiento (
