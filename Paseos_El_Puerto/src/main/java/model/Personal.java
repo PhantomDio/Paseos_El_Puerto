@@ -110,7 +110,7 @@ public class Personal {
         return sexo;
     }
 
-    public void setSexo (String sexo){
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -132,16 +132,15 @@ public class Personal {
         PersonalDAO personalDAO = new PersonalDAO();
         Date fechaFinPaseo = personalDAO.getUltimaFechaFinPaseo(idPersonal);
         fechaFinPaseo = fechaFinPaseo != null ? fechaFinPaseo : Date.valueOf("0001-01-01");
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate fechaFin = fechaFinPaseo.toLocalDate(); // Convertir a LocalDate
 
-        Date fechaActual = new Date(System.currentTimeMillis());
-        int comparacion = fechaActual.compareTo(fechaFinPaseo);
-
-        if (comparacion < 0) {
+        int comparacion = fechaActual.compareTo(fechaFin);
+        System.out.println(comparacion);
+        if (comparacion <= 0) {
+            // La fecha actual es menor o igual a la fecha final del paseo
             return "No disponible";
-        } else if (comparacion > 0) {
-            return "Disponible";
         }
-
-        return "No disponible";
+        return "Disponible";
     }
 }

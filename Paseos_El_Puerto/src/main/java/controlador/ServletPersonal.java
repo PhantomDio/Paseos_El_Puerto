@@ -70,6 +70,7 @@ public class ServletPersonal extends HttpServlet {
             rp.sendRedirect("/paseos_el_puerto/Personal/inserta_propietario.jsp");
         }
 
+
         else if (op.equals("Modificar")) {
             int id_personal = Integer.parseInt(rq.getParameter("id_personal"));
             String nombre = rq.getParameter("nombre");

@@ -4,6 +4,7 @@ import datos.EmbarcacionesDAO;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Embarcaciones implements Serializable {
@@ -127,9 +128,11 @@ public class Embarcaciones implements Serializable {
         Date fechaFinPaseo = embarDAO.obtenerFechaFinPaseo(idEmbarcacion);
         fechaFinPaseo = fechaFinPaseo != null ? fechaFinPaseo : Date.valueOf("0001-01-01");
 
-        Date fechaActual = new Date(System.currentTimeMillis());
-        int comparacion = fechaActual.compareTo(fechaFinPaseo);
-        int comparacion2 = fechaActual.compareTo(fechaFinContrato);
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate fechaFinP = fechaFinPaseo.toLocalDate();
+        LocalDate fechaFinC = fechaFinContrato.toLocalDate();
+        int comparacion = fechaActual.compareTo(fechaFinP);
+        int comparacion2 = fechaActual.compareTo(fechaFinC);
 
         if (comparacion < 0 && comparacion2 > 0) {
             return "No disponible";

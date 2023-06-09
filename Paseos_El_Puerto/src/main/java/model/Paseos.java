@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Duration;
+import java.time.LocalDate;
 
 public class Paseos implements Serializable {
     private int idPaseo, idEmbarcacion, idCliente, idPropietario;
@@ -133,10 +134,10 @@ public class Paseos implements Serializable {
     }
 
     public String getEstadoPaseo(Date fechaFinPaseo) {
-        Date fechaActual = new Date(System.currentTimeMillis());
-        int comparacion = fechaActual.compareTo(fechaFinPaseo);
-
-        if (comparacion < 0 || comparacion == 0) {
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate fechaFin = fechaFinPaseo.toLocalDate(); // Convertir a LocalDate
+        int comparacion = fechaActual.compareTo(fechaFin);
+        if (comparacion <= 0) {
             // La fecha actual es menor o igual a la fecha final del paseo
             return "En curso";
         }

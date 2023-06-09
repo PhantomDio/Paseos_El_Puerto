@@ -7,8 +7,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Paseos_PersonalDAO {
-
-    /*public Personal select(int id) {
+    /*
+    public Personal select(int id) {
         String selectSQL = "SELECT * FROM personal WHERE id_personal=?";
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(selectSQL);
@@ -74,15 +74,15 @@ public class Paseos_PersonalDAO {
         }
 
         return empleados;
-    }
+    }*/
 
     public void insert(Paseos_Personal PP) {
         String insertSQL = "INSERT INTO contratos (id_paseo, id_personal) " +
-                "VALUES (?, ?, ?, ?)";
+                "VALUES (?, ?)";
         try (Connection con = Conexion.getConnection()) {
             PreparedStatement ps = con.prepareStatement(insertSQL);
-            ps.setInt(1, PP.getIdPersonal());
-            ps.setInt(2, getIdUltimoPaseo());
+            ps.setInt(1, getIdUltimoPaseo());
+            ps.setInt(2, PP.getIdPersonal());
             
             int registros = ps.executeUpdate();
 
@@ -97,15 +97,13 @@ public class Paseos_PersonalDAO {
     }
 
     public void update(Paseos_Personal PP) {
-        String updateSQL = "UPDATE contratos SET fecha_inicio = ?, fecha_fin = ?, costo_hora = ?" +
+        String updateSQL = "UPDATE paseos_personal SET id_paseo = ?, id_personal = ?" +
                 " WHERE id_contrato = ?";
         try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(updateSQL)) {
 
-            ps.setDate(1, PP.getFechaInicio());
-            ps.setDate(2, PP.getFechaFin());
-            ps.setFloat(3, PP.getCostoHora());
-            ps.setInt(4, PP.getIdContrato());
+            ps.setInt(1, PP.getIdPaseo());
+            ps.setInt(2, PP.getIdPersonal());
 
             int registros = ps.executeUpdate();
 
@@ -115,55 +113,23 @@ public class Paseos_PersonalDAO {
                 System.out.println("No se ha modificado ningún registro.");
             }
         } catch (SQLException ex) {
-            System.out.println("Error al modificar el PP: " + ex.getMessage());
+            System.out.println("Error al modificar el Paseo_Personal: " + ex.getMessage());
         }
-    }*/
+    }
 
 
-    public void delete(int id) {
-        String deleteSQL = "DELETE FROM personal WHERE id_personal=?";
+    public void delete(int id_paseo, int id_personal) {
+        String deleteSQL = "DELETE FROM paseos_personal WHERE id_personal = ? AND id_paseo = ?;";
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(deleteSQL);
-            statement.setInt(1, id);
+            statement.setInt(1, id_personal);
+            statement.setInt(2, id_paseo);
             statement.executeUpdate();
             statement.close();
             System.out.println("Registro eliminado exitosamente.");
         } catch (SQLException ex) {
             System.out.println("Error al eliminar el personal: " + ex.getMessage());
         }
-    }
-
-    public int getIdUltimoPersonal() {
-        int idPersonal = 0;
-        Connection conn = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            // Obtener la conexión a la base de datos
-            conn = Conexion.getConnection();
-
-            // Crear la consulta SQL para obtener el último ID de embarcación registrado
-            String sql = "SELECT id_personal FROM personal ORDER BY id_personal DESC LIMIT 1";
-
-            // Crear el objeto Statement y ejecutar la consulta
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-
-            // Obtener el último ID del personal
-            if (rs.next()) {
-                idPersonal = rs.getInt("id_personal");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // Cerrar los recursos de base de datos
-            Conexion.close(rs);
-            Conexion.close(stmt);
-            Conexion.close(conn);
-        }
-
-        return idPersonal;
     }
 
     public int getIdUltimoPaseo() {

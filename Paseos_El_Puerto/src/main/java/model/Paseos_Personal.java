@@ -7,6 +7,10 @@ public class Paseos_Personal {
     public Paseos_Personal() {
     }
 
+    public Paseos_Personal(int idPersonal) {
+        this.idPersonal = idPersonal;
+    }
+
     public Paseos_Personal(int idPaseo, int idPersonal) {
         this.idPaseo = idPaseo;
         this.idPersonal = idPersonal;

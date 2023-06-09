@@ -18,5 +18,6 @@ datos\PaseosDAO.class
 model\Paseos_Personal.class
 controlador\ServletEmbarcacion.class
 datos\Conexion.class
+controlador\ServletPasPers.class
 model\Embarcaciones.class
 controlador\ServletPropietario.class

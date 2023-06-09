@@ -91,11 +91,12 @@
       .monto-total {
       font-size: 90px;
       }
-      
+      .button-container{
+        margin-top: 45px;
+      }
       a{
         font-size: 27px;
       }
-
       p input[type="text"] {
         padding: 5px;
         border: 1px solid #ccc;
@@ -130,10 +131,12 @@
     <br>
     <div id="campo" style="display: none;">
       <br>
-      <form action="/paseos_el_puerto/ServletPaseo" method="post" onsubmit="return validarFormulario2()">
+      <form action="/paseos_el_puerto/ServletPasPers" method="post">
         <p>ID_Personal: <input type="text" name="id_personal"></p>
+        <div class="button-container">
+        <input type="submit" class="button-minimal" value="Agregar Personal" name="op">
+        </div>
       </form>
-      <br>
       <div class="table-container">
         <h1>Personal disponible</h1>
         <table>
