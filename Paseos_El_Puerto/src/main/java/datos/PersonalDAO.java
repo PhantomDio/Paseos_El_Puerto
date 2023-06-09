@@ -24,6 +24,7 @@ public class PersonalDAO {
                 prop.setTelefono(rs.getString("telefono"));
                 prop.setEmail(rs.getString("email"));;
                 prop.setFecha_nac(rs.getDate("fecha_nac"));
+                prop.setSexo(rs.getString("sexo"));
                 prop.setCostoHora(rs.getFloat("costo_hora"));
             }
             statement.close();
@@ -57,9 +58,10 @@ public class PersonalDAO {
                 String telefono = rs.getString("telefono");
                 String email = rs.getString("email");
                 String fecha_nac = rs.getString("fecha_nac");
+                String sexo = rs.getString("sexo");
                 float costo_hora = rs.getFloat("costo_hora");
 
-                personal = new Personal(id_personal,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, costo_hora, fecha_nac);
+                personal = new Personal(id_personal,nombre,apellido_Pat,apellido_Mat, direccion, telefono, email, sexo, costo_hora, fecha_nac);
                 empleados.add(personal);
 
             }
@@ -127,5 +129,25 @@ public class PersonalDAO {
         } catch (SQLException ex) {
             System.out.println("Error al eliminar el personal: " + ex.getMessage());
         }
+    }
+
+    public Date getUltimaFechaFinPaseo(int idPersonal) {
+
+        Date fechaFinPaseo = null;
+        try (Connection con = Conexion.getConnection()) {
+            String query = "SELECT p.fecha_fin FROM Paseos_Personal pp" +
+                    " INNER JOIN Paseos p ON pp.id_paseo = p.id_paseo" +
+                    " INNER JOIN Personal per ON pp.id_personal = per.id_personal" +
+                    " WHERE per.id_personal = ? ORDER BY p.fecha_fin DESC LIMIT 1;";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idPersonal);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                fechaFinPaseo = rs.getDate("fecha_fin");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return fechaFinPaseo;
     }
 }

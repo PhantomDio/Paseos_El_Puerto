@@ -7,12 +7,16 @@ C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\Pro
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Propietarios.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Clientes.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletEmbarcacion.java
+C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletPersonal.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Personal.java
+C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\PersonalDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Paseos.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletPaseo.java
+C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\Paseos_PersonalDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletContrato.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\Conexion.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\ContratosDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletPropietario.java
+C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Paseos_Personal.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\PaseosDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\ClientesDAO.java

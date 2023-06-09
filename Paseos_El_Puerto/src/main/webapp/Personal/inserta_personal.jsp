@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Registrar Propietario</title>
+    <title>Registrar Personal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
@@ -106,7 +106,7 @@
 <section class="container">
     <div class="parallax-content">
         <br>
-        <h1>Nuevo Propietario</h1>
+        <h1>Nuevo Empleado</h1>
         <br>
         <% PersonalDAO personalDAO = new PersonalDAO(); %>
         <form action="/paseos_el_puerto/ServletPersonal" method="post" onsubmit="return validarFormulario()">

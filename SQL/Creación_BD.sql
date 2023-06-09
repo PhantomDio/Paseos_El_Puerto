@@ -78,11 +78,12 @@ CREATE TABLE Personal (
 	nombre VARCHAR(20) NOT NULL,
 	ap_pat VARCHAR(20) NOT NULL,
 	ap_mat VARCHAR(20) NOT NULL,
+	sexo VARCHAR(20) NOT NULL,
 	direccion VARCHAR(100) NOT NULL,
 	telefono VARCHAR(15) NOT NULL,
 	email VARCHAR(50) NOT NULL,
-	costo_hora FLOAT NOT NULL,
-	fecha_nac DATE NOT NULL
+	fecha_nac DATE NOT NULL,
+	costo_hora FLOAT NOT NULL
 );
 
 CREATE TABLE Paseos_Personal (

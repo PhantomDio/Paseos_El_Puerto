@@ -1,6 +1,8 @@
 package controlador;
 
 import datos.PersonalDAO;
+import datos.PersonalDAO;
+import model.Personal;
 import model.Personal;
 
 import javax.servlet.ServletException;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 public class ServletPersonal extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
-        String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "lista";
+        String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "listaPers";
 
         if (op.equals("lista")) {
             PersonalDAO persDAO = new PersonalDAO();
@@ -23,6 +25,14 @@ public class ServletPersonal extends HttpServlet {
             rq.setAttribute("lista", lista);
             rq.getRequestDispatcher("/Personal/lista_propietario.jsp").forward(rq, rp);
         }
+
+        else if (op.equals("listaPers")) {
+            PersonalDAO personalDAO = new PersonalDAO();
+            ArrayList<Personal> lista = personalDAO.selectAll();
+            rq.setAttribute("listapers", lista);
+            rq.getRequestDispatcher("/Paseos/Monto_total.jsp").forward(rq, rp);
+        }
+
         else if (op.equals("Buscar")) {
             int id_personal = Integer.parseInt(rq.getParameter("id_personal"));
             PersonalDAO persDAO = new PersonalDAO();
@@ -49,12 +59,12 @@ public class ServletPersonal extends HttpServlet {
             String direccion = rq.getParameter("direccion");
             String telefono = rq.getParameter("telefono");
             String email = rq.getParameter("email");
-            float costo_hora = Float.parseFloat(rq.getParameter("costo_hora"));
             String fecha_nac = rq.getParameter("fecha_nac");
-
+            String sexo = rq.getParameter("sexo");
+            float costo_hora = Float.parseFloat(rq.getParameter("costo_hora"));
 
             Personal personal = new Personal(nombre, apellido_Pat, apellido_Mat, direccion,
-                    telefono, email, costo_hora, fecha_nac);
+                    telefono, email, sexo, costo_hora, fecha_nac);
             PersonalDAO persDAO = new PersonalDAO();
             persDAO.insert(personal);
             rp.sendRedirect("/paseos_el_puerto/Personal/inserta_propietario.jsp");
@@ -68,11 +78,13 @@ public class ServletPersonal extends HttpServlet {
             String direccion = rq.getParameter("direccion");
             String telefono = rq.getParameter("telefono");
             String email = rq.getParameter("email");
-            float costo_hora = Float.parseFloat(rq.getParameter("costo_hora"));
             String fecha_nac = rq.getParameter("fecha_nac");
+            String sexo = rq.getParameter("sexo");
+            float costo_hora = Float.parseFloat(rq.getParameter("costo_hora"));
+
 
             Personal personal = new Personal(id_personal,nombre, apellido_Pat, apellido_Mat, direccion,
-                    telefono, email, costo_hora, fecha_nac);
+                    telefono, email, sexo, costo_hora, fecha_nac);
             PersonalDAO persDAO = new PersonalDAO();
             persDAO.update(personal);
             rp.sendRedirect("/paseos_el_puerto/Personal/actualiza_personal.jsp");

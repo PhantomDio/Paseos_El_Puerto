@@ -144,7 +144,7 @@ public class Paseos implements Serializable {
         return "Concluido";
     }
 
-    public float getMontoTotal (Date fechaInicioPaseo, Date fechaFinPaseo, float costoHora){
+    public float getMontoTotal (Date fechaInicioPaseo, Date fechaFinPaseo, float costoHoraEmb, float costoHoraPer){
 
         // Convierte las fechas a Timestamp
         Timestamp timestamp1 = new Timestamp(fechaInicioPaseo.getTime());
@@ -154,7 +154,7 @@ public class Paseos implements Serializable {
         long diferenciaHoras = Duration.between(timestamp1.toLocalDateTime(), timestamp2.toLocalDateTime()).toHours();
 
         // Calcula el monto total a partir de la diferencia en horas * el costo por hora establecido en el contrato
-        return diferenciaHoras * costoHora;
+        return diferenciaHoras * (costoHoraEmb + costoHoraPer);
     }
 }
 

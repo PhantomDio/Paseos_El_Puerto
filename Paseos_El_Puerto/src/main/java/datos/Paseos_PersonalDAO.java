@@ -1,6 +1,6 @@
 package datos;
 
-import model.Contratos;
+import model.Paseos_Personal;
 import model.Personal;
 
 import java.sql.*;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Paseos_PersonalDAO {
 
-    public Personal select(int id) {
+    /*public Personal select(int id) {
         String selectSQL = "SELECT * FROM personal WHERE id_personal=?";
         try {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(selectSQL);
@@ -76,13 +76,13 @@ public class Paseos_PersonalDAO {
         return empleados;
     }
 
-    public void insert(Contratos contrato) {
+    public void insert(Paseos_Personal PP) {
         String insertSQL = "INSERT INTO contratos (id_paseo, id_personal) " +
                 "VALUES (?, ?, ?, ?)";
         try (Connection con = Conexion.getConnection()) {
             PreparedStatement ps = con.prepareStatement(insertSQL);
-            ps.setInt(1, getIdUltimoPaseo());
-            ps.setInt(2, getIdUltimaEmbarcacion());
+            ps.setInt(1, PP.getIdPersonal());
+            ps.setInt(2, getIdUltimoPaseo());
             
             int registros = ps.executeUpdate();
 
@@ -92,20 +92,20 @@ public class Paseos_PersonalDAO {
             Conexion.close(ps);
             Conexion.close(con);
         } catch (SQLException ex) {
-            System.out.println("No se pudo agregar el contrato: " + ex.getMessage());
+            System.out.println("No se pudo agregar el PP: " + ex.getMessage());
         }
     }
 
-    public void update(Contratos contrato) {
+    public void update(Paseos_Personal PP) {
         String updateSQL = "UPDATE contratos SET fecha_inicio = ?, fecha_fin = ?, costo_hora = ?" +
                 " WHERE id_contrato = ?";
         try (Connection con = Conexion.getConnection();
              PreparedStatement ps = con.prepareStatement(updateSQL)) {
 
-            ps.setDate(1, contrato.getFechaInicio());
-            ps.setDate(2, contrato.getFechaFin());
-            ps.setFloat(3, contrato.getCostoHora());
-            ps.setInt(4, contrato.getIdContrato());
+            ps.setDate(1, PP.getFechaInicio());
+            ps.setDate(2, PP.getFechaFin());
+            ps.setFloat(3, PP.getCostoHora());
+            ps.setInt(4, PP.getIdContrato());
 
             int registros = ps.executeUpdate();
 
@@ -115,9 +115,9 @@ public class Paseos_PersonalDAO {
                 System.out.println("No se ha modificado ningún registro.");
             }
         } catch (SQLException ex) {
-            System.out.println("Error al modificar el contrato: " + ex.getMessage());
+            System.out.println("Error al modificar el PP: " + ex.getMessage());
         }
-    }
+    }*/
 
 
     public void delete(int id) {
@@ -144,15 +144,15 @@ public class Paseos_PersonalDAO {
             conn = Conexion.getConnection();
 
             // Crear la consulta SQL para obtener el último ID de embarcación registrado
-            String sql = "SELECT id_personal FROM paseos ORDER BY id_paseo DESC LIMIT 1";
+            String sql = "SELECT id_personal FROM personal ORDER BY id_personal DESC LIMIT 1";
 
             // Crear el objeto Statement y ejecutar la consulta
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
 
-            // Obtener el último ID de embarcación
+            // Obtener el último ID del personal
             if (rs.next()) {
-                idPaseo = rs.getInt("id_paseo");
+                idPersonal = rs.getInt("id_personal");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -163,7 +163,7 @@ public class Paseos_PersonalDAO {
             Conexion.close(conn);
         }
 
-        return idPaseo;
+        return idPersonal;
     }
 
     public int getIdUltimoPaseo() {
@@ -183,7 +183,7 @@ public class Paseos_PersonalDAO {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
 
-            // Obtener el último ID de embarcación
+            // Obtener el último ID de Paseo
             if (rs.next()) {
                 idPaseo = rs.getInt("id_paseo");
             }

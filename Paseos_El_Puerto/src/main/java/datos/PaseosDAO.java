@@ -19,22 +19,22 @@ public class PaseosDAO {
             PreparedStatement statement = Conexion.getConnection().prepareStatement(selectSQL);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            Paseos embar = new Paseos();
+            Paseos paseo = new Paseos();
             while (rs.next()) {
-                embar.setIdPaseo(rs.getInt("id_paseo"));
-                embar.setFechaInicioPaseo(rs.getDate("fecha_inicio_paseo"));
-                embar.setFechaFinPaseo(rs.getDate("fecha_fin_paseo"));
-                embar.setIdEmbarcacion(rs.getInt("id_embarcacion"));
-                embar.setNombreEmbarcacion(rs.getString("nombre_embarcacion"));
-                embar.setIdCliente(rs.getInt("id_cliente"));
-                embar.setNombreCliente(rs.getString("nombre_cliente"));
-                embar.setIdPropietario(rs.getInt("id_propietario"));
-                embar.setNombreProp(rs.getString("nombre_propietario"));
-                embar.setCostoHora(rs.getFloat("costo_hora"));
+                paseo.setIdPaseo(rs.getInt("id_paseo"));
+                paseo.setFechaInicioPaseo(rs.getDate("fecha_inicio_paseo"));
+                paseo.setFechaFinPaseo(rs.getDate("fecha_fin_paseo"));
+                paseo.setIdEmbarcacion(rs.getInt("id_embarcacion"));
+                paseo.setNombreEmbarcacion(rs.getString("nombre_embarcacion"));
+                paseo.setIdCliente(rs.getInt("id_cliente"));
+                paseo.setNombreCliente(rs.getString("nombre_cliente"));
+                paseo.setIdPropietario(rs.getInt("id_propietario"));
+                paseo.setNombreProp(rs.getString("nombre_propietario"));
+                paseo.setCostoHora(rs.getFloat("costo_hora"));
             }
             statement.close();
             rs.close();
-            return embar;
+            return paseo;
 
         } catch (SQLException ex) {
             System.out.println("Error al seleccionar paseos: " + ex.getMessage());
@@ -140,4 +140,32 @@ public class PaseosDAO {
             System.out.println("Error al eliminar el paseo: " + ex.getMessage());
         }
     }
+    public Paseos getUltimoPaseo() {
+        String query = "SELECT p.fecha_inicio, p.fecha_fin, c.costo_hora FROM Paseos p"+
+        " INNER JOIN Contratos c ON p.id_embarcacion = c.id_embarcacion ORDER BY p.id_paseo DESC LIMIT 1";
+
+        try {
+            PreparedStatement statement = Conexion.getConnection().prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                // Obtiene los valores de cada columna
+                Date fechaInicio = rs.getDate("fecha_inicio");
+                Date fechaFin = rs.getDate("fecha_fin");
+                float costoHora = rs.getFloat("costo_hora");
+
+                // Crea una instancia de Paseo y asigna los valores obtenidos
+                Paseos ultimoPaseo = new Paseos();
+                ultimoPaseo.setFechaInicioPaseo(fechaInicio);
+                ultimoPaseo.setFechaFinPaseo(fechaFin);
+                ultimoPaseo.setCostoHora(costoHora);
+
+                return ultimoPaseo;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Si no se encuentra ningún paseo, devuelve null.
+    }
+    
 }
