@@ -23,6 +23,7 @@ public class PropietariosDAO {
                 prop.setTelefono(rs.getString("telefono"));
                 prop.setEmail(rs.getString("email"));;
                 prop.setFecha_nac(rs.getDate("fecha_nac"));
+                prop.setNumEmbarcaciones(getNumEmbarcaciones(rs.getInt("id_propietario")));
             }
             statement.close();
             rs.close();
@@ -57,8 +58,9 @@ public class PropietariosDAO {
                 String fecha_nac = rs.getString("fecha_nac");
 
                 propietario = new Propietarios(id_propietario,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, fecha_nac);
-                propietarios.add(propietario);
+                propietario.setNumEmbarcaciones(getNumEmbarcaciones(id_propietario));
 
+                propietarios.add(propietario);
             }
 
             Conexion.close(rs);
@@ -124,5 +126,33 @@ public class PropietariosDAO {
         } catch (SQLException ex) {
             System.out.println("Error al eliminar el propietario: " + ex.getMessage());
         }
+    }
+    public static int getNumEmbarcaciones(int IdPropietario) {
+        String query =  "SELECT COUNT(embarcaciones.id_embarcacion) as numEmbarcaciones from embarcaciones " +
+                "JOIN propietarios " +
+                "ON embarcaciones.id_propietario = propietarios.id_propietario " +
+                "WHERE embarcaciones.id_propietario = " + IdPropietario;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int numEmbarcaciones = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next())
+                numEmbarcaciones = rs.getInt("numEmbarcaciones");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return numEmbarcaciones;
     }
 }

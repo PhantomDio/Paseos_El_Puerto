@@ -23,7 +23,7 @@ public class ClientesDAO {
                 cli.setTelefono(rs.getString("telefono"));
                 cli.setEmail(rs.getString("email"));;
                 cli.setFecha_nac(rs.getDate("fecha_nac"));
-            }
+                cli.setNumPaseos(getNumPaseos(rs.getInt("id_cliente")));            }
             statement.close();
             rs.close();
             return cli;
@@ -55,8 +55,9 @@ public class ClientesDAO {
                 String telefono = rs.getString("telefono");
                 String email = rs.getString("email");
                 String fecha_nac = rs.getString("fecha_nac");
+                int num_paseos = getNumPaseos(id_cliente);
 
-                client = new Clientes(id_cliente,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, fecha_nac);
+                client = new Clientes(id_cliente,nombre,apellido_Pat,apellido_Mat, direccion,telefono,email, fecha_nac, num_paseos);
                 clientes.add(client);
 
             }
@@ -112,7 +113,6 @@ public class ClientesDAO {
         }
     }
 
-
     public void delete(int id) {
         String deleteSQL = "DELETE FROM clientes WHERE id_cliente=?";
         try {
@@ -124,5 +124,34 @@ public class ClientesDAO {
         } catch (SQLException ex) {
             System.out.println("Error al eliminar el cliente: " + ex.getMessage());
         }
+    }
+
+    public static int getNumPaseos(int IdCliente) {
+        String query =  "SELECT COUNT(paseos.id_paseo) as numPaseos from paseos " +
+                "JOIN clientes " +
+                "ON paseos.id_cliente = clientes.id_cliente " +
+                "WHERE paseos.id_cliente = " + IdCliente;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int numPaseos = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next())
+                numPaseos = rs.getInt("numPaseos");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return numPaseos;
     }
 }

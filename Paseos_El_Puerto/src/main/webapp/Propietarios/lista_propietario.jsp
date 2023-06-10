@@ -133,6 +133,7 @@
                     <th>Teléfono</th>
                     <th>E-mail</th>
                     <th>Fecha de nacimiento</th>
+                    <th>Num de Embarcaciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -151,6 +152,7 @@
                     <td><%= propietario.getTelefono() %></td>
                     <td><%= propietario.getEmail() %></td>
                     <td><%= propietario.getFecha_nac() %></td>
+                    <td><%= propietario.getNumEmbarcaciones() %></td>
                 </tr>
                 <% } else if (lista != null && !lista.isEmpty()) {
                     for (Propietarios prop : lista) {
@@ -164,6 +166,7 @@
                     <td><%= prop.getTelefono() %></td>
                     <td><%= prop.getEmail() %></td>
                     <td><%= prop.getFecha_nac() %></td>
+                    <td><%= prop.getNumEmbarcaciones() %></td>
                 </tr>
                 <% }
                 } else {

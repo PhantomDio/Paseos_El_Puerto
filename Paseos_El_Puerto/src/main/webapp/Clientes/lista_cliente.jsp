@@ -134,6 +134,7 @@
                     <th>Teléfono</th>
                     <th>E-mail</th>
                     <th>Fecha de nacimiento</th>
+                    <th>Num de paseos</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -152,6 +153,7 @@
                     <td><%= cliente.getTelefono() %></td>
                     <td><%= cliente.getEmail() %></td>
                     <td><%= cliente.getFecha_nac() %></td>
+                    <td><%= cliente.getNumPaseos() %></td>
                 </tr>
                 <% } else if (listaClientes != null && !listaClientes.isEmpty()) {
                     for (Clientes c : listaClientes) {
@@ -165,6 +167,8 @@
                     <td><%= c.getTelefono() %></td>
                     <td><%= c.getEmail() %></td>
                     <td><%= c.getFecha_nac() %></td>
+                    <td><%= c.getNumPaseos() %></td>
+
                 </tr>
                 <% }
                 } else {

@@ -4,17 +4,11 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Clientes implements Serializable {
-    private int idCliente;
+    private int idCliente, num_paseos;
     private String nombre, apellidoP, apellidoM, direccion, telefono, email;
     private Date fecha_nac;
 
-    public Clientes() {
-    }
-
-    public Clientes(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
+    public Clientes(){}
     public Clientes(int idCliente, String nombre, String apellidoP, String apellidoM, String direccion, String telefono, String email, String fecha_nac) {
         this.idCliente = idCliente;
         this.nombre = nombre;
@@ -23,7 +17,23 @@ public class Clientes implements Serializable {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+        this.fecha_nac = Date.valueOf(fecha_nac); }
+
+    public Clientes(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Clientes(int idCliente, String nombre, String apellidoP, String apellidoM, String direccion,
+                    String telefono, String email, String fecha_nac, int num_paseos) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
         this.fecha_nac = Date.valueOf(fecha_nac);
+        this.num_paseos = num_paseos;
     }
 
     public Clientes(String nombre, String apellidoP, String apellidoM, String direccion, String telefono, String email, String fecha_nac) {
@@ -92,4 +102,10 @@ public class Clientes implements Serializable {
         this.fecha_nac = fecha_nac;
     }
 
+    public int getNumPaseos(){
+        return num_paseos;
+    }
+    public void setNumPaseos(int num_paseos) {
+        this.num_paseos = num_paseos;
+    }
 }

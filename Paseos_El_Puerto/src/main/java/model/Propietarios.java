@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Propietarios implements Serializable {
-    private int IdPropietario;
+    private int IdPropietario, num_embarcaciones;
     private String nombre, apellidoP, apellidoM, direccion, telefono, email;
     private Date fecha_nac;
 
@@ -90,6 +90,13 @@ public class Propietarios implements Serializable {
     }
     public void setFecha_nac(Date fecha_nac) {
         this.fecha_nac = fecha_nac;
+    }
+
+    public int getNumEmbarcaciones(){
+        return num_embarcaciones;
+    }
+    public void setNumEmbarcaciones(int num_embarcaciones) {
+        this.num_embarcaciones = num_embarcaciones;
     }
 
 }
