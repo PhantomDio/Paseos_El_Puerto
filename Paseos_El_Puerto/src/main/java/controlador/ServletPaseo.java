@@ -66,7 +66,6 @@ public class ServletPaseo extends HttpServlet {
             int id_cliente = Integer.parseInt(rq.getParameter("id_cliente"));
             String fecha_inicio = rq.getParameter("fecha_inicio");
             String fecha_fin = rq.getParameter("fecha_fin");
-
             Paseos paseo = new Paseos(id_embarcacion, id_cliente, fecha_inicio, fecha_fin);
             PaseosDAO paseoDAO = new PaseosDAO();
             paseoDAO.insert(paseo);

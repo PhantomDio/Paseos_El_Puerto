@@ -157,5 +157,19 @@ public class Paseos implements Serializable {
         // Calcula el monto total a partir de la diferencia en horas * el costo por hora establecido en el contrato
         return diferenciaHoras * (costoHoraEmb + costoHoraPer);
     }
+    public float getDiffHoras (Date fechaInicioPaseo, Date fechaFinPaseo){
+
+        // Convierte las fechas a Timestamp
+        Timestamp timestamp1 = new Timestamp(fechaInicioPaseo.getTime());
+        Timestamp timestamp2 = new Timestamp(fechaFinPaseo.getTime());
+
+        // Calcula la diferencia en horas
+        long diferenciaHoras = Duration.between(timestamp1.toLocalDateTime(), timestamp2.toLocalDateTime()).toHours();
+
+        // Calcula el monto total a partir de la diferencia en horas * el costo por hora establecido en el contrato
+        return diferenciaHoras;
+    }
+
+
 }
 

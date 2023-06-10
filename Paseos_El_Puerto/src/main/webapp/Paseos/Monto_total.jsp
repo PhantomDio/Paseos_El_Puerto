@@ -119,7 +119,8 @@
       Paseos paseo = paseosDAO.getUltimoPaseo();
     %>
     <% if (paseo != null) { %>
-    <p class="monto-total">$<%= paseo.getMontoTotal(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo(), paseo.getCostoHora(), 0) %></p>
+    <p class="monto-total">$<span id="monto_total"><%= paseo.getMontoTotal(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo(), paseo.getCostoHora(), 0)%></span>
+      <span id="horas" hidden><%=paseo.getDiffHoras(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo())%></span></p>
     <% } else { %>
     <h2>Error al calcular el monto total</h2>
     <% } %>
@@ -131,10 +132,12 @@
     <br>
     <div id="campo" style="display: none;">
       <br>
-      <form action="/paseos_el_puerto/ServletPasPers" method="post">
-        <p>ID_Personal: <input type="text" name="id_personal"></p>
+      <form id="id_form" action="/paseos_el_puerto/ServletPasPers" method="post">
+        <p>ID_Personal: <input id="id_personal" type="text" name="id_personal"></p>
         <div class="button-container">
-        <input type="submit" class="button-minimal" value="Agregar Personal" name="op">
+          <button id="addPer" class="button-minimal" name="op">Agregar Personal</button>
+          <input id="montoTotal" type="text" hidden>
+          <button id="boton" class="button-minimal">Enviar datos</button>
         </div>
       </form>
       <div class="table-container">
@@ -173,7 +176,7 @@
             <td><%= personal.getEmail() %></td>
             <td><%= personal.getEdad(personal.getFecha_nac()) %></td>
             <td><%= personal.getSexo() %></td>
-            <td><%= personal.getCostoHora() %></td>
+            <td id="<%=personal.getIdPersonal()%>"><%= personal.getCostoHora() %></td>
             <%
                   }
                 }
@@ -181,7 +184,8 @@
             else { %>
             <td colspan="9"><h1>No hay personal disponible</h1></td>
           </tr>
-          <% } %>
+          <% }
+            ;%>
           </tbody>
         </table>
       </div>
@@ -189,6 +193,29 @@
 
   </div>
 </section>
+<script>
 
+        const horas = document.querySelector("#horas").textContent;
+        const monto_paseo = document.querySelector("#monto_total").textContent;
+        let acumulador = 0;
+        function getCosto_Empleado(empleado){
+          const costo_empleado = document.getElementById(empleado).textContent;
+          acumulador += Number(costo_empleado);
+        }
+
+        document.addEventListener("DOMContentLoaded",()=>{
+          document.querySelector("#id_personal").addEventListener("change",(e)=>{
+            getCosto_Empleado(e.target.value);
+          })
+
+          document.querySelector("#id_form").addEventListener("submit",(e)=>{
+            e.preventDefault()
+            let monto_total = Number(monto_paseo) + (acumulador * Number(horas));
+            document.querySelector("#monto_total").textContent = monto_total;
+            document.querySelector("#montoTotal").value =monto_total;
+            console.log(document.querySelector("#montoTotal").value);
+          })
+        })
+</script>
 </body>
 </html>

@@ -141,9 +141,16 @@
                 <tbody>
                 <%
                     ArrayList<Embarcaciones> lista = (ArrayList<Embarcaciones>) request.getAttribute("listaemb");
+                    ArrayList<Embarcaciones> listaSinDuplicados = new ArrayList<Embarcaciones>();
 
                     if (lista != null && !lista.isEmpty()) {
-                    for (Embarcaciones embarc : lista) {
+                        for (Embarcaciones e : lista) {
+                            if (!listaSinDuplicados.contains(e)) {
+                                listaSinDuplicados.add(e);
+                            }
+                        }
+
+                    for (Embarcaciones embarc : listaSinDuplicados) {
                         if (embarc.getFechaFinContrato() != null ) {
                           if(embarc.getEstado(embarc.getIdEmbarcacion(), embarc.getFechaFinContrato()).equals("Disponible")){
                 %>
