@@ -49,7 +49,7 @@ public class PaseosDAO {
         String selectSQL = "SELECT p.id_paseo, p.fecha_inicio AS fecha_inicio_paseo, p.fecha_fin AS fecha_fin_paseo," +
                 " p.id_embarcacion, e.nombre AS nombre_embarcacion, e.id_propietario, CONCAT(pr.nombre, ' '," +
                 " pr.ap_pat, ' ', pr.ap_mat) AS nombre_propietario, p.id_cliente, CONCAT(cl.nombre, ' ', cl.ap_pat," +
-                " ' ', cl.ap_mat) AS nombre_cliente, c.fecha_fin AS fecha_fin_contrato, c.costo_hora FROM Paseos p" +
+                " ' ', cl.ap_mat) AS nombre_cliente, c.fecha_fin AS fecha_fin_contrato, c.costo_hora, p.monto_total FROM Paseos p" +
                 " INNER JOIN Embarcaciones e ON p.id_embarcacion = e.id_embarcacion INNER JOIN Contratos c ON" +
                 " p.id_embarcacion = c.id_embarcacion INNER JOIN Propietarios pr ON e.id_propietario = pr.id_propietario" +
                 " INNER JOIN Clientes cl ON p.id_cliente = cl.id_cliente ORDER BY p.id_paseo ASC";
@@ -74,6 +74,8 @@ public class PaseosDAO {
 
                 paseo = new Paseos(id_paseo, fecha_inicio_paseo, fecha_fin_paseo, id_embarcacion, nombre_embarcacion,
                         id_propietario, nombre_propietario, id_cliente, nombre_cliente, costo_hora);
+
+                paseo.setMontoTotalBD(rs.getFloat("monto_total"));
 
                 paseos.add(paseo);
             }
@@ -167,5 +169,24 @@ public class PaseosDAO {
         }
         return null; // Si no se encuentra ningún paseo, devuelve null.
     }
-    
+
+    public void insertMontoT(float monto_total) {
+        String updateSQL = "UPDATE paseos SET monto_total = ? WHERE id_paseo = ?";
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(updateSQL)) {
+            Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
+            ps.setFloat(1, monto_total);
+            ps.setInt(2, ppDAO.getIdUltimoPaseo());
+
+            int registros = ps.executeUpdate();
+
+            if (registros > 0) {
+                System.out.println("Se han modificado " + registros + " registros exitosamente.");
+            } else {
+                System.out.println("No se ha modificado ningún registro.");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar el contrato: " + ex.getMessage());
+        }
+    }
 }

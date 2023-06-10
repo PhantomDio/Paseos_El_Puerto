@@ -108,7 +108,7 @@
         <br>
         <h1>Nuevo Cliente</h1>
         <br>
-        <form action="/paseos_el_puerto/ServletCliente?op=Registrar" method="post" onsubmit="return validarFormulario()">
+        <form action="/paseos_el_puerto/ServletCliente" method="post" onsubmit="return validarFormulario()">
             <p>Nombre: <input type="text" name="nombre"></p>
             <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
             <p>Apellido Materno: <input type="text" name="ap_mat"></p>
@@ -119,7 +119,7 @@
             <br>
             <br>
             <div class="button-container">
-                <input type="button" class="button-minimal" name="op" value="Registrar" onclick="validarFormulario() ? this.form.submit() : false">
+                <input type="submit" class="button-minimal" name="op" value="Registrar" onclick="validarFormulario() ? this.form.submit() : false">
             </div>
         </form>
     </div>

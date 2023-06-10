@@ -106,12 +106,14 @@
         width: 63px; /* Ajusta el ancho según sea necesario */
       }
     </style>
+
     <script>
       function mostrarCampo() {
         var campo = document.getElementById("campo");
         campo.style.display = "block";
       }
     </script>
+
     <br>
     <br>
     <h1 class="monto-total">Monto Total</h1>
@@ -119,8 +121,14 @@
       Paseos paseo = paseosDAO.getUltimoPaseo();
     %>
     <% if (paseo != null) { %>
-    <p class="monto-total">$<span id="monto_total"><%= paseo.getMontoTotal(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo(), paseo.getCostoHora(), 0)%></span>
-      <span id="horas" hidden><%=paseo.getDiffHoras(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo())%></span></p>
+    <form action="/paseos_el_puerto/ServletPasPers" method="post">
+
+    <p class="monto-total">$<input id="monto_total" name="monto_total" value="<%= paseo.getMontoTotal(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo(), paseo.getCostoHora())%>"></p>
+      <span id="horas" hidden><%=paseo.getDiffHoras(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo())%></span>
+      <div class="button-container">
+      <input type="submit" class="button-minimal" value="Terminar Registro" name="op">
+      </div>
+    </form>
     <% } else { %>
     <h2>Error al calcular el monto total</h2>
     <% } %>
@@ -132,12 +140,10 @@
     <br>
     <div id="campo" style="display: none;">
       <br>
-      <form id="id_form" action="/paseos_el_puerto/ServletPasPers" method="post">
+      <form action="/paseos_el_puerto/ServletPasPers" method="post">
         <p>ID_Personal: <input id="id_personal" type="text" name="id_personal"></p>
         <div class="button-container">
-          <button id="addPer" class="button-minimal" name="op">Agregar Personal</button>
-          <input id="montoTotal" type="text" hidden>
-          <button id="boton" class="button-minimal">Enviar datos</button>
+          <input type="submit" id="addPer" class="button-minimal" value="Agregar" name="op">
         </div>
       </form>
       <div class="table-container">
@@ -194,7 +200,6 @@
   </div>
 </section>
 <script>
-
         const horas = document.querySelector("#horas").textContent;
         const monto_paseo = document.querySelector("#monto_total").textContent;
         let acumulador = 0;
@@ -212,8 +217,6 @@
             e.preventDefault()
             let monto_total = Number(monto_paseo) + (acumulador * Number(horas));
             document.querySelector("#monto_total").textContent = monto_total;
-            document.querySelector("#montoTotal").value =monto_total;
-            console.log(document.querySelector("#montoTotal").value);
           })
         })
 </script>

@@ -69,7 +69,7 @@ public class ServletPaseo extends HttpServlet {
             Paseos paseo = new Paseos(id_embarcacion, id_cliente, fecha_inicio, fecha_fin);
             PaseosDAO paseoDAO = new PaseosDAO();
             paseoDAO.insert(paseo);
-            rp.sendRedirect("/paseos_el_puerto/ServletPersonal");
+            rp.sendRedirect("/paseos_el_puerto/ServletPasPers");
         }
 
         else if (op.equals("Modificar")) {

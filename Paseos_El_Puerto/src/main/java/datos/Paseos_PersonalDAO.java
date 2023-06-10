@@ -77,7 +77,7 @@ public class Paseos_PersonalDAO {
     }*/
 
     public void insert(Paseos_Personal PP) {
-        String insertSQL = "INSERT INTO contratos (id_paseo, id_personal) " +
+        String insertSQL = "INSERT INTO paseos_personal (id_paseo, id_personal) " +
                 "VALUES (?, ?)";
         try (Connection con = Conexion.getConnection()) {
             PreparedStatement ps = con.prepareStatement(insertSQL);

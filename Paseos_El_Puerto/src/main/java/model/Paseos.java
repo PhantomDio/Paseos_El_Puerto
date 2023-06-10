@@ -10,7 +10,7 @@ public class Paseos implements Serializable {
     private int idPaseo, idEmbarcacion, idCliente, idPropietario;
     private Date fechaInicioPaseo, fechaFinPaseo;
     private String nombreEmbarcacion, nombrePropietario, nombreCliente;
-    private float costoHora;
+    private float costoHora, monto_total;
 
     public Paseos(int idEmbarcacion, int idCliente, String fechaInicio, String fechaFin) {
         this.idEmbarcacion = idEmbarcacion;
@@ -133,6 +133,14 @@ public class Paseos implements Serializable {
         return costoHora;
     }
 
+    public float getMontoTotalBD (){
+        return monto_total;
+    }
+
+    public void setMontoTotalBD(float montoTotal) {
+        this.monto_total = montoTotal;
+    }
+
     public String getEstadoPaseo(Date fechaFinPaseo) {
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaFin = fechaFinPaseo.toLocalDate(); // Convertir a LocalDate
@@ -145,17 +153,12 @@ public class Paseos implements Serializable {
         return "Concluido";
     }
 
-    public float getMontoTotal (Date fechaInicioPaseo, Date fechaFinPaseo, float costoHoraEmb, float costoHoraPer){
+    public float getMontoTotal (Date fechaInicioPaseo, Date fechaFinPaseo, float costoHoraEmb){
 
-        // Convierte las fechas a Timestamp
-        Timestamp timestamp1 = new Timestamp(fechaInicioPaseo.getTime());
-        Timestamp timestamp2 = new Timestamp(fechaFinPaseo.getTime());
-
-        // Calcula la diferencia en horas
-        long diferenciaHoras = Duration.between(timestamp1.toLocalDateTime(), timestamp2.toLocalDateTime()).toHours();
+        float diferenciaHoras = getDiffHoras(fechaInicioPaseo,fechaFinPaseo);
 
         // Calcula el monto total a partir de la diferencia en horas * el costo por hora establecido en el contrato
-        return diferenciaHoras * (costoHoraEmb + costoHoraPer);
+        return diferenciaHoras * costoHoraEmb;
     }
     public float getDiffHoras (Date fechaInicioPaseo, Date fechaFinPaseo){
 
@@ -169,7 +172,6 @@ public class Paseos implements Serializable {
         // Calcula el monto total a partir de la diferencia en horas * el costo por hora establecido en el contrato
         return diferenciaHoras;
     }
-
 
 }
 

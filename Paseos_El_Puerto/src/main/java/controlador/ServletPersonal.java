@@ -26,13 +26,6 @@ public class ServletPersonal extends HttpServlet {
             rq.getRequestDispatcher("/Personal/lista_propietario.jsp").forward(rq, rp);
         }
 
-        else if (op.equals("listaPers")) {
-            PersonalDAO personalDAO = new PersonalDAO();
-            ArrayList<Personal> lista = personalDAO.selectAll();
-            rq.setAttribute("listapers", lista);
-            rq.getRequestDispatcher("/Paseos/Monto_total.jsp").forward(rq, rp);
-        }
-
         else if (op.equals("Buscar")) {
             int id_personal = Integer.parseInt(rq.getParameter("id_personal"));
             PersonalDAO persDAO = new PersonalDAO();

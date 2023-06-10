@@ -1,7 +1,11 @@
 package controlador;
 
+import datos.PaseosDAO;
 import datos.Paseos_PersonalDAO;
+import datos.PersonalDAO;
+import model.Paseos;
 import model.Paseos_Personal;
+import model.Personal;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,44 +17,34 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ServletPasPers", urlPatterns = {"/ServletPasPers"})
 public class ServletPasPers extends HttpServlet {
-
-    /*
     @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
         String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "listaPers";
 
-         if (op.equals("lista")) {
-            Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
-            ArrayList<Paseos_Personal> lista = ppDAO.selectAll();
-            rq.setAttribute("lista", lista);
-            rq.getRequestDispatcher("/Paseos_Personal/lista_propietario.jsp").forward(rq, rp);
+        if (op.equals("listaPers")) {
+            PersonalDAO personalDAO = new PersonalDAO();
+            ArrayList<Personal> lista = personalDAO.selectAll();
+            rq.setAttribute("listapers", lista);
+            rq.getRequestDispatcher("/Paseos/Monto_total.jsp").forward(rq, rp);
         }
-
-        else if (op.equals("Buscar")) {
-            int id_personal = Integer.parseInt(rq.getParameter("id_personal"));
-            Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
-            Paseos_Personal pp = ppDAO.select(id_personal);
-            rq.setAttribute("pp", pp);
-            rq.getRequestDispatcher("/Paseos_Personal/lista_propietario.jsp").forward(rq, rp);
-        }
-        else if (op.equals("Eliminar")) {
-            int id_personal = Integer.parseInt(rq.getParameter(("id_personal")));
-            Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
-            ppDAO.delete(id_personal);
-            rp.sendRedirect("/paseos_el_puerto/ServletPasPers");
-        }
-    } */
+    }
 
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
         String op = rq.getParameter("op");
 
-        if ("Agregar Personal".equals(op)) {
+        if ("Agregar".equals(op)) {
             int id_personal = Integer.parseInt(rq.getParameter("id_personal"));
             Paseos_Personal pp = new Paseos_Personal(id_personal);
             Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
             ppDAO.insert(pp);
-            rp.sendRedirect("/paseos_el_puerto/ServletPersonal");
+            rp.sendRedirect("/paseos_el_puerto/ServletPasPers");        }
+
+        else if (op.equals("Terminar Registro")) {
+            float monto_total = Float.parseFloat(rq.getParameter("monto_total"));
+            PaseosDAO paseoDAO = new PaseosDAO();
+            paseoDAO.insertMontoT(monto_total);
+            rp.sendRedirect("/paseos_el_puerto/index.jsp");
         }
 
         else if (op.equals("Modificar")) {

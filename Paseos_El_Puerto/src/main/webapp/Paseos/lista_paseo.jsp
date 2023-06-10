@@ -158,7 +158,7 @@
                     <td><%= paseo.getNombreProp() %></td>
                     <td><%= paseo.getIdCliente() %></td>
                     <td><%= paseo.getNombreCliente() %></td>
-                    <td>$<%= paseo.getMontoTotal(paseo.getFechaInicioPaseo(), paseo.getFechaFinPaseo(), paseo.getCostoHora(), 0) %></td>
+                    <td>$<%= paseo.getMontoTotalBD() %></td>
                     <td><%= paseo.getEstadoPaseo(paseo.getFechaFinPaseo()) %></td>
                 </tr>
                 <% 
@@ -175,7 +175,7 @@
                     <td><%= paseos.getNombreProp() %></td>
                     <td><%= paseos.getIdCliente() %></td>
                     <td><%= paseos.getNombreCliente() %></td>
-                    <td>$<%= paseos.getMontoTotal(paseos.getFechaInicioPaseo(), paseos.getFechaFinPaseo(), paseos.getCostoHora(), 0) %></td>
+                    <td>$<%= paseos.getMontoTotalBD() %></td>
                     <td><%= paseos.getEstadoPaseo(paseos.getFechaFinPaseo()) %></td>
                 </tr>
                 <%
