@@ -128,7 +128,7 @@
             <table>
                 <thead>
                 <tr>
-                    <th>ID Mantenimiento</th>
+                    <th>ID</th>
                     <th>ID Embarcación</th>
                     <th>Descripcion</th>
                     <th>Costo</th>

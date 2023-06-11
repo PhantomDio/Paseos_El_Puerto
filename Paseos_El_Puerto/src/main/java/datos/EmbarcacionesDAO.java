@@ -133,7 +133,7 @@ public class EmbarcacionesDAO {
             System.out.println("Error al eliminar el embarcacion: " + ex.getMessage());
         }
     }
-    public Date obtenerFechaFinPaseo(int idEmbarcacion) {
+    public Date getUltimaFechaFinPaseo(int idEmbarcacion) {
         Date fechaFinPaseo = null;
         try (Connection con = Conexion.getConnection()) {
             String query = "SELECT fecha_fin FROM Paseos WHERE id_embarcacion = ? ORDER BY fecha_fin DESC LIMIT 1";
@@ -147,5 +147,21 @@ public class EmbarcacionesDAO {
             ex.printStackTrace();
         }
         return fechaFinPaseo;
+    }
+
+    public Date getUltimaFechaFinMantenimiento(int idEmbarcacion) {
+        Date fechaFinMantenimiento = null;
+        try (Connection con = Conexion.getConnection()) {
+            String query = "SELECT fecha_fin FROM mantenimiento WHERE id_embarcacion = ? ORDER BY fecha_fin DESC LIMIT 1";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idEmbarcacion);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                fechaFinMantenimiento = rs.getDate("fecha_fin");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return fechaFinMantenimiento;
     }
 }

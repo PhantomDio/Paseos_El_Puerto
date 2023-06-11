@@ -1,15 +1,14 @@
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Mantenimiento" %>
+
 <html>
 <head>
-    <title>Nuevo Mantenimiento</title>
+    <title>Lista Mantenimiento</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
-    <script src="/paseos_el_puerto/Formato_fecha.js"></script>
-
 </head>
 <body class="body_color">
 <header class="navigation">
@@ -18,7 +17,7 @@
         </a>
         </li>
         <li class="dropdown">
-            <a href="#">Embarcaciones</a>
+            <a href="#">Mantenimiento</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
@@ -84,50 +83,95 @@
     </ul>
 </header>
 
-    <style>
-        p {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin: 10px 0;
-        }
+<style>
+
+    form{
+        align-items: center;
+    }
+    p {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 10px 0;
+    }
 
 
-        p input[type="text"] {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            margin-left: 9px;
-            width: 200px; /* Ajusta el ancho según sea necesario */
-        }
-    </style>
-    <br>
-    <br>
-    <section class="container">
-        <div class="parallax-content">
-            <br>
-            <h1>REGISTRAR MANTENIMIENTO O REPARACIÓN</h1>
-            <br>
-            <%
-                Date fechaActual = new Date();
-                SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-                String fechaFormateada = formatoFecha.format(fechaActual);
-            %>
-            <div class="container">
-            <form action="/paseos_el_puerto/ServletMantenimiento" method="post" onsubmit="return validarFormulario2()">
-                <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
-                <p>Descripción: <input type="text" name="descripcion"></p>
-                <p>Costo: <input type="text" name="costo"></p>
-                <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="<%=fechaFormateada%>"></p>
-                <br>
-                <br>
-                <div class="button-container">
-                    <input type="submit" class="button-minimal" value="Registrar" name="op">
-                </div>
-            </form>
-            </div>
+    p input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-left: 9px;
+        margin-top: 5px;
+        margin-right: 9px;
+        width: 90px; /* Ajusta el ancho según sea necesario */
+    }
+    .button-container{
+        margin-bottom: 9px;
+    }
+</style>
+
+<br>
+<br>
+<section class="container">
+    <div class="parallax-content">
+        <br>
+        <form method="get" action="/paseos_el_puerto/ServletMantenimiento">
+            <p>ID:<input type="text" name = "id_mantenimiento"></p>
+            <input type="submit" class="button-minimal button-container" value="Buscar" name="op">
+            <input type="submit" class="button-minimal" value="Eliminar" name="op">
+            <input type="submit" class="button-minimal" style="margin-top: 9px" value="Finalizar" name="op">
+        </form>
+        <br>
+        <a method="get" href="/paseos_el_puerto/ServletMantenimiento?op=listActivos">Mostrar mantenimientos activos</a>
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID Mantenimiento</th>
+                    <th>ID Embarcación</th>
+                    <th>Descripcion</th>
+                    <th>Costo</th>
+                    <th>Fecha_inicio</th>
+                    <th>Fecha_fin</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    Mantenimiento mantenimiento = (Mantenimiento) request.getAttribute("mantenimiento");
+                    ArrayList<Mantenimiento> lista = (ArrayList<Mantenimiento>) request.getAttribute("lista");
+
+                    if (mantenimiento != null) {
+                %>
+                <tr>
+                    <td><%= mantenimiento.getIdMantenimiento() %></td>
+                    <td><%= mantenimiento.getIdEmbarcacion() %></td>
+                    <td><%= mantenimiento.getDescripcion() %></td>
+                    <td><%= mantenimiento.getCosto() %></td>
+                    <td><%= mantenimiento.getFechaInicio() %></td>
+                    <td><%= mantenimiento.getFechaFin() %></td>
+                </tr>
+                <% } else if (lista != null && !lista.isEmpty()) {
+                    for (Mantenimiento manten : lista) {
+                %>
+                <tr>
+                    <td><%= manten.getIdMantenimiento() %></td>
+                    <td><%= manten.getIdEmbarcacion() %></td>
+                    <td><%= manten.getDescripcion() %></td>
+                    <td><%= manten.getCosto() %></td>
+                    <td><%= manten.getFechaInicio() %></td>
+                    <td><%= manten.getFechaFin() %></td>
+                </tr>
+                <% }
+                } else { %>
+                <tr>
+                    <td colspan="6"><h1>No hay mantenimientos a mostrar</h1></td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 </html>

@@ -38,11 +38,15 @@ public class ServletPasPers extends HttpServlet {
             float monto_total = Float.parseFloat(rq.getParameter("monto_total"));
             PaseosDAO paseoDAO = new PaseosDAO();
             paseoDAO.insertMontoT(monto_total);
-            Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
-            // Insertada de los id a la tabla paseos_personal
-            for(String id_persona: rq.getParameterValues("id_personal")){
-                int id_personal = Integer.parseInt(id_persona);
-                ppDAO.insert(id_personal);
+
+            if (rq.getParameterValues("id_personal") != null){
+
+                Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
+                // Insertada de los id a la tabla paseos_personal
+                for(String id_persona: rq.getParameterValues("id_personal")){
+                    int id_personal = Integer.parseInt(id_persona);
+                    ppDAO.insert(id_personal);
+                }
             }
             rp.sendRedirect("/paseos_el_puerto/index.jsp");
         }

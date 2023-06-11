@@ -13,6 +13,7 @@ public class Embarcaciones implements Serializable {
     private Date fechaFinPaseo, fechaFinContrato;
     private float costoHora, longitud;
     private boolean id_embarcacion;
+    private Date fechaFinMantenimiento;
 
 
     public Embarcaciones() {}
@@ -94,17 +95,23 @@ public class Embarcaciones implements Serializable {
     public Date getFechaFinPaseo() {
         return fechaFinPaseo;
     }
-
     public void setFechaFinPaseo(Date fechaFinPaseo) {
         this.fechaFinPaseo = fechaFinPaseo;
     }
 
+
     public float getCostoHora() {
         return costoHora;
     }
-
     public void setCostoHora(float costoHora) {
         this.costoHora = costoHora;
+    }
+
+    public void setFechaFinMantenimiento(Date fechaFinMantenimiento) {
+        this.fechaFinMantenimiento = fechaFinMantenimiento;
+    }
+    public Date getFechaFinMantenimiento() {
+        return fechaFinMantenimiento;
     }
 
     public String getEstadoContrato(Date fechaFin) {
@@ -125,18 +132,25 @@ public class Embarcaciones implements Serializable {
     }
     public String getEstado(int idEmbarcacion, Date fechaFinContrato) {
         EmbarcacionesDAO embarDAO = new EmbarcacionesDAO();
-        Date fechaFinPaseo = embarDAO.obtenerFechaFinPaseo(idEmbarcacion);
+
+        Date fechaFinPaseo = embarDAO.getUltimaFechaFinPaseo(idEmbarcacion);
         fechaFinPaseo = fechaFinPaseo != null ? fechaFinPaseo : Date.valueOf("0001-01-01");
+
+        Date fechaFinMantenimiento = embarDAO.getUltimaFechaFinMantenimiento(idEmbarcacion);
+        fechaFinMantenimiento = fechaFinMantenimiento != null ? fechaFinMantenimiento : Date.valueOf("9999-09-09");
 
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaFinP = fechaFinPaseo.toLocalDate();
         LocalDate fechaFinC = fechaFinContrato.toLocalDate();
+        LocalDate fechaFinM = fechaFinMantenimiento.toLocalDate();
+
         int comparacion = fechaActual.compareTo(fechaFinP);
         int comparacion2 = fechaActual.compareTo(fechaFinC);
+        int comparacion3 = fechaActual.compareTo(fechaFinM);
 
-        if (comparacion < 0 && comparacion2 > 0) {
+        if (comparacion < 0 && comparacion2 > 0 && comparacion3 < 0) {
             return "No disponible";
-        } else if (comparacion > 0 && comparacion2 < 0) {
+        } else if (comparacion > 0 && comparacion2 < 0 && comparacion3 >= 0) {
             return "Disponible";
         }
 
