@@ -73,9 +73,9 @@
             <li class="dropdown">
                 <a href="#">Mantenimiento</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
+                    <li><a href="/paseos_el_puerto/ServletMantenimiento?op=lista">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/Mantenimiento/inserta_mantenimiento.jsp">Registrar</a></li>
+                    <li><a href="/paseos_el_puerto/Mantenimiento/actualiza_mantenimiento.jsp">Modificar</a></li>
                 </ul>
             </li>
         </ul>

@@ -101,18 +101,19 @@
                 font-size: 27px;
             }
 
-            p input[type="text"] {
+            P input[type="text"] {
                 padding: 5px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
                 font-size: 14px;
-                margin-left: 9px;
+                margin-left: 5px;
+                margin-bottom: 13px;
                 width: 63px; /* Ajusta el ancho según sea necesario */
             }
         </style>
 
         <script>
-            function mostrarCampo() {
+            function mostrarContenido() {
                 var campo = document.getElementById("campo");
                 campo.style.display = "block";
             }
@@ -150,13 +151,13 @@
         <% } %>
         <br>
         <br>
-        <a href="#" onclick="mostrarCampo()">Solicitar personal</a>
+        <a href="#" onclick="mostrarContenido()">Solicitar personal</a>
         <br>
         <br>
         <br>
         <div id="campo" style="display: none;">
             <br>
-            <input type="text" id="id_personal"/>
+            <p>ID: <input type="text" id="id_personal"/></p>
             <button id="addPer" class="button-minimal"> Agregar Personal</button>
             <div class="table-container">
                 <h1>Personal disponible</h1>
@@ -319,7 +320,7 @@
           generarTablaEmpleado();
 
           // Ponemos el Monto total en pantalla
-          document.querySelector("#monto_total_p").textContent = (Number(costoBase) + acumulado);
+          document.querySelector("#monto_total_p").textContent = "$" + (Number(costoBase) + acumulado);
           document.querySelector("#monto_total").value = (Number(costoBase) + acumulado);
         })
     });

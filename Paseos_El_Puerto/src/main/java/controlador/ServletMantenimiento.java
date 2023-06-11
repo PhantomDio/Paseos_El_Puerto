@@ -1,7 +1,7 @@
 package controlador;
 
-import datos.EmbarcacionesDAO;
-import model.Embarcaciones;
+import datos.MantenimientoDAO;
+import model.Mantenimiento;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,30 +11,61 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ServletEmbarcacion", urlPatterns = {"/ServletEmbarcacion"})
+@WebServlet(name = "ServletMantenimiento", urlPatterns = {"/ServletMantenimiento"})
 public class ServletMantenimiento extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
         String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "lista";
 
         if (op.equals("lista")) {
-            EmbarcacionesDAO embardao = new EmbarcacionesDAO();
-            ArrayList<Embarcaciones> lista = embardao.selectAll();
+            MantenimientoDAO mantenimientoDAO = new MantenimientoDAO();
+            ArrayList<Mantenimiento> lista = mantenimientoDAO.selectAll();
             rq.setAttribute("lista", lista);
-            rq.getRequestDispatcher("/Embarcaciones/lista_embarcacion.jsp").forward(rq, rp);
+            rq.getRequestDispatcher("/Mantenimiento/lista_mantenimiento.jsp").forward(rq, rp);
         }
+
+        else if(op.equals("listActivos")) {
+            ArrayList<Mantenimiento> listActivos = new ArrayList<Mantenimiento>();
+            MantenimientoDAO mantenimientoDAO = new MantenimientoDAO();
+            ArrayList<Mantenimiento> lista = mantenimientoDAO.selectAll();
+            if (lista != null && !lista.isEmpty()) {
+                for (Mantenimiento mantenimiento : lista) {
+                    if (mantenimiento.getEstado(mantenimiento.getFechaFin()).equals("Activo"))
+                        listActivos.add(mantenimiento);
+                }
+                rq.setAttribute("lista", listActivos);
+                rq.getRequestDispatcher("/Mantenimiento/lista_mantenimiento.jsp").forward(rq, rp);
+            }
+        }
+
         else if (op.equals("Buscar")) {
-            int id_embarcacion = Integer.parseInt(rq.getParameter("id_embarcacion"));
-            EmbarcacionesDAO embardao = new EmbarcacionesDAO();
-            Embarcaciones embarcacion = embardao.select(id_embarcacion);
-            rq.setAttribute("embarcacion", embarcacion);
-            rq.getRequestDispatcher("/Embarcaciones/lista_embarcacion.jsp").forward(rq, rp);
+            int id_mantenimiento = Integer.parseInt(rq.getParameter("id_mantenimiento"));
+            MantenimientoDAO mantenimientoDAO = new MantenimientoDAO();
+            Mantenimiento mantenimiento = mantenimientoDAO.select(id_mantenimiento);
+            rq.setAttribute("mantenimiento", mantenimiento);
+            rq.getRequestDispatcher("/Mantenimiento/lista_mantenimiento.jsp").forward(rq, rp);
         }
+        
+        else if (op.equals("Autollenado")) {
+            int id = Integer.parseInt(rq.getParameter("id"));
+            MantenimientoDAO mantenimientoDAO = new MantenimientoDAO();
+            Mantenimiento mantenimiento = mantenimientoDAO.select(id);
+            rq.setAttribute("mantenimiento", mantenimiento);
+            rq.getRequestDispatcher("/Mantenimiento/actualiza_mantenimiento.jsp").forward(rq, rp);
+        }
+        
         else if (op.equals("Eliminar")) {
-            int id_embarcacion = Integer.parseInt(rq.getParameter(("id_embarcacion")));
-            EmbarcacionesDAO embardao = new EmbarcacionesDAO();
-            embardao.delete(id_embarcacion);
-            rp.sendRedirect("/paseos_el_puerto/ServletEmbarcacion");
+            int id_mantenimiento = Integer.parseInt(rq.getParameter(("id_mantenimiento")));
+            MantenimientoDAO mantenimientoDAO = new MantenimientoDAO();
+            mantenimientoDAO.delete(id_mantenimiento);
+            rp.sendRedirect("/paseos_el_puerto/ServletMantenimiento");
+        }
+        
+        else if (op.equals("Finalizar")) {
+            int id_mantenimiento = Integer.parseInt(rq.getParameter(("id_mantenimiento")));
+            MantenimientoDAO mantenimientoDAO = new MantenimientoDAO();
+            mantenimientoDAO.finalizarMantenimiento(id_mantenimiento);
+            rp.sendRedirect("/paseos_el_puerto/ServletMantenimiento");
         }
     }
 
@@ -43,29 +74,29 @@ public class ServletMantenimiento extends HttpServlet {
         String op = rq.getParameter("op");
 
         if ("Registrar".equals(op)) {
-            String nombre = rq.getParameter("nombre");
-            String modelo = rq.getParameter("modelo");
-            float longitud = Float.parseFloat(rq.getParameter("longitud"));
-            int anio = Integer.parseInt(rq.getParameter("anio"));
-            int id_propietario = Integer.parseInt(rq.getParameter("id_propietario"));
+            int id_embarcacion = Integer.parseInt(rq.getParameter("id_embarcacion"));
+            String descripcion = rq.getParameter("descripcion");
+            float costo = Float.parseFloat(rq.getParameter("costo"));
+            String fecha_inicio = rq.getParameter("fecha_inicio");
 
-            Embarcaciones embarcacion = new Embarcaciones(nombre, modelo, longitud, anio, id_propietario);
-            EmbarcacionesDAO embardao = new EmbarcacionesDAO();
-            embardao.insert(embarcacion);
-            rp.sendRedirect("/paseos_el_puerto/Contratos/inserta_contrato.jsp");
+            Mantenimiento mantenimiento = new Mantenimiento(id_embarcacion,descripcion, costo, fecha_inicio);
+            MantenimientoDAO mantenimientoDAO = new MantenimientoDAO();
+            mantenimientoDAO.insert(mantenimiento);
+            rp.sendRedirect("/paseos_el_puerto/Mantenimiento/inserta_mantenimiento.jsp");
         }
 
         else if (op.equals("Modificar")) {
+            int id_mantenimiento = Integer.parseInt(rq.getParameter("id_mantenimiento"));
             int id_embarcacion = Integer.parseInt(rq.getParameter("id_embarcacion"));
-            String nombre = rq.getParameter("nombre");
-            String modelo = rq.getParameter("modelo");
-            float longitud = Float.parseFloat(rq.getParameter("longitud"));
-            int anio = Integer.parseInt(rq.getParameter("anio"));
+            String descripcion = rq.getParameter("descripcion");
+            float costo = Float.parseFloat(rq.getParameter("costo"));
+            String fecha_inicio = rq.getParameter("fecha_inicio");
+            String fecha_fin = rq.getParameter("fecha_fin");
 
-            Embarcaciones embarcacion = new Embarcaciones(id_embarcacion, nombre, modelo, longitud, anio);
-            EmbarcacionesDAO embardao = new EmbarcacionesDAO();
-            embardao.update(embarcacion);
-            rp.sendRedirect("/paseos_el_puerto/Embarcaciones/actualiza_embarcacion.jsp");
+            Mantenimiento mantenimiento = new Mantenimiento(id_mantenimiento,id_embarcacion,descripcion, costo, fecha_inicio, fecha_fin);
+            MantenimientoDAO mantenimientoDAO = new MantenimientoDAO();
+            mantenimientoDAO.update(mantenimiento);
+            rp.sendRedirect("/paseos_el_puerto/Mantenimiento/actualiza_mantenimiento.jsp");
         }
     }
 }

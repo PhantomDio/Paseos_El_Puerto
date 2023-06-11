@@ -1,8 +1,9 @@
-<%@ page import="datos.ContratosDAO" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Nuevo Contrato</title>
+    <title>Nuevo Mantenimiento</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
@@ -106,20 +107,26 @@
     <section class="container">
         <div class="parallax-content">
             <br>
-            <h1>Nuevo Contrato</h1>
+            <h1>Nuevo Mantenimiento</h1>
             <br>
-            <% ContratosDAO contratoDAO = new ContratosDAO(); %>
-            <form action="/paseos_el_puerto/ServletContrato" method="post" onsubmit="return validarFormulario2()">
-                <p>ID de la embarcación: <input type="text" value="<%= contratoDAO.getIdUltimaEmbarcacion()%>" name="id_embarcacion" readonly></p>
-                <p>Fecha de inicio: <input type="text" name="fecha_inicio" placeholder="(yyyy-mm-dd)"></p>
-                <p>Fecha de termino: <input type="text" name="fecha_fin" placeholder="(yyyy-mm-dd)"></p>
-                <p>Costo por hora: <input type="text" name="costo_hora"></p>
+            <%
+                Date fechaActual = new Date();
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaFormateada = formatoFecha.format(fechaActual);
+            %>
+
+            <form action="/paseos_el_puerto/ServletMantenimiento" method="post" onsubmit="return validarFormulario2()">
+                <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
+                <p>Descripción: <input type="text" name="descripcion"></p>
+                <p>Costo: <input type="text" name="costo"></p>
+                <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="<%=fechaFormateada%>"></p>
                 <br>
                 <br>
                 <div class="button-container">
-                    <input type="submit" class="button-minimal" value="Registrar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
+                    <input type="submit" class="button-minimal" value="Registrar" name="op">
                 </div>
             </form>
+
 
         </div>
     </section>

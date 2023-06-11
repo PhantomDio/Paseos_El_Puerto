@@ -33,25 +33,18 @@ public class ServletPasPers extends HttpServlet {
     protected void doPost(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
         String op = rq.getParameter("op");
 
-        if ("Agregar".equals(op)) {
-            int id_personal = Integer.parseInt(rq.getParameter("id_personal"));
-            Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
-            ppDAO.insert(id_personal);
-            rp.sendRedirect("/paseos_el_puerto/ServletPasPers");
-        }
-
-        else if (op.equals("Terminar Registro")) {
+        if (op.equals("Terminar Registro")) {
 
             float monto_total = Float.parseFloat(rq.getParameter("monto_total"));
             PaseosDAO paseoDAO = new PaseosDAO();
             paseoDAO.insertMontoT(monto_total);
+            Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
+            // Insertada de los id a la tabla paseos_personal
             for(String id_persona: rq.getParameterValues("id_personal")){
-                // Insertada de los id a la tabla paseos_personal
                 int id_personal = Integer.parseInt(id_persona);
-                Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
                 ppDAO.insert(id_personal);
-                rp.sendRedirect("/paseos_el_puerto/index.jsp");
             }
+            rp.sendRedirect("/paseos_el_puerto/index.jsp");
         }
 
         else if (op.equals("Modificar")) {

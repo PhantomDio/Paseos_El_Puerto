@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Mantenimiento {
     private int idMantenimiento, idEmbarcacion;
@@ -11,13 +11,20 @@ public class Mantenimiento {
     public Mantenimiento() {
     }
 
-    public Mantenimiento(int idMantenimiento, int idEmbarcacion, String descripcion, float costo, Date fechaInicio, Date fechaFin) {
+    public Mantenimiento(int idMantenimiento, int idEmbarcacion, String descripcion, float costo, String fechaInicio, String fechaFin) {
         this.idMantenimiento = idMantenimiento;
         this.idEmbarcacion = idEmbarcacion;
         this.descripcion = descripcion;
         this.costo = costo;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
+        this.fechaInicio = Date.valueOf(fechaInicio);
+        this.fechaFin = Date.valueOf(fechaFin);
+    }
+
+    public Mantenimiento(int idEmbarcacion, String descripcion, float costo, String fechaInicio) {
+        this.idEmbarcacion = idEmbarcacion;
+        this.descripcion = descripcion;
+        this.costo = costo;
+        this.fechaInicio = Date.valueOf(fechaInicio);
     }
 
     public int getIdMantenimiento() {
@@ -66,5 +73,21 @@ public class Mantenimiento {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getEstado(Date fechaFin) {
+        Date fechaActual = new Date(System.currentTimeMillis()); // Fecha actual
+        int comparacion = fechaActual.compareTo(fechaFin);
+
+        if (comparacion > 0) {
+            // La fecha actual es mayor que fecha2
+            return "Finalizado";
+        } else if (comparacion < 0) {
+            // La fecha actual es menor que fecha2
+            return "Activo";
+        } else {
+            // Las fechas son iguales
+            return "Activo";
+        }
     }
 }
