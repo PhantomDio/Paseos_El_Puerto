@@ -140,8 +140,8 @@
             <% } else { %>
             <p>ID_Embarcación: <input type="text" name="id_embarcacion" value=""></p>
             <p>ID_Cliente: <input type="text" name="id_cliente" value=""></p>
-            <p>Fecha_inicio: <input type="text" name="fecha_inicio" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
-            <p>Fecha_fin: <input type="text" name="fecha_fin" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <p>Fecha_inicio: <input type="text" name="fecha_inicio" placeholder="(yyyy-mm-dd)"></p>
+            <p>Fecha_fin: <input type="text" name="fecha_fin" placeholder="(yyyy-mm-dd)"></p>
             <% } %>
 
             <br>

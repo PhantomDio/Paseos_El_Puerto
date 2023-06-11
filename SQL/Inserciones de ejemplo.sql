@@ -37,7 +37,9 @@ VALUES ('Juan', 'Pérez', 'Mendez', 'Masculino', 'Calle 123', '123456789', 'juan
        ('Ana', 'Martínez', 'García', 'Femenino', 'Calle Central', '987654321', 'ana@example.com', '1995-12-05', 20.00),
        ('Luis', 'Ramírez', 'Hernández', 'Masculino', 'Avenida 789', '123456789', 'luis@example.com', '1988-09-18', 16.80);
 
-INSERT INTO Mantenimiento (id_embarcacion, descripcion, costo, fecha_mantenimiento)
-VALUES (1, 'Mantenimiento de motor', 200.0, '2023-05-06'),
-       (2, 'Revisión general', 150.0, '2023-05-07'),
-       (3, 'Limpieza y pulido', 100.0, '2023-05-08');
+INSERT INTO Mantenimiento (id_embarcacion, descripcion, costo, fecha_inicio, fecha_fin)
+VALUES 
+(1, 'Mantenimiento preventivo', 500.00, '2023-06-01', NULL),
+(1, 'Limpieza del casco', 300.00, '2023-06-03', NULL),
+(3, 'Reemplazo de cables eléctricos', 800.00, '2023-06-05', '2023-06-08'),
+(2, 'Pintura exterior', 600.00, '2023-06-06', '2023-06-07');

@@ -113,11 +113,12 @@
             <p>Nombre: <input type="text" name="nombre"></p>
             <p>Apellido Paterno: <input type="text" name="ap_pat"></p>
             <p>Apellido Materno: <input type="text" name="ap_mat"></p>
+            <p>Sexo: <input type="text" name="sexo"></p>
             <p>Dirección: <input type="text" name="direccion"></p>
             <p>Teléfono: <input type="text" name="telefono"></p>
             <p>Correo: <input type="text" name="email"></p>
             <p>Costo por hora: <input type="text" name="costo_hora"></p>
-            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" placeholder="(yyyy-mm-dd)"></p>
             <br>
             <br>
             <div class="button-container">

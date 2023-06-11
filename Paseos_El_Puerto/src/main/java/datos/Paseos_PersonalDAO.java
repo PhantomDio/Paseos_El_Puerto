@@ -76,13 +76,13 @@ public class Paseos_PersonalDAO {
         return empleados;
     }*/
 
-    public void insert(Paseos_Personal PP) {
+    public void insert(int id_personal) {
         String insertSQL = "INSERT INTO paseos_personal (id_paseo, id_personal) " +
                 "VALUES (?, ?)";
         try (Connection con = Conexion.getConnection()) {
             PreparedStatement ps = con.prepareStatement(insertSQL);
             ps.setInt(1, getIdUltimoPaseo());
-            ps.setInt(2, PP.getIdPersonal());
+            ps.setInt(2, id_personal);
             
             int registros = ps.executeUpdate();
 

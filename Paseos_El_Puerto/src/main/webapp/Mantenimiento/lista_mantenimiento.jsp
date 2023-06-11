@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Personal" %>
+<%@ page import="model.Contratos" %>
 
 <html>
 <head>
-    <title>Lista Personal</title>
+    <title>Lista Contratos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
@@ -17,19 +17,19 @@
         </a>
         </li>
         <li class="dropdown">
-            <a href="#">Embarcaciones</a>
+            <a href="#">Contratos</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
-                <li><a href="/paseos_el_puerto/Personal/inserta_embarcacion.jsp">Registrar</a></li>
-                <li><a href="/paseos_el_puerto/Personal/actualiza_embarcacion.jsp">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/actualiza_embarcacion.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#">Personal</a>
+            <a href="#">Propietarios</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
-                <li><a href="/paseos_el_puerto/Personal/inserta_propietario.jsp">Registrar</a></li>
-                <li><a href="/paseos_el_puerto/Personal/actualiza_propietario.jsp">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Propietarios/actualiza_propietario.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -82,6 +82,7 @@
         </li>
     </ul>
 </header>
+
 <style>
 
     form{
@@ -114,71 +115,57 @@
 <br>
 <section class="container">
     <div class="parallax-content">
-        <form method="get" action="/paseos_el_puerto/ServletPersonal">
-            <p>ID:<input type="text" name = "id_personal"></p>
+        <form method="get" action="/paseos_el_puerto/ServletContrato">
+            <p>ID:<input type="text" name = "id_contrato"></p>
             <input type="submit" class="button-minimal button-container" value="Buscar" name="op">
             <input type="submit" class="button-minimal" value="Eliminar" name="op">
         </form>
         <br>
-        <a href="/paseos_el_puerto/ServletPersonal">Mostrar lista completa</a>
+        <a href="/paseos_el_puerto/ServletContrato">Mostrar lista completa</a>
         <div class="table-container">
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Dirección</th>
-                    <th>Teléfono</th>
-                    <th>E-mail</th>
-                    <th>Edad</th>
-                    <th>Sexo</th>
-                    <th>Costo
-                        hora</th>
+                    <th>ID Contrato</th>
+                    <th>ID Embarcación</th>
+                    <th>Fecha_inicio</th>
+                    <th>Fecha_fin</th>
+                    <th>Costo_hora</th>
+                    <th>Estado</th>
                 </tr>
                 </thead>
                 <tbody>
                 <%
-                    Personal pers = (Personal) request.getAttribute("personal");
-                    ArrayList<Personal> lista = (ArrayList<Personal>) request.getAttribute("lista");
+                    Contratos contrato = (Contratos) request.getAttribute("contrato");
+                    ArrayList<Contratos> lista = (ArrayList<Contratos>) request.getAttribute("lista");
 
-                    if (pers != null) {
+                    if (contrato != null) {
                 %>
                 <tr>
-                    <td><%= pers.getIdPersonal() %></td>
-                    <td><%= pers.getNombre() %></td>
-                    <td><%= pers.getApellidoP() %></td>
-                    <td><%= pers.getApellidoM() %></td>
-                    <td><%= pers.getDireccion() %></td>
-                    <td><%= pers.getTelefono() %></td>
-                    <td><%= pers.getEmail() %></td>
-                    <td><%= pers.getEdad(pers.getFecha_nac()) %></td>
-                    <td><%= pers.getSexo() %></td>
-                    <td>$<%= pers.getCostoHora() %></td>
+                    <td><%= contrato.getIdContrato() %></td>
+                    <td><%= contrato.getIdEmbarcacion() %></td>
+                    <td><%= contrato.getFechaInicio() %></td>
+                    <td><%= contrato.getFechaFin() %></td>
+                    <td><%= contrato.getCostoHora() %></td>
+                    <td><%= contrato.getEstado(contrato.getFechaFin()) %></td>
                 </tr>
                 <% } else if (lista != null && !lista.isEmpty()) {
-                    for (Personal personal : lista) {
+                    for (Contratos contrat : lista) {
                 %>
                 <tr>
-                    <td><%= personal.getIdPersonal() %></td>
-                    <td><%= personal.getNombre() %></td>
-                    <td><%= personal.getApellidoP() %></td>
-                    <td><%= personal.getApellidoM() %></td>
-                    <td><%= personal.getDireccion() %></td>
-                    <td><%= personal.getTelefono() %></td>
-                    <td><%= personal.getEmail() %></td>
-                    <td><%= personal.getEdad(personal.getFecha_nac()) %></td>
-                    <td><%= personal.getSexo() %></td>
-                    <td>$<%= personal.getCostoHora() %></td>
-                    <%
-                            }
-                        }
-                        else { %>
-                    <td colspan="9"><h1>No hay personal disponible</h1></td>
+                    <td><%= contrat.getIdContrato() %></td>
+                    <td><%= contrat.getIdEmbarcacion() %></td>
+                    <td><%= contrat.getFechaInicio() %></td>
+                    <td><%= contrat.getFechaFin() %></td>
+                    <td><%= contrat.getCostoHora() %></td>
+                    <td><%= contrat.getEstado(contrat.getFechaFin()) %></td>
                 </tr>
                 <% }
-                    ;%>
+                } else { %>
+                <tr>
+                    <td colspan="6"><h1>No hay contratos a mostrar</h1></td>
+                </tr>
+                <% } %>
                 </tbody>
             </table>
         </div>

@@ -101,7 +101,8 @@ CREATE TABLE Mantenimiento (
 	id_embarcacion INT NOT NULL,
 	descripcion VARCHAR(100) NOT NULL,
 	costo FLOAT NOT NULL,
-	fecha_mantenimiento DATE NOT NULL,
+	fecha_inicio DATE NOT NULL,
+	fecha_fin DATE,
 	CONSTRAINT FK_ID_EMBARCACION FOREIGN KEY (id_embarcacion)
 	REFERENCES Embarcaciones(id_embarcacion) ON DELETE CASCADE
 );

@@ -115,7 +115,7 @@
             <p>Dirección: <input type="text" name="direccion"></p>
             <p>Teléfono: <input type="text" name="telefono"></p>
             <p>Correo: <input type="text" name="email"></p>
-            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" value="(yyyy-mm-dd)" onclick="clearValue(this)"></p>
+            <p>Fecha de nacimiento: <input type="text" name="fecha_nac" placeholder="(yyyy-mm-dd)"></p>
             <br>
             <br>
             <div class="button-container">

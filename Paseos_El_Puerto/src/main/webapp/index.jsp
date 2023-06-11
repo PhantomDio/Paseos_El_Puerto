@@ -55,10 +55,11 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#">Empleados</a>
+                <a href="#">Personal</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Modificar</a></li>
+                    <li><a href="/paseos_el_puerto/ServletPersonal?op=lista" methods="GET">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/Personal/inserta_personal.jsp">Registrar</a></li>
+                    <li><a href="/paseos_el_puerto/Personal/actualiza_personal.jsp">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">

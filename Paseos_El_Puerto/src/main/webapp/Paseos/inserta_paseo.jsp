@@ -111,8 +111,8 @@
         <form action="/paseos_el_puerto/ServletPaseo" method="post" onsubmit="return validarFormulario2()">
             <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
             <p>ID_Cliente: <input type="text" name="id_cliente"></p>
-            <p>Fecha_inicio: <input type="text" value="(yyyy-mm-dd)" onclick="clearValue(this)" name="fecha_inicio"></p>
-            <p>Fecha_fin: <input type="text" value="(yyyy-mm-dd)" onclick="clearValue(this)" name="fecha_fin"></p>
+            <p>Fecha_inicio: <input type="text" placeholder="(yyyy-mm-dd)" name="fecha_inicio"></p>
+            <p>Fecha_fin: <input type="text" placeholder="(yyyy-mm-dd)" name="fecha_fin"></p>
             <br>
             <br>
             <div class="button-container">

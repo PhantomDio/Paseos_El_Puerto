@@ -35,16 +35,23 @@ public class ServletPasPers extends HttpServlet {
 
         if ("Agregar".equals(op)) {
             int id_personal = Integer.parseInt(rq.getParameter("id_personal"));
-            Paseos_Personal pp = new Paseos_Personal(id_personal);
             Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
-            ppDAO.insert(pp);
-            rp.sendRedirect("/paseos_el_puerto/ServletPasPers");        }
+            ppDAO.insert(id_personal);
+            rp.sendRedirect("/paseos_el_puerto/ServletPasPers");
+        }
 
         else if (op.equals("Terminar Registro")) {
+
             float monto_total = Float.parseFloat(rq.getParameter("monto_total"));
             PaseosDAO paseoDAO = new PaseosDAO();
             paseoDAO.insertMontoT(monto_total);
-            rp.sendRedirect("/paseos_el_puerto/index.jsp");
+            for(String id_persona: rq.getParameterValues("id_personal")){
+                // Insertada de los id a la tabla paseos_personal
+                int id_personal = Integer.parseInt(id_persona);
+                Paseos_PersonalDAO ppDAO = new Paseos_PersonalDAO();
+                ppDAO.insert(id_personal);
+                rp.sendRedirect("/paseos_el_puerto/index.jsp");
+            }
         }
 
         else if (op.equals("Modificar")) {

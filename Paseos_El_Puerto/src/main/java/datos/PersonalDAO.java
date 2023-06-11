@@ -81,19 +81,21 @@ public class PersonalDAO {
         ps.setString(1, personal.getNombre());
         ps.setString(2, personal.getApellidoP());
         ps.setString(3, personal.getApellidoM());
-        ps.setString(4, personal.getDireccion());
-        ps.setString(5, personal.getTelefono());
-        ps.setString(6, personal.getEmail());
-        ps.setDate(7, personal.getFecha_nac());
+        ps.setString(4, personal.getSexo());
+        ps.setString(5, personal.getDireccion());
+        ps.setString(6, personal.getTelefono());
+        ps.setString(7, personal.getEmail());
+        ps.setDate(8, personal.getFecha_nac());
+        ps.setFloat(9, personal.getCostoHora());
         if (personal.getIdPersonal() != 0)
             // Si el ID del personal es diferente de cero, se trata de una actualización
-            ps.setInt(8, personal.getIdPersonal());
+            ps.setInt(10, personal.getIdPersonal());
         return ps.executeUpdate();
     }
 
     public void insert(Personal personal) {
-        String insertSQL = "INSERT INTO personal (nombre, ap_pat, ap_mat, direccion, telefono, email, fecha_nac) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO personal (nombre, ap_pat, ap_mat, sexo, direccion, telefono, email, fecha_nac, costo_hora) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection con = Conexion.getConnection()) {
             int R = INSERT_UPDATE(personal, insertSQL, con);
             if (R > 0) {
@@ -105,8 +107,8 @@ public class PersonalDAO {
     }
 
     public void update(Personal personal) {
-        String updateSQL = "UPDATE personal SET nombre = ?, ap_pat = ?, ap_mat = ?, direccion = ?, telefono = ?, " +
-                "email = ?, fecha_nac = ? WHERE id_personal = ?";
+        String updateSQL = "UPDATE personal SET nombre = ?, ap_pat = ?, ap_mat = ?, sexo = ?, direccion = ?, telefono = ?, " +
+                "email = ?, fecha_nac = ?, costo_hora = ? WHERE id_personal = ?";
         try (Connection con = Conexion.getConnection()) {
             int R = INSERT_UPDATE(personal, updateSQL, con);
             if (R > 0) {

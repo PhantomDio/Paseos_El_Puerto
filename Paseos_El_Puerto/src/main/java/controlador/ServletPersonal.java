@@ -17,13 +17,13 @@ import java.util.ArrayList;
 public class ServletPersonal extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, ServletException {
-        String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "listaPers";
+        String op = (rq.getParameter("op") != null) ? rq.getParameter("op") : "lista";
 
         if (op.equals("lista")) {
             PersonalDAO persDAO = new PersonalDAO();
             ArrayList<Personal> lista = persDAO.selectAll();
             rq.setAttribute("lista", lista);
-            rq.getRequestDispatcher("/Personal/lista_propietario.jsp").forward(rq, rp);
+            rq.getRequestDispatcher("/Personal/lista_personal.jsp").forward(rq, rp);
         }
 
         else if (op.equals("Buscar")) {
@@ -31,7 +31,7 @@ public class ServletPersonal extends HttpServlet {
             PersonalDAO persDAO = new PersonalDAO();
             Personal personal = persDAO.select(id_personal);
             rq.setAttribute("personal", personal);
-            rq.getRequestDispatcher("/Personal/lista_propietario.jsp").forward(rq, rp);
+            rq.getRequestDispatcher("/Personal/lista_personal.jsp").forward(rq, rp);
         }
         else if (op.equals("Eliminar")) {
             int id_personal = Integer.parseInt(rq.getParameter(("id_personal")));
@@ -60,7 +60,7 @@ public class ServletPersonal extends HttpServlet {
                     telefono, email, sexo, costo_hora, fecha_nac);
             PersonalDAO persDAO = new PersonalDAO();
             persDAO.insert(personal);
-            rp.sendRedirect("/paseos_el_puerto/Personal/inserta_propietario.jsp");
+            rp.sendRedirect("/paseos_el_puerto/Personal/inserta_personal.jsp");
         }
 
 

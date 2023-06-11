@@ -5,6 +5,7 @@ datos\PropietariosDAO.class
 controlador\ServletPersonal.class
 model\Clientes.class
 controlador\ServletContrato.class
+model\Mantenimiento.class
 datos\ClientesDAO.class
 controlador\ServletCliente.class
 controlador\ServletPaseo.class
@@ -12,7 +13,6 @@ model\Contratos.class
 datos\ContratosDAO.class
 datos\Paseos_PersonalDAO.class
 model\Paseos.class
-Main.class
 datos\PersonalDAO.class
 datos\PaseosDAO.class
 model\Paseos_Personal.class
@@ -20,4 +20,5 @@ controlador\ServletEmbarcacion.class
 datos\Conexion.class
 controlador\ServletPasPers.class
 model\Embarcaciones.class
+controlador\ServletMantenimiento.class
 controlador\ServletPropietario.class
