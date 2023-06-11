@@ -115,7 +115,7 @@
             <br>
             <br>
             <div class="button-container">
-                <input type="submit" class="button-minimal" value="Modificar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
+                <input type="submit" class="button-minimal" value="Modificar" name="op">
             </div>
         </form>
 

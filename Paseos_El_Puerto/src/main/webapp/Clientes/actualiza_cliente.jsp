@@ -115,7 +115,7 @@
             <p>Fecha de nacimiento: <input type="text" name="fecha_nac" placeholder="(yyyy-mm-dd)"></p>
             <br>
             <div class="button-container">
-                <input type="submit" class="button-minimal" value="Modificar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
+                <input type="submit" class="button-minimal" value="Modificar" name="op">
             </div>
         </form>
     </div>
