@@ -5,6 +5,7 @@ import datos.EmbarcacionesDAO;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Embarcaciones implements Serializable {
@@ -92,6 +93,7 @@ public class Embarcaciones implements Serializable {
     public void setFechaFinContrato(Date fechaFinContrato) {
         this.fechaFinContrato = fechaFinContrato;
     }
+
     public Date getFechaFinPaseo() {
         return fechaFinPaseo;
     }
@@ -107,12 +109,6 @@ public class Embarcaciones implements Serializable {
         this.costoHora = costoHora;
     }
 
-    public void setFechaFinMantenimiento(Date fechaFinMantenimiento) {
-        this.fechaFinMantenimiento = fechaFinMantenimiento;
-    }
-    public Date getFechaFinMantenimiento() {
-        return fechaFinMantenimiento;
-    }
 
     public String getEstadoContrato(Date fechaFin) {
 
@@ -120,47 +116,63 @@ public class Embarcaciones implements Serializable {
         int comparacion = fechaActual.compareTo(fechaFin);
 
         if (comparacion > 0) {
-            // La fecha actual es mayor que fecha2
+            // La fecha actual es mayor que fechaFin
             return "Vencido";
         } else if (comparacion < 0) {
-            // La fecha actual es menor que fecha2
+            // La fecha actual es menor que fechaFin
             return "Vigente";
         } else {
             // Las fechas son iguales
             return "Vigente";
         }
     }
+
     public String getEstado(int idEmbarcacion, Date fechaFinContrato) {
         EmbarcacionesDAO embarDAO = new EmbarcacionesDAO();
 
         Date fechaFinPaseo = embarDAO.getUltimaFechaFinPaseo(idEmbarcacion);
         fechaFinPaseo = fechaFinPaseo != null ? fechaFinPaseo : Date.valueOf("0001-01-01");
 
-        Date fechaFinMantenimiento = embarDAO.getUltimaFechaFinMantenimiento(idEmbarcacion);
-        fechaFinMantenimiento = fechaFinMantenimiento != null ? fechaFinMantenimiento : Date.valueOf("9999-09-09");
+        ArrayList<Date> fechasMantenimiento = embarDAO.getUltimasFechasMantenimiento(idEmbarcacion);
 
-        Date fechaFinReparacion = embarDAO.getUltimaFechaFinReparacion(idEmbarcacion);
-        fechaFinReparacion = fechaFinReparacion != null ? fechaFinReparacion : Date.valueOf("9999-09-09");
+        Date fechaIniMantenimiento = fechasMantenimiento.size() >= 1 ? fechasMantenimiento.get(0) : null;
+        Date fechaFinMantenimiento = fechasMantenimiento.size() >= 2 ? fechasMantenimiento.get(1) : null;
+
+        if (fechaIniMantenimiento != null && fechaFinMantenimiento == null) {
+            fechaFinMantenimiento = Date.valueOf("9999-12-31");
+        } else if (fechaIniMantenimiento == null && fechaFinMantenimiento == null) {
+            fechaFinMantenimiento = Date.valueOf("0001-01-01");
+        }
+
+        ArrayList<Date> fechasReparacion = embarDAO.getUltimasFechasReparacion(idEmbarcacion);
+        Date fechaIniReparacion = fechasReparacion.size() >= 1 ? fechasReparacion.get(0) : null;
+        Date fechaFinReparacion = fechasReparacion.size() >= 2 ? fechasReparacion.get(1) : null;
+        if (fechaIniReparacion != null && fechaFinReparacion == null) {
+            fechaFinReparacion = Date.valueOf("9999-12-31");
+        } else if (fechaIniReparacion == null && fechaFinReparacion == null) {
+            fechaFinReparacion = Date.valueOf("0001-01-01");
+        }
 
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaFinP = fechaFinPaseo.toLocalDate();
         LocalDate fechaFinC = fechaFinContrato.toLocalDate();
-        LocalDate fechaFinM = fechaFinMantenimiento.toLocalDate();
-        LocalDate fechaFinR = fechaFinReparacion.toLocalDate();
+        LocalDate fechaFinM = fechaFinMantenimiento != null ? fechaFinMantenimiento.toLocalDate() : null;
+        LocalDate fechaFinR = fechaFinReparacion != null ? fechaFinReparacion.toLocalDate() : null;
 
-        int comparacion = fechaActual.compareTo(fechaFinP);
-        int comparacion2 = fechaActual.compareTo(fechaFinC);
-        int comparacion3 = fechaActual.compareTo(fechaFinM);
-        int comparacion4 = fechaActual.compareTo(fechaFinR);
+        boolean disponiblePaseo = fechaActual.isAfter(fechaFinP);
+        boolean disponibleContrato = fechaActual.isBefore(fechaFinC);
+        boolean disponibleMantenimiento = fechaActual.isAfter(fechaFinM);
+        boolean disponibleReparacion = fechaActual.isAfter(fechaFinR);
 
-        if (comparacion < 0 && comparacion2 > 0 && comparacion3 < 0 && comparacion4 < 0) {
-            return "No disponible";
-        } else if (comparacion > 0 && comparacion2 < 0 && comparacion3 >= 0 && comparacion4 >= 0) {
+        if (disponiblePaseo && disponibleContrato && disponibleMantenimiento && disponibleReparacion) {
             return "Disponible";
+        } else if (!disponiblePaseo && !disponibleContrato && disponibleMantenimiento && disponibleReparacion) {
+            return "No Disponible";
         }
 
         return "No disponible";
     }
+
 
     @Override
     public boolean equals(Object o) {

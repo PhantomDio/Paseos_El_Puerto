@@ -132,9 +132,9 @@
         <form action="/paseos_el_puerto/ServletContrato" method="post" onsubmit="return validarFormulario2()">
             <p>ID del contrato: <input type="text" name="id_contrato" id="id" onblur="autollenar()"></p>
             <% if (contrato != null) { %>
-            <p>Fecha de inicio: <input type="text" name="fecha_inicio" placeholder="(yyyy-mm-dd)"></p>
-            <p>Fecha de termino: <input type="text" name="fecha_fin" placeholder="(yyyy-mm-dd)"></p>
-            <p>Costo por hora: <input type="text" name="costo_hora"></p>
+            <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="<%=contrato.getFechaInicio()%>" placeholder="(yyyy-mm-dd)"></p>
+            <p>Fecha de termino: <input type="text" name="fecha_fin" value="<%=contrato.getFechaFin()%>" placeholder="(yyyy-mm-dd)"></p>
+            <p>Costo por hora: <input type="text" name="costo_hora" value="<%=contrato.getCostoHora()%>"></p>
             <% } else { %>
             <p>Fecha de inicio: <input type="text" name="fecha_inicio" placeholder="(yyyy-mm-dd)"></p>
             <p>Fecha de termino: <input type="text" name="fecha_fin" placeholder="(yyyy-mm-dd)"></p>

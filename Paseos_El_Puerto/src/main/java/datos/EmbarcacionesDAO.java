@@ -39,6 +39,7 @@ public class EmbarcacionesDAO {
             return null;
         }
     }
+
     public ArrayList<Embarcaciones> selectAll() {
         Connection conn;
         Statement state;
@@ -108,6 +109,7 @@ public class EmbarcacionesDAO {
             System.out.println("No se pudo agregar el embarcacion: " + ex.getMessage());
         }
     }
+
     public void update(Embarcaciones embarcacion) {
         String updateSQL = "UPDATE embarcaciones SET nombre = ?, modelo = ?, longitud = ?, anio = ?" +
                 " WHERE id_embarcacion = ?";
@@ -133,6 +135,7 @@ public class EmbarcacionesDAO {
             System.out.println("Error al eliminar el embarcacion: " + ex.getMessage());
         }
     }
+
     public Date getUltimaFechaFinPaseo(int idEmbarcacion) {
         Date fechaFinPaseo = null;
         try (Connection con = Conexion.getConnection()) {
@@ -149,35 +152,42 @@ public class EmbarcacionesDAO {
         return fechaFinPaseo;
     }
 
-    public Date getUltimaFechaFinMantenimiento(int idEmbarcacion) {
-        Date fechaFinMantenimiento = null;
+    public ArrayList<Date> getUltimasFechasMantenimiento(int idEmbarcacion) {
+        ArrayList<Date> fechasMantenimiento = new ArrayList<>();
         try (Connection con = Conexion.getConnection()) {
-            String query = "SELECT fecha_fin FROM mantenimiento WHERE id_embarcacion = ? ORDER BY fecha_fin DESC LIMIT 1";
+            String query = "SELECT fecha_inicio, fecha_fin FROM mantenimiento WHERE id_embarcacion = ? ORDER BY fecha_fin DESC LIMIT 1";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, idEmbarcacion);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                fechaFinMantenimiento = rs.getDate("fecha_fin");
+                Date fechaIniMantenimiento = rs.getDate("fecha_inicio");
+                Date fechaFinMantenimiento = rs.getDate("fecha_fin");
+                fechasMantenimiento.add(fechaIniMantenimiento);
+                fechasMantenimiento.add(fechaFinMantenimiento);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return fechaFinMantenimiento;
+        return fechasMantenimiento;
     }
 
-    public Date getUltimaFechaFinReparacion(int idEmbarcacion) {
-        Date fechaFinReparacion = null;
+    public ArrayList<Date> getUltimasFechasReparacion(int idEmbarcacion) {
+
+        ArrayList<Date> fechasReparacion = new ArrayList<>();
         try (Connection con = Conexion.getConnection()) {
-            String query = "SELECT fecha_fin FROM reparacion WHERE id_embarcacion = ? ORDER BY fecha_fin DESC LIMIT 1";
+            String query = "SELECT fecha_inicio, fecha_fin FROM reparacion WHERE id_embarcacion = ? ORDER BY fecha_fin DESC LIMIT 1";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, idEmbarcacion);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                fechaFinReparacion = rs.getDate("fecha_fin");
+                Date fechaIniReparacion = rs.getDate("fecha_inicio");
+                Date fechaFinReparacion = rs.getDate("fecha_fin");
+                fechasReparacion.add(fechaIniReparacion);
+                fechasReparacion.add(fechaFinReparacion);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return fechaFinReparacion;
+        return fechasReparacion;
     }
 }
