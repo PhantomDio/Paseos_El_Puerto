@@ -161,12 +161,12 @@ public class Embarcaciones implements Serializable {
 
         boolean disponiblePaseo = fechaActual.isAfter(fechaFinP);
         boolean disponibleContrato = fechaActual.isBefore(fechaFinC);
-        boolean disponibleMantenimiento = fechaActual.isAfter(fechaFinM);
-        boolean disponibleReparacion = fechaActual.isAfter(fechaFinR);
+        boolean disponibleMantenimiento = fechaActual.isAfter(fechaFinM) || fechaActual.isEqual(fechaFinM);
+        boolean disponibleReparacion = fechaActual.isAfter(fechaFinR) || fechaActual.isEqual(fechaFinR);
 
         if (disponiblePaseo && disponibleContrato && disponibleMantenimiento && disponibleReparacion) {
             return "Disponible";
-        } else if (!disponiblePaseo && !disponibleContrato && disponibleMantenimiento && disponibleReparacion) {
+        } else if (!disponiblePaseo && !disponibleContrato && !disponibleMantenimiento && !disponibleReparacion) {
             return "No Disponible";
         }
 
