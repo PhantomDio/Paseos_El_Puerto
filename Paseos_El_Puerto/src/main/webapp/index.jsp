@@ -65,9 +65,9 @@
             <li class="dropdown">
                 <a href="#">Reparación</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Lista</a></li>
-                    <li><a href="#">Registrar</a></li>
-                    <li><a href="#">Modificar</a></li>
+                    <li><a href="/paseos_el_puerto/ServletReparacion?op=lista">Lista</a></li>
+                    <li><a href="/paseos_el_puerto/Reparacion/inserta_reparacion.jsp">Registrar</a></li>
+                    <li><a href="/paseos_el_puerto/Reparacion/actualiza_reparacion.jsp">Modificar</a></li>
                 </ul>
             </li>
             <li class="dropdown">

@@ -1,6 +1,8 @@
 package model;
 
-public class Paseos_Personal {
+import java.io.Serializable;
+
+public class Paseos_Personal implements Serializable {
     private int idPaseo;
     private int idPersonal;
 

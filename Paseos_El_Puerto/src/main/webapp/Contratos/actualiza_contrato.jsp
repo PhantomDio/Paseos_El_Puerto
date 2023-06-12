@@ -1,12 +1,13 @@
+<%@ page import="model.Contratos" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Actualiza Embarcación</title>
+    <title>Actualiza Contrato</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
-    <script src="/paseos_el_puerto/Formato_fecha.js"></script>
+    <script src="/paseos_el_puerto/Utilidades.js"></script>
 </head>
 <body class="body_color">
 <header class="navigation">
@@ -18,8 +19,23 @@
             <a href="#">Embarcaciones</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
-                <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
-                <li><a href="/paseos_el_puerto/Propietarios/actualiza_embarcacion.jsp">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/Embarcaciones/inserta_embarcacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Embarcaciones/actualiza_embarcacion.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Contratos</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletContrato?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Contratos/actualiza_contrato.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Paseos</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletPaseo?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/ServletPaseo?op=listaEmb">Nuevo</a></li>
+                <li><a href="/paseos_el_puerto/Paseos/actualiza_paseo.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -28,14 +44,6 @@
                 <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/actualiza_propietario.jsp">Modificar</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">Alquileres</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -49,33 +57,25 @@
         <li class="dropdown">
             <a href="#">Personal</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">Mantenimiento</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletPersonal?op=lista" methods="GET">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Personal/inserta_personal.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Personal/actualiza_personal.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="#">Reparación</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletReparacion?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Contratos/inserta_reparacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Contratos/actualiza_reparacion.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#">Equipamiento</a>
+            <a href="#">Mantenimiento</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletMantenimiento?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Mantenimiento/inserta_mantenimiento.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Mantenimiento/actualiza_mantenimiento.jsp">Modificar</a></li>
             </ul>
         </li>
     </ul>
@@ -100,6 +100,26 @@
         width: 200px; /* Ajusta el ancho según sea necesario */
     }
 </style>
+<script>
+    function autollenar() {
+        var id = document.getElementById('id').value;
+        var url = '/paseos_el_puerto/ServletContrato?op=Autollenado&id=' + id;
+
+        // Almacenar el valor de id_paseo en el almacenamiento local del navegador
+        localStorage.setItem('id', id);
+
+        // Realizar redirección a la página de actualización con los parámetros en la URL
+        window.location.href = url;
+    }
+
+    // Obtener el valor de id_paseo del almacenamiento local y asignarlo al campo después de cargar la página
+    window.addEventListener('DOMContentLoaded', function() {
+        var id = localStorage.getItem('id');
+        if (id) {
+            document.getElementById('id').value = id;
+        }
+    });
+</script>
 <br>
 <br>
 <section class="container">
@@ -107,11 +127,19 @@
         <br>
         <h1>Modificar Contrato</h1>
         <br>
+        <% Contratos contrato = (Contratos) request.getAttribute("contrato"); %>
+
         <form action="/paseos_el_puerto/ServletContrato" method="post" onsubmit="return validarFormulario2()">
-            <p>ID del contrato: <input type="text" name="id_contrato"></p>
+            <p>ID del contrato: <input type="text" name="id_contrato" id="id" onblur="autollenar()"></p>
+            <% if (contrato != null) { %>
             <p>Fecha de inicio: <input type="text" name="fecha_inicio" placeholder="(yyyy-mm-dd)"></p>
             <p>Fecha de termino: <input type="text" name="fecha_fin" placeholder="(yyyy-mm-dd)"></p>
             <p>Costo por hora: <input type="text" name="costo_hora"></p>
+            <% } else { %>
+            <p>Fecha de inicio: <input type="text" name="fecha_inicio" placeholder="(yyyy-mm-dd)"></p>
+            <p>Fecha de termino: <input type="text" name="fecha_fin" placeholder="(yyyy-mm-dd)"></p>
+            <p>Costo por hora: <input type="text" name="costo_hora"></p>
+            <% } %>
             <br>
             <br>
             <div class="button-container">

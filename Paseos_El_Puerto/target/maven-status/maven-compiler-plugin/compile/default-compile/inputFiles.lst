@@ -1,5 +1,6 @@
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Contratos.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletEmbarcacion.java
+C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\ReparacionDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\PersonalDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletPaseo.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\MantenimientoDAO.java
@@ -8,12 +9,14 @@ C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\Pas
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\ClientesDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Mantenimiento.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletCliente.java
+C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletReparacion.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Embarcaciones.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\EmbarcacionesDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletPasPers.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\datos\PropietariosDAO.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Propietarios.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Clientes.java
+C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Reparacion.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\controlador\ServletPersonal.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Personal.java
 C:\Users\Diodj\Desktop\Paseos_El_Puerto\paseos_el_puerto\src\main\java\model\Paseos.java

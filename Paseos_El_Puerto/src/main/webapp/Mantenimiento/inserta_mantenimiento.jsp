@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
     <script src="/paseos_el_puerto/animaciones.js"></script>
-    <script src="/paseos_el_puerto/Formato_fecha.js"></script>
+    <script src="/paseos_el_puerto/Utilidades.js"></script>
 
 </head>
 <body class="body_color">
@@ -107,7 +107,7 @@
     <section class="container">
         <div class="parallax-content">
             <br>
-            <h1>REGISTRAR MANTENIMIENTO O REPARACIÓN</h1>
+            <h1>REGISTRAR MANTENIMIENTO</h1>
             <br>
             <%
                 Date fechaActual = new Date();

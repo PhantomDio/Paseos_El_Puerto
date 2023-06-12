@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="model.Mantenimiento" %>
+<%@ page import="model.Reparacion" %>
 
 <html>
 <head>
-    <title>Lista Mantenimiento</title>
+    <title>Lista Reparacion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
@@ -17,11 +17,26 @@
         </a>
         </li>
         <li class="dropdown">
-            <a href="#">Mantenimiento</a>
+            <a href="#">Embarcaciones</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
-                <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
-                <li><a href="/paseos_el_puerto/Propietarios/actualiza_embarcacion.jsp">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/Embarcaciones/inserta_embarcacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Embarcaciones/actualiza_embarcacion.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Contratos</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletContrato?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Contratos/actualiza_contrato.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Paseos</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletPaseo?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/ServletPaseo?op=listaEmb">Nuevo</a></li>
+                <li><a href="/paseos_el_puerto/Paseos/actualiza_paseo.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -30,14 +45,6 @@
                 <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/actualiza_propietario.jsp">Modificar</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">Alquileres</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -51,33 +58,25 @@
         <li class="dropdown">
             <a href="#">Personal</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">Mantenimiento</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletPersonal?op=lista" methods="GET">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Personal/inserta_personal.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Personal/actualiza_personal.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="#">Reparación</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletReparacion?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Reparacion/inserta_reparacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Reparacion/actualiza_reparacion.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#">Equipamiento</a>
+            <a href="#">Mantenimiento</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletMantenimiento?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Mantenimiento/inserta_mantenimiento.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Mantenimiento/actualiza_mantenimiento.jsp">Modificar</a></li>
             </ul>
         </li>
     </ul>
@@ -116,20 +115,21 @@
 <section class="container">
     <div class="parallax-content">
         <br>
-        <form method="get" action="/paseos_el_puerto/ServletMantenimiento">
-            <p>ID:<input type="text" name = "id_mantenimiento"></p>
+        <form method="get" action="/paseos_el_puerto/ServletReparacion">
+            <p>ID:<input type="text" name = "id_reparacion"></p>
             <input type="submit" class="button-minimal button-container" value="Buscar" name="op">
             <input type="submit" class="button-minimal" value="Eliminar" name="op">
             <input type="submit" class="button-minimal" style="margin-top: 9px" value="Finalizar" name="op">
         </form>
         <br>
-        <a method="get" href="/paseos_el_puerto/ServletMantenimiento?op=listActivos">Mostrar mantenimientos activos</a>
+        <a method="get" href="/paseos_el_puerto/ServletReparacion?op=listActivos">Mostrar reparaciones activas</a>
         <div class="table-container">
             <table>
                 <thead>
                 <tr>
-                    <th>ID Mantenimiento</th>
+                    <th>ID Reparacion</th>
                     <th>ID Embarcación</th>
+                    <th>ID Paseo</th>
                     <th>Descripcion</th>
                     <th>Costo</th>
                     <th>Fecha_inicio</th>
@@ -138,34 +138,36 @@
                 </thead>
                 <tbody>
                 <%
-                    Mantenimiento mantenimiento = (Mantenimiento) request.getAttribute("mantenimiento");
-                    ArrayList<Mantenimiento> lista = (ArrayList<Mantenimiento>) request.getAttribute("lista");
+                    Reparacion reparacion = (Reparacion) request.getAttribute("reparacion");
+                    ArrayList<Reparacion> lista = (ArrayList<Reparacion>) request.getAttribute("lista");
 
-                    if (mantenimiento != null) {
+                    if (reparacion != null) {
                 %>
                 <tr>
-                    <td><%= mantenimiento.getIdMantenimiento() %></td>
-                    <td><%= mantenimiento.getIdEmbarcacion() %></td>
-                    <td><%= mantenimiento.getDescripcion() %></td>
-                    <td><%= mantenimiento.getCosto() %></td>
-                    <td><%= mantenimiento.getFechaInicio() %></td>
-                    <td><%= mantenimiento.getFechaFin() %></td>
+                    <td><%= reparacion.getIdReparacion() %></td>
+                    <td><%= reparacion.getIdEmbarcacion() %></td>
+                    <td><%= reparacion.getIdPaseo() %></td>
+                    <td><%= reparacion.getDescripcion() %></td>
+                    <td><%= reparacion.getCosto() %></td>
+                    <td><%= reparacion.getFechaInicio() %></td>
+                    <td><%= reparacion.getFechaFin() %></td>
                 </tr>
                 <% } else if (lista != null && !lista.isEmpty()) {
-                    for (Mantenimiento manten : lista) {
+                    for (Reparacion repair : lista) {
                 %>
                 <tr>
-                    <td><%= manten.getIdMantenimiento() %></td>
-                    <td><%= manten.getIdEmbarcacion() %></td>
-                    <td><%= manten.getDescripcion() %></td>
-                    <td><%= manten.getCosto() %></td>
-                    <td><%= manten.getFechaInicio() %></td>
-                    <td><%= manten.getFechaFin() %></td>
+                    <td><%= repair.getIdReparacion() %></td>
+                    <td><%= repair.getIdEmbarcacion() %></td>
+                    <td><%= repair.getIdPaseo() %></td>
+                    <td><%= repair.getDescripcion() %></td>
+                    <td><%= repair.getCosto() %></td>
+                    <td><%= repair.getFechaInicio() %></td>
+                    <td><%= repair.getFechaFin() %></td>
                 </tr>
                 <% }
                 } else { %>
                 <tr>
-                    <td colspan="6"><h1>No hay mantenimientos a mostrar</h1></td>
+                    <td colspan="6"><h1>No hay reparaciones a mostrar</h1></td>
                 </tr>
                 <% } %>
                 </tbody>

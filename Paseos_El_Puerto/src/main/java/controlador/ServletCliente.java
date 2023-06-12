@@ -4,8 +4,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
 import javax.servlet.*;
+
+import datos.ClientesDAO;
 import model.Clientes;
 import datos.ClientesDAO;
+import model.Clientes;
+
 import java.util.*;
 
 @WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente"})
@@ -32,6 +36,13 @@ public class ServletCliente extends HttpServlet {
             ClientesDAO clientdao = new ClientesDAO();
             clientdao.delete(id_cliente);
             rp.sendRedirect("/paseos_el_puerto/ServletCliente");
+        }
+        else if (op.equals("Autollenado")) {
+            int id = Integer.parseInt(rq.getParameter("id"));
+            ClientesDAO clientesDAO = new ClientesDAO();
+            Clientes cliente = clientesDAO.select(id);
+            rq.setAttribute("cliente", cliente);
+            rq.getRequestDispatcher("/Clientes/actualiza_cliente.jsp").forward(rq, rp);
         }
     }
 

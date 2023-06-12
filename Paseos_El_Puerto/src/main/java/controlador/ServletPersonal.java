@@ -2,6 +2,8 @@ package controlador;
 
 import datos.PersonalDAO;
 import datos.PersonalDAO;
+import datos.PersonalDAO;
+import model.Personal;
 import model.Personal;
 import model.Personal;
 
@@ -38,6 +40,13 @@ public class ServletPersonal extends HttpServlet {
             PersonalDAO persDAO = new PersonalDAO();
             persDAO.delete(id_personal);
             rp.sendRedirect("/paseos_el_puerto/ServletPersonal");
+        }
+        else if (op.equals("Autollenado")) {
+            int id = Integer.parseInt(rq.getParameter("id"));
+            PersonalDAO personalDAO = new PersonalDAO();
+            Personal personal = personalDAO.select(id);
+            rq.setAttribute("personal", personal);
+            rq.getRequestDispatcher("/Personal/actualiza_personal.jsp").forward(rq, rp);
         }
     }
 

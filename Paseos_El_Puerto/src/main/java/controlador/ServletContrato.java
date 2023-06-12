@@ -1,6 +1,8 @@
 package controlador;
 
 import datos.ContratosDAO;
+import datos.ContratosDAO;
+import model.Contratos;
 import model.Contratos;
 
 import javax.servlet.ServletException;
@@ -36,6 +38,13 @@ public class ServletContrato extends HttpServlet {
             contratodao.delete(id_contrato);
             rp.sendRedirect("/paseos_el_puerto/ServletContrato");
         }
+        else if (op.equals("Autollenado")) {
+            int id = Integer.parseInt(rq.getParameter("id"));
+            ContratosDAO contratosDAO = new ContratosDAO();
+            Contratos contrato = contratosDAO.select(id);
+            rq.setAttribute("contrato", contrato);
+            rq.getRequestDispatcher("/Contratos/actualiza_contrato.jsp").forward(rq, rp);
+        }
     }
 
     @Override
@@ -50,7 +59,7 @@ public class ServletContrato extends HttpServlet {
             Contratos contrato = new Contratos(id_embarcacion, fecha_inicio, fecha_fin, costo_hora);
             ContratosDAO contratodao = new ContratosDAO();
             contratodao.insert(contrato);
-            rp.sendRedirect("/paseos_el_puerto/Embarcaciones/inserta_embarcacion.jsp");
+            rp.sendRedirect("/paseos_el_puerto/Contratos/inserta_embarcacion.jsp");
         }
 
         else if (op.equals("Modificar")) {

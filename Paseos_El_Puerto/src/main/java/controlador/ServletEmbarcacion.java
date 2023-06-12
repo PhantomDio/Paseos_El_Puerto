@@ -1,6 +1,7 @@
 package controlador;
 import datos.EmbarcacionesDAO;
 import model.Embarcaciones;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +34,13 @@ public class ServletEmbarcacion extends HttpServlet {
             EmbarcacionesDAO embardao = new EmbarcacionesDAO();
             embardao.delete(id_embarcacion);
             rp.sendRedirect("/paseos_el_puerto/ServletEmbarcacion");
+        }
+        else if (op.equals("Autollenado")) {
+            int id = Integer.parseInt(rq.getParameter("id"));
+            EmbarcacionesDAO embarcacionesDAO = new EmbarcacionesDAO();
+            Embarcaciones embarcacion = embarcacionesDAO.select(id);
+            rq.setAttribute("embarcacion", embarcacion);
+            rq.getRequestDispatcher("/Embarcaciones/actualiza_embarcacion.jsp").forward(rq, rp);
         }
     }
 

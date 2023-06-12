@@ -139,18 +139,23 @@ public class Embarcaciones implements Serializable {
         Date fechaFinMantenimiento = embarDAO.getUltimaFechaFinMantenimiento(idEmbarcacion);
         fechaFinMantenimiento = fechaFinMantenimiento != null ? fechaFinMantenimiento : Date.valueOf("9999-09-09");
 
+        Date fechaFinReparacion = embarDAO.getUltimaFechaFinReparacion(idEmbarcacion);
+        fechaFinReparacion = fechaFinReparacion != null ? fechaFinReparacion : Date.valueOf("9999-09-09");
+
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaFinP = fechaFinPaseo.toLocalDate();
         LocalDate fechaFinC = fechaFinContrato.toLocalDate();
         LocalDate fechaFinM = fechaFinMantenimiento.toLocalDate();
+        LocalDate fechaFinR = fechaFinReparacion.toLocalDate();
 
         int comparacion = fechaActual.compareTo(fechaFinP);
         int comparacion2 = fechaActual.compareTo(fechaFinC);
         int comparacion3 = fechaActual.compareTo(fechaFinM);
+        int comparacion4 = fechaActual.compareTo(fechaFinR);
 
-        if (comparacion < 0 && comparacion2 > 0 && comparacion3 < 0) {
+        if (comparacion < 0 && comparacion2 > 0 && comparacion3 < 0 && comparacion4 < 0) {
             return "No disponible";
-        } else if (comparacion > 0 && comparacion2 < 0 && comparacion3 >= 0) {
+        } else if (comparacion > 0 && comparacion2 < 0 && comparacion3 >= 0 && comparacion4 >= 0) {
             return "Disponible";
         }
 

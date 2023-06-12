@@ -18,17 +18,6 @@ VALUES (1, '2023-01-01', '2023-02-28', 50.0),
        (2, '2023-03-15', '2023-04-30', 40.0),
        (3, '2023-02-01', '2023-03-31', 60.0);
 
-INSERT INTO Aditamentos (nombre, costo, tipo, id_embarcacion)
-VALUES ('Equipo de pesca', 100.0, 'Deportivo', 1),
-       ('Equipo de buceo', 150.0, 'Recreativo', 2),
-       ('Equipo de snorkel', 50.0, 'Recreativo', 3);
-
-INSERT INTO Embarcaciones_Aditamentos (id_embarcacion, id_aditamento)
-VALUES (1, 1),
-       (1, 2),
-       (2, 2),
-       (3, 1),
-       (3, 3);
 
 INSERT INTO Personal (nombre, ap_pat, ap_mat, sexo, direccion, telefono, email, fecha_nac, costo_hora)
 VALUES ('Juan', 'Pérez', 'Mendez', 'Masculino', 'Calle 123', '123456789', 'juan@example.com', '1990-01-15', 15.50),
@@ -43,3 +32,9 @@ VALUES
 (1, 'Limpieza del casco', 300.00, '2023-06-03', NULL),
 (3, 'Reemplazo de cables eléctricos', 800.00, '2023-06-05', '2023-06-08'),
 (2, 'Pintura exterior', 600.00, '2023-06-06', '2023-06-07');
+
+INSERT INTO Reparacion (id_embarcacion, id_paseo, descripcion, costo, fecha_inicio, fecha_fin)
+VALUES
+(1, NULL, 'Reemplazo de motor', 2500.00, '2023-02-05', '2023-02-08'),
+(2, NULL, 'Reparación de casco', 1500.00, '2023-04-20', '2023-04-22'),
+(2, NULL, 'Reemplazo de velas', 1200.00, '2023-05-10', '2023-05-12');

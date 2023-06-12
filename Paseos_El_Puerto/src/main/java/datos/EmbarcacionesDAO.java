@@ -164,4 +164,20 @@ public class EmbarcacionesDAO {
         }
         return fechaFinMantenimiento;
     }
+
+    public Date getUltimaFechaFinReparacion(int idEmbarcacion) {
+        Date fechaFinReparacion = null;
+        try (Connection con = Conexion.getConnection()) {
+            String query = "SELECT fecha_fin FROM reparacion WHERE id_embarcacion = ? ORDER BY fecha_fin DESC LIMIT 1";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idEmbarcacion);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                fechaFinReparacion = rs.getDate("fecha_fin");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return fechaFinReparacion;
+    }
 }

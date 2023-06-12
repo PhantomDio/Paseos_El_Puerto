@@ -1,4 +1,4 @@
-<%@ page import="model.Mantenimiento" %>
+<%@ page import="model.Reparacion" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/styles.css">
     <link rel="stylesheet" type="text/css" href="/paseos_el_puerto/navbar.css">
-    <script src="/paseos_el_puerto/animaciones.js"></script>
-    <script src="/paseos_el_puerto/Formato_fecha.js"></script>
+    <script src="/paseos_el_puerto/Utilidades.js"></script>
 </head>
 <body class="body_color">
 <header class="navigation">
@@ -19,8 +18,23 @@
             <a href="#">Embarcaciones</a>
             <ul class="dropdown-menu">
                 <li><a href="/paseos_el_puerto/ServletEmbarcacion?op=lista">Lista</a></li>
-                <li><a href="/paseos_el_puerto/Propietarios/inserta_embarcacion.jsp">Registrar</a></li>
-                <li><a href="/paseos_el_puerto/Propietarios/actualiza_embarcacion.jsp">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/Embarcaciones/inserta_embarcacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Embarcaciones/actualiza_embarcacion.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Contratos</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletContrato?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Contratos/actualiza_contrato.jsp">Modificar</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Paseos</a>
+            <ul class="dropdown-menu">
+                <li><a href="/paseos_el_puerto/ServletPaseo?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/ServletPaseo?op=listaEmb">Nuevo</a></li>
+                <li><a href="/paseos_el_puerto/Paseos/actualiza_paseo.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -29,14 +43,6 @@
                 <li><a href="/paseos_el_puerto/ServletPropietario?op=lista">Lista</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/inserta_propietario.jsp">Registrar</a></li>
                 <li><a href="/paseos_el_puerto/Propietarios/actualiza_propietario.jsp">Modificar</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">Alquileres</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -50,33 +56,25 @@
         <li class="dropdown">
             <a href="#">Personal</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">Mantenimiento</a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletPersonal?op=lista" methods="GET">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Personal/inserta_personal.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Personal/actualiza_personal.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="#">Reparación</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletReparacion?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Reparacion/inserta_reparacion.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Reparacion/actualiza_reparacion.jsp">Modificar</a></li>
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#">Equipamiento</a>
+            <a href="#">Mantenimiento</a>
             <ul class="dropdown-menu">
-                <li><a href="#">Lista</a></li>
-                <li><a href="#">Registrar</a></li>
-                <li><a href="#">Modificar</a></li>
+                <li><a href="/paseos_el_puerto/ServletMantenimiento?op=lista">Lista</a></li>
+                <li><a href="/paseos_el_puerto/Mantenimiento/inserta_mantenimiento.jsp">Registrar</a></li>
+                <li><a href="/paseos_el_puerto/Mantenimiento/actualiza_mantenimiento.jsp">Modificar</a></li>
             </ul>
         </li>
     </ul>
@@ -104,7 +102,7 @@
 <script>
     function autollenar() {
         var id = document.getElementById('id').value;
-        var url = '/paseos_el_puerto/ServletMantenimiento?op=Autollenado&id=' + id;
+        var url = '/paseos_el_puerto/ServletReparacion?op=Autollenado&id=' + id;
 
         // Almacenar el valor de id_paseo en el almacenamiento local del navegador
         localStorage.setItem('id', id);
@@ -126,20 +124,22 @@
 <section class="container">
     <div class="parallax-content">
         <br>
-        <h1>Modificar Mantenimiento</h1>
+        <h1>Modificar Reparacion</h1>
         <br>
-        <% Mantenimiento mantenimiento = (Mantenimiento) request.getAttribute("mantenimiento"); %>
+        <% Reparacion reparacion = (Reparacion) request.getAttribute("reparacion"); %>
 
-        <form action="/paseos_el_puerto/ServletMantenimiento" method="post" onsubmit="return validarFormulario2()">
-            <p>ID_Mantenimiento : <input type="text" name="id_mantenimiento" id="id" onblur="autollenar()"></p>
-            <% if (mantenimiento != null) { %>
-            <p>ID_Embarcación: <input type="text" value="<%=mantenimiento.getIdEmbarcacion()%>" name="id_embarcacion"></p>
-            <p>Descripción: <input type="text" name="descripcion" value="<%=mantenimiento.getDescripcion()%>" placeholder="(yyyy-mm-dd)"></p>
-            <p>Costo: <input type="text" name="costo" value="<%=mantenimiento.getCosto()%>"></p>
-            <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="<%=mantenimiento.getFechaInicio()%>"></p>
-            <p>Fecha de fin: <input type="text" name="fecha_fin" value="<%=mantenimiento.getFechaFin()%>"></p>
+        <form action="/paseos_el_puerto/ServletReparacion" method="post" onsubmit="return validarFormulario2()">
+            <p>ID_Reparacion : <input type="text" name="id_reparacion" id="id" onblur="autollenar()"></p>
+            <% if (reparacion != null) { %>
+            <p>ID_Embarcación: <input type="text" value="<%=reparacion.getIdEmbarcacion()%>" name="id_embarcacion"></p>
+            <p>ID_Paseo: <input type="text" value="<%=reparacion.getIdPaseo()%>" name="id_paseo"></p>
+            <p>Descripción: <input type="text" name="descripcion" value="<%=reparacion.getDescripcion()%>" placeholder="(yyyy-mm-dd)"></p>
+            <p>Costo: <input type="text" name="costo" value="<%=reparacion.getCosto()%>"></p>
+            <p>Fecha de inicio: <input type="text" name="fecha_inicio" value="<%=reparacion.getFechaInicio()%>"></p>
+            <p>Fecha de fin: <input type="text" name="fecha_fin" value="<%=reparacion.getFechaFin()%>"></p>
             <% } else { %>
             <p>ID_Embarcación: <input type="text" name="id_embarcacion"></p>
+            <p>ID_Paseo: <input type="text" name="id_paseo"></p>
             <p>Descripción: <input type="text" name="descripcion" placeholder="(yyyy-mm-dd)"></p>
             <p>Costo: <input type="text" name="costo"></p>
             <p>Fecha de inicio: <input type="text" name="fecha_inicio" placeholder="(yyyy-mm-dd)"></p>
@@ -148,7 +148,7 @@
             <br>
             <br>
             <div class="button-container">
-                <input type="submit" class="button-minimal" value="Modificar" name="op" onclick="validarFormulario() ? this.form.submit() : false">
+                <input type="submit" class="button-minimal" value="Modificar" name="op">
             </div>
         </form>
 

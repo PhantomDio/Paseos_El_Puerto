@@ -41,26 +41,6 @@ CREATE TABLE Contratos (
 	REFERENCES Embarcaciones(id_embarcacion) ON DELETE CASCADE
 );
 
-CREATE TABLE Aditamentos (
-	id_aditamento SERIAL PRIMARY KEY,
-	nombre VARCHAR(40) NOT NULL,
-	costo FLOAT NOT NULL,
-	tipo VARCHAR(50) NOT NULL,
-	id_embarcacion INT NOT NULL,
-	CONSTRAINT FK_ID_EMBARCACION FOREIGN KEY (id_embarcacion)
-	REFERENCES Embarcaciones(id_embarcacion) ON DELETE CASCADE
-);
-
-CREATE TABLE Embarcaciones_Aditamentos (
-	id_embarcacion INT NOT NULL,
-	id_aditamento INT NOT NULL,
-	PRIMARY KEY (id_embarcacion, id_aditamento),
-	CONSTRAINT FK_ID_EMBARCACION FOREIGN KEY (id_embarcacion)
-	REFERENCES Embarcaciones(id_embarcacion) ON DELETE CASCADE,
-	CONSTRAINT FK_ID_ADITAMENTO FOREIGN KEY (id_aditamento)
-	REFERENCES Aditamentos(id_aditamento) ON DELETE CASCADE
-);
-
 CREATE TABLE Paseos (
 	id_paseo SERIAL PRIMARY KEY,
 	id_embarcacion INT NOT NULL,
@@ -113,7 +93,8 @@ CREATE TABLE Reparacion (
 	id_paseo INT,
 	descripcion VARCHAR(100) NOT NULL,
 	costo FLOAT NOT NULL,
-	fecha_reparacion DATE NOT NULL,
+	fecha_inicio DATE NOT NULL,
+	fecha_fin DATE,
 	CONSTRAINT FK_ID_EMBARCACION FOREIGN KEY (id_embarcacion)
 	REFERENCES Embarcaciones(id_embarcacion) ON DELETE CASCADE,
 	CONSTRAINT FK_ID_PASEO FOREIGN KEY (id_paseo)

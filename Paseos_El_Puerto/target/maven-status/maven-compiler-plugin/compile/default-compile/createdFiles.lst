@@ -1,4 +1,5 @@
 model\Propietarios.class
+controlador\ServletReparacion.class
 datos\EmbarcacionesDAO.class
 datos\PropietariosDAO.class
 controlador\ServletContrato.class
@@ -16,7 +17,9 @@ model\Personal.class
 controlador\ServletPersonal.class
 model\Clientes.class
 model\Mantenimiento.class
+model\Reparacion.class
 datos\ClientesDAO.class
+datos\ReparacionDAO.class
 controlador\ServletCliente.class
 datos\ContratosDAO.class
 model\Paseos.class

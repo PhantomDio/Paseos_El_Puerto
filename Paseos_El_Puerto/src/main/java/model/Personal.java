@@ -2,11 +2,12 @@ package model;
 
 import datos.PersonalDAO;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Personal {
+public class Personal implements Serializable {
     private int idPersonal;
     private String nombre, apellidoP, apellidoM, direccion, telefono, email, sexo;
     private float costoHora;

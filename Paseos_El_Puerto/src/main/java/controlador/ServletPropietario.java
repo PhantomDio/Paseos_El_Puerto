@@ -1,6 +1,8 @@
 package controlador;
 
 import datos.PropietariosDAO;
+import datos.PropietariosDAO;
+import model.Propietarios;
 import model.Propietarios;
 
 import javax.servlet.ServletException;
@@ -36,7 +38,15 @@ public class ServletPropietario extends HttpServlet {
             propdao.delete(id_propietario);
             rp.sendRedirect("/paseos_el_puerto/ServletPropietario");
         }
+        else if (op.equals("Autollenado")) {
+            int id = Integer.parseInt(rq.getParameter("id"));
+            PropietariosDAO propietariosDAO = new PropietariosDAO();
+            Propietarios propietario = propietariosDAO.select(id);
+            rq.setAttribute("propietario", propietario);
+            rq.getRequestDispatcher("/Propietarios/actualiza_propietario.jsp").forward(rq, rp);
+        }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest rq, HttpServletResponse rp) throws IOException {
