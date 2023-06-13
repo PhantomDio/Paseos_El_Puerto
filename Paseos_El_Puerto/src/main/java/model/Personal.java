@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Personal implements Serializable {
-    private int idPersonal;
+    private int idPersonal, num_paseos;
     private String nombre, apellidoP, apellidoM, direccion, telefono, email, sexo;
     private float costoHora;
     private Date fecha_nac;
@@ -16,6 +16,20 @@ public class Personal implements Serializable {
     public Personal() {
     }
 
+    public Personal(int idPersonal, String nombre, String apellidoP, String apellidoM, String direccion,
+                    String telefono, String email, String sexo, float costoHora, String fecha_nac, int num_paseos) {
+        this.idPersonal = idPersonal;
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.sexo = sexo;
+        this.costoHora = costoHora;
+        this.fecha_nac = Date.valueOf(fecha_nac);
+        this.num_paseos = num_paseos;
+    }
     public Personal(int idPersonal, String nombre, String apellidoP, String apellidoM, String direccion,
                     String telefono, String email, String sexo, float costoHora, String fecha_nac) {
         this.idPersonal = idPersonal;
@@ -121,6 +135,13 @@ public class Personal implements Serializable {
 
     public void setCostoHora(float costoHora) {
         this.costoHora = costoHora;
+    }
+    
+    public int getNumPaseos(){
+        return num_paseos;
+    }
+    public void setNumPaseos(int num_paseos) {
+        this.num_paseos = num_paseos;
     }
 
     public int getEdad(Date fecha_nac) {

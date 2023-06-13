@@ -26,6 +26,7 @@ public class PersonalDAO {
                 prop.setFecha_nac(rs.getDate("fecha_nac"));
                 prop.setSexo(rs.getString("sexo"));
                 prop.setCostoHora(rs.getFloat("costo_hora"));
+                prop.setNumPaseos(getNumPaseos(rs.getInt("id_personal")));
             }
             statement.close();
             rs.close();
@@ -60,8 +61,9 @@ public class PersonalDAO {
                 String fecha_nac = rs.getString("fecha_nac");
                 String sexo = rs.getString("sexo");
                 float costo_hora = rs.getFloat("costo_hora");
+                int num_paseos = getNumPaseos(id_personal);
 
-                personal = new Personal(id_personal,nombre,apellido_Pat,apellido_Mat, direccion, telefono, email, sexo, costo_hora, fecha_nac);
+                personal = new Personal(id_personal,nombre,apellido_Pat,apellido_Mat, direccion, telefono, email, sexo, costo_hora, fecha_nac, num_paseos);
                 empleados.add(personal);
 
             }
@@ -151,5 +153,31 @@ public class PersonalDAO {
             ex.printStackTrace();
         }
         return fechaFinPaseo;
+    }
+    public static int getNumPaseos(int id_personal) {
+        String query =  "SELECT COUNT(pp.id_personal) AS numPaseos FROM paseos_personal pp " +
+                "WHERE pp.id_personal = " + id_personal;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int numPaseos = 0;
+
+        try {
+            conn = Conexion.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next())
+                numPaseos = rs.getInt("numPaseos");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Conexion.close(rs);
+        Conexion.close(ps);
+        Conexion.close(conn);
+
+        return numPaseos;
     }
 }

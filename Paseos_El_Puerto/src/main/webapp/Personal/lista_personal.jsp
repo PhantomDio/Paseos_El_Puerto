@@ -135,6 +135,8 @@
                     <th>Sexo</th>
                     <th>Costo
                         hora</th>
+                    <th>Num
+                        Paseos</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -155,6 +157,7 @@
                     <td><%= pers.getEdad(pers.getFecha_nac()) %></td>
                     <td><%= pers.getSexo() %></td>
                     <td>$<%= pers.getCostoHora() %></td>
+                    <td><%= pers.getNumPaseos() %></td>
                 </tr>
                 <% } else if (lista != null && !lista.isEmpty()) {
                     for (Personal personal : lista) {
@@ -170,6 +173,7 @@
                     <td><%= personal.getEdad(personal.getFecha_nac()) %></td>
                     <td><%= personal.getSexo() %></td>
                     <td>$<%= personal.getCostoHora() %></td>
+                    <td><%= personal.getNumPaseos() %></td>
                     <%
                             }
                         }
