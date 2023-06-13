@@ -178,7 +178,7 @@
                             }
                         }
                         else { %>
-                    <td colspan="9"><h1>No hay personal disponible</h1></td>
+                    <td colspan="9"><h1>No hay personal</h1></td>
                 </tr>
                 <% }
                     ;%>

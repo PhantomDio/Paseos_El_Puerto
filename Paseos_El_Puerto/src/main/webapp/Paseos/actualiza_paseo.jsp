@@ -126,6 +126,9 @@
 <br>
 <section class="container">
     <div class="parallax-content">
+        <br>
+        <h1>Modificar Paseo</h1>
+        <br>
         <% Paseos paseo = (Paseos) request.getAttribute("paseo"); %>
 
         <form action="/paseos_el_puerto/ServletPaseo" method="post" onsubmit="return validarFormulario2()">

@@ -126,6 +126,9 @@
 <br>
 <section class="container">
     <div class="parallax-content">
+        <br>
+        <h1>Modificar Personal</h1>
+        <br>
 
         <% Personal personal = (Personal) request.getAttribute("personal"); %>
 

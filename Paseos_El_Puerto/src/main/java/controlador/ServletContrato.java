@@ -59,7 +59,7 @@ public class ServletContrato extends HttpServlet {
             Contratos contrato = new Contratos(id_embarcacion, fecha_inicio, fecha_fin, costo_hora);
             ContratosDAO contratodao = new ContratosDAO();
             contratodao.insert(contrato);
-            rp.sendRedirect("/paseos_el_puerto/Contratos/inserta_embarcacion.jsp");
+            rp.sendRedirect("/paseos_el_puerto/Embarcaciones/inserta_embarcacion.jsp");
         }
 
         else if (op.equals("Modificar")) {

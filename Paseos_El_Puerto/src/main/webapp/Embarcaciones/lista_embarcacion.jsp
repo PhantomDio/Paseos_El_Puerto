@@ -193,6 +193,7 @@
                     %>
                     <td>Sin contrato</td>
                     <td>No disponible</td>
+                    <td><a href="/paseos_el_puerto/Contratos/inserta_contrato.jsp">Terminar registro</a></td>
                     <%
                         }
                     %>
